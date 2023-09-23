@@ -19,6 +19,7 @@
 - https://www.weather.gov/documentation/services-web-api 
 - https://en.wikipedia.org/api/rest_v1/ (To access hurricane data)
 - https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-shelter-system-facilities/about
+- https://public.opendatasoft.com/explore/dataset/us-county-boundaries/table/?flg=en-us&disjunctive.statefp&disjunctive.countyfp&disjunctive.name&disjunctive.namelsad&disjunctive.stusab&disjunctive.state_name
 
 
 **At least three models**
