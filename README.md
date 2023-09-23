@@ -17,7 +17,7 @@
 
 **URLs of at least three data sources that you will programmatically scrape using a RESTful API (be very sure about this)**
 - https://www.weather.gov/documentation/services-web-api 
-- https://en.wikipedia.org/api/rest_v1/ (To access hurricane data)
+- https://en.wikipedia.org/api/rest_v1/ (We will use this to access both county data and hurricane data)
 - https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-shelter-system-facilities/about
 - https://public.opendatasoft.com/explore/dataset/us-county-boundaries/table/?flg=en-us&disjunctive.statefp&disjunctive.countyfp&disjunctive.name&disjunctive.namelsad&disjunctive.stusab&disjunctive.state_name
 
