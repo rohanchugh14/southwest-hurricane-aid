@@ -16,10 +16,10 @@ Southwest Hurricane Aid
 Providing aid to those living in hurricane-prone areas
 
 **URLs of at least three data sources that you will programmatically scrape using a RESTful API (be very sure about this)**
-https://www.weather.gov/documentation/services-web-api 
-https://en.wikipedia.org/api/rest_v1/ (To access hurricane data)
-https://en.wikipedia.org/wiki/List_of_United_States_hurricanes 
-https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-shelter-system-facilities/about
+- https://www.weather.gov/documentation/services-web-api 
+- https://en.wikipedia.org/api/rest_v1/ (To access hurricane data)
+- https://en.wikipedia.org/wiki/List_of_United_States_hurricanes 
+- https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-shelter-system-facilities/about
 
 
 **At least three models**
@@ -38,7 +38,7 @@ https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-she
 
 - Historic Hurricane data
     - Category
-    - Wind speeds??
+    - Wind speeds
     - Rainfall
     - Locations affected
     - Description of the hurricane
