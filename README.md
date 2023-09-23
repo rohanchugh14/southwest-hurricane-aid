@@ -1,5 +1,5 @@
 **Canvas / Ed Discussion group number:**
-Group 21
+- Group 21
 
 **Names of the team members**
 - Eshitha Bangray
@@ -10,15 +10,14 @@ Group 21
 
 
 **Name of the project**
-Southwest Hurricane Aid
+- Southwest Hurricane Aid
 
 **The proposed project**
-Providing aid to those living in hurricane-prone areas
+- Providing aid to those living in hurricane-prone areas
 
 **URLs of at least three data sources that you will programmatically scrape using a RESTful API (be very sure about this)**
 - https://www.weather.gov/documentation/services-web-api 
 - https://en.wikipedia.org/api/rest_v1/ (To access hurricane data)
-- https://en.wikipedia.org/wiki/List_of_United_States_hurricanes 
 - https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-shelter-system-facilities/about
 
 
