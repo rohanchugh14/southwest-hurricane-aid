@@ -1,6 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Button from "@mui/material/Button";
 
 function App() {
   return (
@@ -18,6 +19,15 @@ function App() {
         >
           Learn React
         </a>
+        <Button variant="contained">Hello World</Button>
+
+        <Button color="secondary">Secondary</Button>
+        <Button variant="contained" color="success">
+          Success
+        </Button>
+        <Button variant="outlined" color="error">
+          Error
+        </Button>
       </header>
     </div>
   );
