@@ -39,5 +39,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "**Canvas / Ed Discussion group number:** - Group 21",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/rohanchugh14/southwest-hurricane-aid.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/rohanchugh14/southwest-hurricane-aid/issues"
+  },
+  "homepage": "https://gitlab.com/rohanchugh14/southwest-hurricane-aid#readme"
 }
