@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['About', 'Historic Hurricane Data', 'Counties', 'Aid Organizations'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
@@ -55,7 +55,7 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            HOME
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -111,7 +111,7 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            HOME
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -119,6 +119,7 @@ function Navbar() {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                href = {`/${page}`}
               >
                 {page}
               </Button>
