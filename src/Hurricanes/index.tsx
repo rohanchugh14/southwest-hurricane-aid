@@ -2,7 +2,7 @@ import React from "react";
 import HurricaneCard from "../components/HurricaneCard";
 import hurricaneData from "../Data/hurricane_data.json";
 import Grid from "@mui/material/Grid";
-import {Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 
 const Hurricanes = () => {
   return (
