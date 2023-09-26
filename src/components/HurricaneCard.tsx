@@ -34,7 +34,6 @@ export default function HurricaneCard(props: HurricaneDataProps) {
       <Card style={{
         maxWidth: "100%",
         height: "100%",
-        paddingBottom: "8%",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
         position: "relative"
       }}>
@@ -52,14 +51,6 @@ export default function HurricaneCard(props: HurricaneDataProps) {
             </CardContent>
           </CardActionArea>
         </Tooltip>
-        <CardActions style={{ position: "absolute", bottom: 0 }}>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            More Info
-          </Button>
-        </CardActions>
       </Card>
 
       <Modal
