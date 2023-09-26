@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['About', 'Historic Hurricane Data', 'Counties', 'Aid Organizations'];
+const pages = ['About', 'Hurricanes', 'Counties', 'Aid Organizations'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
