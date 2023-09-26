@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router-dom";
 import About from "./About";
+import Counties from "./Counties";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element = {<Home />} />
         <Route path="/about" element = {<About />} />
+        <Route path="/counties" element = {<Counties />} />
       </Routes>
     </BrowserRouter>
       //<Home></Home>
