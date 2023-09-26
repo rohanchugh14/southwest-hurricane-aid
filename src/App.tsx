@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router-dom";
 import About from "./About";
+import Hurricanes from "./Hurricanes";
 
 
 function App() {
@@ -15,9 +16,9 @@ function App() {
       <Routes>
         <Route path="/" element = {<Home />} />
         <Route path="/about" element = {<About />} />
+        <Route path="/hurricanes" element = {<Hurricanes />} />
       </Routes>
     </BrowserRouter>
-      //<Home></Home>
   );
 }
 
