@@ -17,7 +17,7 @@ const AidOrganizationInstances = () => {
             
             <Typography variant='h2'>{ourHurricane?.attributes.shelter_name}</Typography>
             
-            <img src={ourHurricane?.attributes.imgurl} alt="hurricane" />
+            <img src={"/" + ourHurricane?.attributes.imgurl} alt="hurricane" />
 
             <Typography variant='body1'>
 
