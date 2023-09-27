@@ -7,6 +7,8 @@ import {Routes, Route} from "react-router-dom";
 import About from "./About";
 import Hurricanes from "./Hurricanes";
 import Counties from "./Counties";
+import HurricaneInstances from "./HurricaneInstances";
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
         <Route path="/about" element = {<About />} />
         <Route path="/hurricanes" element = {<Hurricanes />} />
         <Route path="/counties" element = {<Counties />} />
+        <Route path="/Hurricanes/HurricaneInstances/:instance" element = {<HurricaneInstances />} />
       </Routes>
     </BrowserRouter>
   );
