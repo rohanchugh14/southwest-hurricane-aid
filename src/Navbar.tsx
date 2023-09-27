@@ -45,7 +45,7 @@ function Navbar() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon
-                        sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                        sx={{ display: { xs: "none", md: "flex" }, mr: 2 }}
                     />
                     <Typography
                         variant="h6"
@@ -96,7 +96,7 @@ function Navbar() {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: "block", md: "none" },
+                                display: { xs: "block", md: "none"},
                             }}
                         >
                             {pages.map((page) => (
@@ -153,6 +153,7 @@ function Navbar() {
                                     onClick={handleCloseNavMenu}
                                     sx={{
                                         my: 2,
+                                        mr: 1.5,
                                         color: "white",
                                         display: "block",
                                     }}

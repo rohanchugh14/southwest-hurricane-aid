@@ -35,6 +35,10 @@ const AidOrganizationInstances = () => {
 
                 <b>Organization name: </b> {ourOrg?.attributes.org_organization_name}
 
+                <br />
+
+                <b>Phone: </b> {ourOrg?.attributes.org_main_phone !== " " ? ourOrg?.attributes.org_main_phone : "Not listed"}
+
 
             </Typography>
 
