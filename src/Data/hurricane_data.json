@@ -3,18 +3,18 @@
         "Name": "Audrey",
         "Category": "Category2 hurricane",
         "Date": "June 27 1957",
-        "Image": "https://www.weather.gov/images/lch/events/1957Audrey/19570627-1200Z-AudreyCompositeRadar.png"
+        "Image": "/hurricane_images/Audrey_hurricane.png"
     },
     {
         "Name": "Debra",
         "Category": "Category1 hurricane",
         "Date": "July 25 1959",
-        "Image": "https://www.weather.gov/images/lch/events/1959Debra/19590724-1333Z-Debra-Radar.png"
+        "Image": "/hurricane_images/Carla_hurricane.png"
     },
     {
         "Name": "Carla",
         "Category": "Category4 hurricane",
         "Date": "September 11 1961",
-        "Image": "https://www.weather.gov/images/lch/events/1961Carla/19610910-2050Z-GLS.png"
+        "Image": "/hurricane_images/Debra_hurricane.png"
     }
 ]

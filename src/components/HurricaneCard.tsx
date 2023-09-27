@@ -8,9 +8,10 @@ import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
 import { Link } from "react-router-dom";
+import CardMedia from "@mui/material/CardMedia";
 
 interface HurricaneDataProps {
-  image: string; 
+  image: string;
   name: string;
   category: string;
   date: string;
@@ -29,14 +30,18 @@ export default function HurricaneCard(props: HurricaneDataProps) {
 
   return (
     <div style={{ maxWidth: "100%", height: "100%" }}>
-      <Card style={{
-        maxWidth: "100%",
-        height: "100%",
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-        position: "relative"
-      }}>
+      <Card
+        style={{
+          maxWidth: "100%",
+          height: "100%",
+          boxShadow:
+            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+          position: "relative",
+        }}
+      >
         <Tooltip title="Click for More Info">
           <CardActionArea onClick={handleOpen}>
+            <CardMedia style={{ height: 220 }} image={props.image} />
             <CardContent>
               <Typography gutterBottom variant="h5">
                 {props.name}
@@ -45,7 +50,9 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                 <p>{props.category}</p>
                 <p>Date: {props.date}</p>
                 <li key={props.name}>
-                  <Link to = {`HurricaneInstances/${props.name}`}>{"Learn More"} </Link>
+                  <Link to={`HurricaneInstances/${props.name}`}>
+                    {"Learn More"}{" "}
+                  </Link>
                 </li>
               </Typography>
             </CardContent>
@@ -66,15 +73,17 @@ export default function HurricaneCard(props: HurricaneDataProps) {
         }}
       >
         <Fade in={open}>
-          <div style={{
-            backgroundColor: "#fff",
-            border: "2px solid #000",
-            padding: "16px 32px 24px",
-            width: "50%",
-            marginLeft: "25%",
-            marginRight: "25%"
-          }}>
-            <img src={props.image} style={{ width: "100%" }} />
+          <div
+            style={{
+              backgroundColor: "#fff",
+              border: "2px solid #000",
+              padding: "16px 32px 24px",
+              width: "50%",
+              marginLeft: "25%",
+              marginRight: "25%",
+            }}
+          >
+            <CardMedia style={{ height: 220 }} image="{props.image}" />
             <h2 id="transition-modal-title">{props.name}</h2>
             <p id="transition-modal-description">Category: {props.category}</p>
             <p id="transition-modal-description">Date: {props.date}</p>
