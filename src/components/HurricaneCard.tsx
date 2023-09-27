@@ -12,6 +12,8 @@ interface HurricaneDataProps {
   name: string;
   category: string;
   date: string;
+  WindSpeed: string;
+  Fatalities: string;
 }
 
 export default function HurricaneCard(props: HurricaneDataProps) {
@@ -38,8 +40,10 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                   {props.name}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  <p>{props.category}</p>
+                  <p>Category: {props.category}</p>
                   <p>Date: {props.date}</p>
+                  <p>Wind Speed: {props.WindSpeed}MPH</p>
+                  <p>Fatalities: {props.Fatalities}</p>
                 </Typography>
               </CardContent>
             </CardActionArea>
