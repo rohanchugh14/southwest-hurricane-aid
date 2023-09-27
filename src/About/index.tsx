@@ -201,7 +201,7 @@ const About = () => {
         <br /><br />
 
 
-        <b>Link to Postman API: </b> TBD
+        <b>Link to Postman API: </b> <a href="https://documenter.getpostman.com/view/18568319/2s9YJZ3PeF">https://documenter.getpostman.com/view/18568319/2s9YJZ3PeF</a>
       </div>
     </div>
   )
