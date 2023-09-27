@@ -3,12 +3,15 @@ import HurricaneCard from "../components/HurricaneCard";
 import hurricaneData from "../Data/hurricane_data.json";
 import Grid from "@mui/material/Grid";
 import {Typography } from '@mui/material'
+import {BrowserRouter as Router, Route, Routes, Link,} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const HurricaneInstances = () => {
+  const name = useParams();
   return (
     <>
         <Typography>
-            test name
+            name
         </Typography>
             <img src = "image link" alt = "no image avaliable" />
         <Typography>

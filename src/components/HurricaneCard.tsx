@@ -10,6 +10,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
+import {BrowserRouter as Router, Route, Routes, Link,} from "react-router-dom";
 
 interface HurricaneDataProps {
   // image: string;
@@ -47,6 +48,9 @@ export default function HurricaneCard(props: HurricaneDataProps) {
               <Typography variant="body2" color="textSecondary" component="p">
                 <p>{props.category}</p>
                 <p>Date: {props.date}</p>
+                <li key={props.name}>
+                  <Link to = {`HurricaneInstances/${props.name}`}>{props.name} </Link>
+                </li>
                 <a href = "/HurricaneInstances" className = "hurricane-button">Learn More </a>
               </Typography>
             </CardContent>
