@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom';
 import aidOrganizationData from '../Data/aidorganizations_small.json'
 import { Typography } from '@mui/material';
@@ -7,9 +7,7 @@ import { Typography } from '@mui/material';
 
 const AidOrganizationInstances = () => {
 
-    const [name, setName] = useState(useParams().instance);
-    console.log(name);
-    // setName(useParams());
+    const name = useParams().instance;
     const ourHurricane = aidOrganizationData.features.find((currObject) => {
         return currObject.attributes.shelter_name === name;
     });
@@ -19,7 +17,7 @@ const AidOrganizationInstances = () => {
             
             <Typography variant='h2'>{ourHurricane?.attributes.shelter_name}</Typography>
             
-            <img src={ourHurricane?.attributes.imgurl} />
+            <img src={ourHurricane?.attributes.imgurl} alt="hurricane" />
 
             <Typography variant='body1'>
 
