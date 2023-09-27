@@ -4,18 +4,20 @@ import hurricaneData from "../Data/hurricane_data.json";
 import Grid from "@mui/material/Grid";
 import {Typography } from '@mui/material'
 
-const Hurricanes = () => {
+const HurricaneInstances = () => {
   return (
     <>
         <Typography>
-            // hurricane name
+            test name
         </Typography>
-            //<img src = "image link" alt = "no image avaliable" />
+            <img src = "image link" alt = "no image avaliable" />
         <Typography>
             // description (from wiki api?)
             // other data (catagory, wind speeds, rainfall, counties effected)
         </Typography>
-        <a href = "back" className = "back-button">Back </a>
+        <a href = "/Hurricanes" className = "back-button">Back </a>
     </>
   )
 }
+
+export default HurricaneInstances;

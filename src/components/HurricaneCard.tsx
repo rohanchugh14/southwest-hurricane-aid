@@ -47,6 +47,7 @@ export default function HurricaneCard(props: HurricaneDataProps) {
               <Typography variant="body2" color="textSecondary" component="p">
                 <p>{props.category}</p>
                 <p>Date: {props.date}</p>
+                <a href = "/HurricaneInstances" className = "hurricane-button">Learn More </a>
               </Typography>
             </CardContent>
           </CardActionArea>
