@@ -1,6 +1,7 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import AidOrganizationInstances from '../AidOrganizationInstances'
 
 const AidOrganizationCard = ( props: {
     name: string,
@@ -8,7 +9,8 @@ const AidOrganizationCard = ( props: {
     city: string,
     address: string,
     county: string,
-    organization_name: string
+    organization_name: string,
+    phone: string
   }) => {
   return (
     <Card sx={{ width: 300, height: 500 }}>
@@ -31,6 +33,10 @@ const AidOrganizationCard = ( props: {
             </li>
 
             <b>Organization name: </b> {props.organization_name}
+
+            <br />
+
+            <b>Phone: </b> {props.phone !== " " ? props.phone : "Not listed"}
         </Typography>
 
         
@@ -46,7 +52,8 @@ AidOrganizationCard.defaultProps = {
     city: "City goes here",
     address: "Address goes here",
     county: "County goes here",
-    organization_name: "Org name goes here"
+    organization_name: "Org name goes here",
+    phone: "Not listed"
 }
 
 
