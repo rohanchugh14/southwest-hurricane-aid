@@ -15,7 +15,8 @@ const HurricaneInstances = () => {
   return (
     <>
       <h1> {name} </h1>
-      <img src = "image link" alt = "no image avaliable" />
+      <img src = {ourHurricane?.Image} alt = "no image avaliable" />
+      <h6> {ourHurricane?.Image} </h6>
       <h1> {ourHurricane?.Category} </h1>
       <h1> {ourHurricane?.Date} </h1>
       <a href = "/Hurricanes" className = "back-button">Back </a>
