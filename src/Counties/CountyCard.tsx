@@ -1,6 +1,6 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
-import {BrowserRouter as Router, Route, Routes, Link,} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CountyCard = (props:
   {
