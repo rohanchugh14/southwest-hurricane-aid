@@ -17,7 +17,7 @@ const About = () => {
     fetch("https://gitlab.com/api/v4/projects/50653866/repository/commits?per_page=9999&private_token=glpat-77ZZEz4Fy1piNyhkwMqk", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
+        console.log({commits: result});
         setCommits(result);
       });
   }
@@ -32,7 +32,7 @@ const About = () => {
     fetch("https://gitlab.com/api/v4/projects/50653866/issues?per_page=9999&private_token=glpat-77ZZEz4Fy1piNyhkwMqk", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
+        console.log({issues: result});
         setIssues(result);
       });
   }
@@ -154,8 +154,10 @@ const About = () => {
             <MemberCard
               name='Rohan Chugh'
               imgurl='rohan.webp'
+              bio="Hi! I'm a senior at UT Austin studying Computer Science! I am interested in full-stack development and machine learning, and I enjoy playing tennis and watching movies in my free time :)"
+              responsibilities="My responsibilities are to focus on giving a helping hand wherever it is needed and being a flexible team member that will work all over the application."
               commits={
-                (commits.filter((commit) => commit.committer_name === "rohanchugh14")).length
+                (commits.filter((commit) => commit.committer_name === "rohanchugh14" || commit.committer_email === "rohanchugh14@gmail.com")).length
               }
               issues={
                 (issues.filter((issue) => personIsAssignedToIssue("rohanchugh14", issue.assignees))).length
