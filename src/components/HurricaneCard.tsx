@@ -51,7 +51,6 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                 <li key={props.name}>
                   <Link to = {`HurricaneInstances/${props.name}`}>{"Learn More"} </Link>
                 </li>
-                <a href = "/HurricaneInstances" className = "hurricane-button">Learn More </a>
               </Typography>
             </CardContent>
           </CardActionArea>
