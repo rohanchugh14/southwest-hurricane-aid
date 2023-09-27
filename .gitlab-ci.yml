@@ -21,4 +21,4 @@ deploy_to_s3:
     - pip install awscli
     - aws s3 sync ./build/ s3://www.southwesthurricaneaid.me/ --delete
   only:
-    - master
+    - main
