@@ -36,8 +36,9 @@ const CountyCard = (props: {
 
                         <Typography
                             variant="h5"
-                            component="div"
-                            style={{ textAlign: "center" }}
+                            style={{
+                              marginTop: "5px"
+                            }}
                         >
                             {props.name}
                         </Typography>

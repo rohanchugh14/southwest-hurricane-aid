@@ -57,18 +57,36 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                                         <b>Category: </b>
                                         {props.category}
                                     </Typography>
-                                    <p>
+                                    <Typography
+                                        variant="body1"
+                                        color="text.secondary"
+                                        style={{
+                                            marginTop: "5px",
+                                        }}
+                                    >
                                         <b>Date: </b>
                                         {props.date}
-                                    </p>
-                                    <p>
+                                        </Typography>
+                                    <Typography
+                                        variant="body1"
+                                        color="text.secondary"
+                                        style={{
+                                            marginTop: "5px",
+                                        }}
+                                    >
                                         <b>Wind Speed: </b>
                                         {props.WindSpeed}MPH
-                                    </p>
-                                    <p>
+                                        </Typography>
+                                    <Typography
+                                        variant="body1"
+                                        color="text.secondary"
+                                        style={{
+                                            marginTop: "5px",
+                                        }}
+                                    >
                                         <b>Fatalities: </b>
                                         {props.Fatalities}
-                                    </p>
+                                        </Typography>
                                 </Typography>
                             </CardContent>
                         </CardActionArea>

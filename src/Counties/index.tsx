@@ -23,8 +23,8 @@ const About = () => {
                     <Typography variant="subtitle1">
                         <b>Southwest Hurricane Aid</b> Below is a list of all of
                         the counties in Texas along with a few attributes of
-                        each county including attributes such as One, Two,
-                        Three, Four, Five.
+                        each county including attributes such as name,
+                        population, land area, region, and precipitation.
                     </Typography>
                 </div>
 
