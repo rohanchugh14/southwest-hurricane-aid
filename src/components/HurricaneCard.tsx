@@ -10,7 +10,7 @@ import Fade from "@mui/material/Fade";
 import { Link } from "react-router-dom";
 
 interface HurricaneDataProps {
-  // image: string; 
+  image: string; 
   name: string;
   category: string;
   date: string;
@@ -74,6 +74,7 @@ export default function HurricaneCard(props: HurricaneDataProps) {
             marginLeft: "25%",
             marginRight: "25%"
           }}>
+            <img src={props.image} style={{ width: "100%" }} />
             <h2 id="transition-modal-title">{props.name}</h2>
             <p id="transition-modal-description">Category: {props.category}</p>
             <p id="transition-modal-description">Date: {props.date}</p>
