@@ -1,7 +1,7 @@
 import React from "react";
 import hurricaneData from "../Data/hurricane_data.json";
 import { Link, useParams } from "react-router-dom";
-
+import {  Card, Fab, List, ListItem, ListItemText, Typography } from "@mui/material";
 
 
 const HurricaneInstances = () => {
@@ -12,11 +12,34 @@ const HurricaneInstances = () => {
   console.log(ourHurricane)
   return (
     <>
-      <h1> {name} </h1>
-      <img src = {ourHurricane?.Image} alt="hurricane"/>
-      <h1> {ourHurricane?.Category} </h1>
-      <h1> {ourHurricane?.Date} </h1>
-      <Link to = "/Hurricanes" className = "back-button">Back </Link>
+        <Card sx={{
+          margin: "auto", 
+           width: "50%", 
+           marginTop: 5,
+           marginBottom: 5,
+           boxShadow:
+            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+           backgroundColor: "grey"}}>
+
+
+          <Link style={{textDecoration: "none", color: "inherit"}} to = "/Hurricanes" className = "back-button">   
+            <Fab sx={{margin: 1}}>Back </Fab>
+          </Link>
+
+          <Typography variant="h1" textAlign="center">{name}</Typography>
+          <img src = {ourHurricane?.Image} width="100%" alt="hurricane"/>
+
+          <List component="nav" aria-label="mailbox folders">
+            <ListItem divider>
+              <ListItemText primary={"Category " + ourHurricane?.Category.charAt(8)}  />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary={"Date: " + ourHurricane?.Date} />
+            </ListItem>
+          </List>
+
+        </Card>
+      
     </>
   )
 }
