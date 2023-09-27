@@ -8,28 +8,32 @@ import { Typography } from '@mui/material';
 const AidOrganizationInstances = () => {
 
     const name = useParams().instance;
-    const ourHurricane = aidOrganizationData.features.find((currObject) => {
+    const ourOrg = aidOrganizationData.features.find((currObject) => {
         return currObject.attributes.shelter_name === name;
     });
-    console.log(ourHurricane)
+    console.log(ourOrg)
     return (
         <div>
             
-            <Typography variant='h2'>{ourHurricane?.attributes.shelter_name}</Typography>
+            <Typography variant='h2'>{ourOrg?.attributes.shelter_name}</Typography>
             
-            <img src={"/" + ourHurricane?.attributes.imgurl} alt="hurricane" />
+            <img src={"/" + ourOrg?.attributes.imgurl} alt="hurricane" />
 
             <Typography variant='body1'>
 
-                {ourHurricane?.attributes.address_1}, {ourHurricane?.attributes.city} TX
+                {ourOrg?.attributes.address_1}, {ourOrg?.attributes.city} TX
 
                 <br/>
 
-                {ourHurricane?.attributes.county_parish} COUNTY 
+                {ourOrg?.attributes.county_parish} COUNTY 
 
                 <br />
 
-                <b>Organization name: </b> {ourHurricane?.attributes.org_organization_name}
+                <b>Organization name: </b> {ourOrg?.attributes.org_organization_name}
+
+                <br />
+
+                <b>Phone: </b> {ourOrg?.attributes.org_main_phone !== " " ? ourOrg?.attributes.org_main_phone : "Not listed"}
 
 
             </Typography>
