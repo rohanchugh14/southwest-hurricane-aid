@@ -1,5 +1,6 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const AidOrganizationCard = ( props: {
     name: string,
@@ -25,6 +26,9 @@ const AidOrganizationCard = ( props: {
             <br />
             {props.county} COUNTY
             <br />
+            <li key={props.name}>
+                  <Link to = {`AidOrganizationInstances/${props.name}`}>{"Learn More"} </Link>
+            </li>
 
             <b>Organization name: </b> {props.organization_name}
         </Typography>
