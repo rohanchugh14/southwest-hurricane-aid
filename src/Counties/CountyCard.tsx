@@ -1,5 +1,4 @@
-import { Image } from '@mui/icons-material'
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
+import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
 import {BrowserRouter as Router, Route, Routes, Link,} from "react-router-dom";
 
