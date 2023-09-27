@@ -12,7 +12,7 @@ const AidOrganizationInstances = () => {
     const ourOrg = aidOrganizationData.features.find((currObject) => {
         return currObject.attributes.shelter_name === name;
     });
-    console.log(ourOrg)
+    const countyLink = ourOrg?.attributes.county_parish.substring(0,1).concat(ourOrg?.attributes.county_parish.toLowerCase().substring(1)) + " County";
     return (
         <div>
             
@@ -28,7 +28,7 @@ const AidOrganizationInstances = () => {
 
                 {ourOrg?.attributes.county_parish} COUNTY 
                 <li key={ourOrg?.attributes.county_parish}>
-                    <Link to = {`CountyInstances/${ourOrg?.attributes.county_parish}`}>{ourOrg?.attributes.county_parish} </Link>
+                    <Link to = {`../../CountyInstances/${countyLink}`}>{ourOrg?.attributes.county_parish} </Link>
                 </li>
 
                 <br />
