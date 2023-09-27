@@ -49,7 +49,7 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                 <p>{props.category}</p>
                 <p>Date: {props.date}</p>
                 <li key={props.name}>
-                  <Link to = {`HurricaneInstances/${props.name}`}>{props.name} </Link>
+                  <Link to = {`HurricaneInstances/${props.name}`}>{"Learn More"} </Link>
                 </li>
                 <a href = "/HurricaneInstances" className = "hurricane-button">Learn More </a>
               </Typography>

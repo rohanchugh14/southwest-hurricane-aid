@@ -1,24 +1,24 @@
-import React from "react";
-import HurricaneCard from "../components/HurricaneCard";
+import React, { useState } from "react";
 import hurricaneData from "../Data/hurricane_data.json";
-import Grid from "@mui/material/Grid";
-import {Typography } from '@mui/material'
-import {BrowserRouter as Router, Route, Routes, Link,} from "react-router-dom";
 import { useParams } from "react-router-dom";
 
+
+
 const HurricaneInstances = () => {
-  const name = useParams();
+  const [name, setName] = useState(useParams().instance);
+  console.log(name);
+  // setName(useParams());
+  const ourHurricane = hurricaneData.find((currObject) => {
+    return currObject.Name == name;
+  });
+  console.log(ourHurricane)
   return (
     <>
-        <Typography>
-            name
-        </Typography>
-            <img src = "image link" alt = "no image avaliable" />
-        <Typography>
-            // description (from wiki api?)
-            // other data (catagory, wind speeds, rainfall, counties effected)
-        </Typography>
-        <a href = "/Hurricanes" className = "back-button">Back </a>
+      <h1> {name} </h1>
+      <img src = "image link" alt = "no image avaliable" />
+      <h1> {ourHurricane?.Category} </h1>
+      <h1> {ourHurricane?.Date} </h1>
+      <a href = "/Hurricanes" className = "back-button">Back </a>
     </>
   )
 }
