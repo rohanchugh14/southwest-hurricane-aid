@@ -79,3 +79,5 @@ Describe two types of media for instances of each model**
 - If my area is damaged by a hurricane or tropical storm, where can I find relief?
 - How is the area I live in affected by hurricanes or tropical storms?
 
+**Postman API Documentation**
+https://documenter.getpostman.com/view/18568319/2s9YJZ3PeF
