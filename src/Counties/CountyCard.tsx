@@ -12,6 +12,7 @@ const CountyCard = (props:
     issues: number,
     population: string,
     landarea: string,
+    region: string,
     unittests: number
   }) => {
   return (
@@ -36,6 +37,11 @@ const CountyCard = (props:
         <Typography variant="body1" color="text.secondary">
           <b>Land Area: </b> {props.landarea}
         </Typography>
+
+        <Typography variant="body1" color="text.secondary">
+          <b>Region: </b> {props.region}
+        </Typography>
+
         <li key={props.name}>
           <Link to = {`CountyInstances/${props.name}`}>{"Learn More"} </Link>
         </li>
@@ -56,6 +62,7 @@ CountyCard.defaultProps = {
   issues: 0,
   unittests: 0,
   population: "0",
+  region: "None",
   landarea: "0"
 }
 
