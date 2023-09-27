@@ -426,6 +426,7 @@
     "features": [
        {
           "attributes": {
+             "imgurl": "aidpictures/Screenshot 2023-09-26 at 9.31.06 PM.png",
              "shelter_id": 324116,
              "shelter_name": "Silver Creek Elementary School",
              "address_1": "10300 FM 730 SOUTH",
@@ -506,6 +507,7 @@
        },
        {
           "attributes": {
+             "imgurl": "aidpictures/Screenshot 2023-09-26 at 9.34.40 PM.png",
              "shelter_id": 322639,
              "shelter_name": "Denton civic Center",
              "address_1": "321 E McKinney St",
@@ -586,6 +588,7 @@
        },
        {
           "attributes": {
+             "imgurl": "aidpictures/Screenshot 2023-09-26 at 9.36.17 PM.png",
              "shelter_id": 322626,
              "shelter_name": "Rockport- Fulton Junior High School",
              "address_1": "1600 BUC DRIVE",
