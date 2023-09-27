@@ -8,6 +8,7 @@ status:
 # download files from the Collatz code repo
 pull:
 	git pull
+	npm i
 	git status
 
 # upload files to the Collatz code repo
