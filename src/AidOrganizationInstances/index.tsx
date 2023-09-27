@@ -28,7 +28,7 @@ const AidOrganizationInstances = () => {
 
                 {ourOrg?.attributes.county_parish} COUNTY 
                 <li key={ourOrg?.attributes.county_parish}>
-                    <Link to = {`../../CountyInstances/${countyLink}`}>{ourOrg?.attributes.county_parish} </Link>
+                    <Link to = {`../../Counties/CountyInstances/${countyLink}`}>{ourOrg?.attributes.county_parish} </Link>
                 </li>
 
                 <br />
