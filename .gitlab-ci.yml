@@ -13,6 +13,9 @@ install_dependencies:
   script:
     - npm install
     - npm run build
+  artifacts:
+    paths:
+      - ./build/
 
 deploy_to_s3:
   stage: deploy
