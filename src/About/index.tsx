@@ -94,10 +94,10 @@ const About = () => {
         <Grid container spacing={10} padding={30} paddingTop={5} paddingBottom={5}>
 
 
-          <Grid item xs={6} style={{ display: "flex", justifyContent: "center" }}>
+          <Grid item xs={4} style={{ display: "flex", justifyContent: "center" }}>
             <MemberCard
               name='Carolyn Stripling'
-              imgurl='carolyn.jpg'
+              imgurl='carolyn.png'
               commits={
                 (commits.filter((commit) => commit.committer_name === "Carolyn Stripling")).length
               }
@@ -108,12 +108,12 @@ const About = () => {
           </Grid>
 
 
-          <Grid item xs={6} style={{ display: "flex", justifyContent: "center" }}>
+          <Grid item xs={4} style={{ display: "flex", justifyContent: "center" }}>
             <MemberCard
               name='Eshitha Bangray'
-              imgurl='eshitha.webp'
+              imgurl='eshitha.jpg'
               commits={
-                (commits.filter((commit) => commit.committer_name === "eshub1")).length
+                (commits.filter((commit) => commit.committer_name === "eshub1" || commit.committer_email === "eshitha.bangray@gmail.com")).length
               }
               issues={
                 (issues.filter((issue) => personIsAssignedToIssue("eshub1", issue.assignees))).length
@@ -122,21 +122,21 @@ const About = () => {
           </Grid>
 
 
-          <Grid item xs={6} style={{ display: "flex", justifyContent: "center" }}>
+          <Grid item xs={4} style={{ display: "flex", justifyContent: "center" }}>
             <MemberCard
               name='James Stewart'
-              imgurl='james.webp'
+              imgurl='james.png'
               commits={
-                (commits.filter((commit) => commit.committer_name === "James Aidan Stewart")).length
+                (commits.filter((commit) => commit.committer_name === "James Aidan Stewart" || commit.committer_email === "jastew15@gmail.com")).length
               }
               issues={
                 (issues.filter((issue) => personIsAssignedToIssue("James Aidan Stewart", issue.assignees))).length
               }
             />
-          </Grid>
+          </Grid> 
 
 
-          <Grid item xs={6} style={{ display: "flex", justifyContent: "center" }}>
+          <Grid item xs={4} style={{ display: "flex", justifyContent: "center" }}>
             <MemberCard
               name='Nitish Bansal'
               imgurl='nitish.png'
@@ -150,10 +150,10 @@ const About = () => {
           </Grid>
 
 
-          <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
+          <Grid item xs={4} style={{ display: "flex", justifyContent: "center" }}>
             <MemberCard
               name='Rohan Chugh'
-              imgurl='rohan.webp'
+              imgurl='rohan.png'
               bio="Hi! I'm a senior at UT Austin studying Computer Science! I am interested in full-stack development and machine learning, and I enjoy playing tennis and watching movies in my free time :)"
               responsibilities="My responsibilities are to focus on giving a helping hand wherever it is needed and being a flexible team member that will work all over the application."
               commits={
