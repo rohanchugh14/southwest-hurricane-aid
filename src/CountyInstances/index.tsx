@@ -1,6 +1,6 @@
 import React  from "react";
 import countyData from "../Data/county_data.json";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 
@@ -17,7 +17,7 @@ const CountyInstances = () => {
       <h6> {ourCounty?.Image} </h6>
       <h1> {ourCounty?.Population} </h1>
       <h1> {ourCounty?.Land_Area} </h1>
-      <a href = "/Counties" className = "back-button">Back </a>
+      <Link to="/Counties" className = "back-button">Back </Link>
     </>
   )
 }
