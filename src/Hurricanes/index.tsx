@@ -19,7 +19,7 @@ const Hurricanes = () => {
             >
                 <Typography variant="h3">Hurricanes</Typography>
 
-                <div style={{ padding: "100px" }}>
+                <div style={{ padding: "50px" }}>
                     <Typography variant="subtitle1">
                         <b>Southwest Hurricane Aid</b> Below is a list of
                         hurricanes that affected Texas along with a few

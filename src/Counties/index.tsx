@@ -19,7 +19,7 @@ const About = () => {
                 <div>
                     <Typography variant="h3">Texas Counties</Typography>
                 </div>
-                <div style={{ padding: "100px" }}>
+                <div style={{ padding: "50px" }}>
                     <Typography variant="subtitle1">
                         <b>Southwest Hurricane Aid</b> Below is a list of all of
                         the counties in Texas along with a few attributes of
