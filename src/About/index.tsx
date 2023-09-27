@@ -1,10 +1,60 @@
 import { Typography, Grid } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MemberCard from './MemberCard'
 
+
 const About = () => {
+
+  const [commits, setCommits] = useState<any[]>([]);
+  const [issues, setIssues] = useState<any[]>([]);
+
+  function getCommits() {
+    //do the API call here
+    var requestOptions = {
+      method: 'GET',
+    };
+
+    fetch("https://gitlab.com/api/v4/projects/50653866/repository/commits?per_page=9999&private_token=glpat-77ZZEz4Fy1piNyhkwMqk", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setCommits(result);
+      });
+  }
+
+  function getIssues() {
+
+
+    var requestOptions = {
+      method: 'GET',
+    };
+
+    fetch("https://gitlab.com/api/v4/projects/50653866/issues?per_page=9999&private_token=glpat-77ZZEz4Fy1piNyhkwMqk", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setIssues(result);
+      });
+  }
+
+  function personIsAssignedToIssue(name: string, assignees: any[]) {
+    for(var assignee of assignees) {
+      if(name === assignee.name){
+        return true
+      }
+    }
+    return false
+  }
+
+
+  useEffect(() => {
+    getCommits();
+    getIssues();
+
+  }, []);
+
   return (
-    <div style={{margin: "10px"}}>
+    <div style={{ margin: "10px" }}>
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -17,7 +67,7 @@ const About = () => {
 
       </div>
 
-      <div style={{padding: "100px"}}>
+      <div style={{ padding: "100px" }}>
 
         <Typography variant="subtitle1">
 
@@ -41,36 +91,90 @@ const About = () => {
       </div>
 
       <div>
-      <Grid container spacing={10} padding={30} paddingTop={5} paddingBottom={5}>
-        <Grid item xs={6} style={{display: "flex", justifyContent: "center"}}>
-          <MemberCard name='Carolyn Stripling' imgurl='carolyn.jpg' />
+        <Grid container spacing={10} padding={30} paddingTop={5} paddingBottom={5}>
+
+
+          <Grid item xs={6} style={{ display: "flex", justifyContent: "center" }}>
+            <MemberCard
+              name='Carolyn Stripling'
+              imgurl='carolyn.jpg'
+              commits={
+                (commits.filter((commit) => commit.committer_name === "Carolyn Stripling")).length
+              }
+              issues={
+                (issues.filter((issue) => personIsAssignedToIssue("Carolyn Stripling", issue.assignees))).length
+              }
+            />
+          </Grid>
+
+
+          <Grid item xs={6} style={{ display: "flex", justifyContent: "center" }}>
+            <MemberCard
+              name='Eshitha Bangray'
+              imgurl='eshitha.webp'
+              commits={
+                (commits.filter((commit) => commit.committer_name === "eshub1")).length
+              }
+              issues={
+                (issues.filter((issue) => personIsAssignedToIssue("eshub1", issue.assignees))).length
+              }
+            />
+          </Grid>
+
+
+          <Grid item xs={6} style={{ display: "flex", justifyContent: "center" }}>
+            <MemberCard
+              name='James Stewart'
+              imgurl='james.webp'
+              commits={
+                (commits.filter((commit) => commit.committer_name === "James Aidan Stewart")).length
+              }
+              issues={
+                (issues.filter((issue) => personIsAssignedToIssue("James Aidan Stewart", issue.assignees))).length
+              }
+            />
+          </Grid>
+
+
+          <Grid item xs={6} style={{ display: "flex", justifyContent: "center" }}>
+            <MemberCard
+              name='Nitish Bansal'
+              imgurl='nitish.png'
+              commits={
+                (commits.filter((commit) => commit.committer_name === "Nitish Bansal")).length
+              } 
+              issues={
+                (issues.filter((issue) => personIsAssignedToIssue("Nitish Bansal", issue.assignees))).length
+              }
+              />
+          </Grid>
+
+
+          <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
+            <MemberCard
+              name='Rohan Chugh'
+              imgurl='rohan.webp'
+              commits={
+                (commits.filter((commit) => commit.committer_name === "rohanchugh14")).length
+              }
+              issues={
+                (issues.filter((issue) => personIsAssignedToIssue("rohanchugh14", issue.assignees))).length
+              } />
+          </Grid>
         </Grid>
-        <Grid item xs={6} style={{display: "flex", justifyContent: "center"}}>
-          <MemberCard name='Eshitha Bangray' imgurl='eshitha.webp' />
-        </Grid>
-        <Grid item xs={6} style={{display: "flex", justifyContent: "center"}}>
-          <MemberCard name='James Stewart' imgurl='james.webp'/>
-        </Grid>
-        <Grid item xs={6} style={{display: "flex", justifyContent: "center"}}>
-          <MemberCard name='Nitish Bansal' imgurl='nitish.png'/>
-        </Grid>
-        <Grid item xs={12} style={{display: "flex", justifyContent: "center"}}>
-          <MemberCard name='Rohan Chugh' imgurl='rohan.webp' />
-        </Grid>
-      </Grid>
       </div>
 
 
-      <div style={{paddingLeft: "100px"}}>
+      <div style={{ paddingLeft: "100px" }}>
 
         <Typography variant='body1'>
-          <b>Total number of commits: </b> 0 <br/>
+          <b>Total number of commits: </b> {commits.length} <br />
 
-          <b>Total number of issues:</b> 0 <br/>
+          <b>Total number of issues:</b> {issues.length} <br />
 
-          <b>Total number of unit tests:</b> 0 <br/>
+          <b>Total number of unit tests:</b> 0 <br />
 
-          <br/>
+          <br />
 
         </Typography>
 
@@ -92,7 +196,7 @@ const About = () => {
 
         <b>Link to GitLab repo: </b> <a href="https://gitlab.com/rohanchugh14/southwest-hurricane-aid">https://gitlab.com/rohanchugh14/southwest-hurricane-aid</a>
 
-        <br/><br/>
+        <br /><br />
 
 
         <b>Link to Postman API: </b> TBD
