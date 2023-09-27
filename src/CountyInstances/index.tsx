@@ -13,7 +13,7 @@ const CountyInstances = () => {
   return (
     <>
       <h1> {name} </h1>
-      <img src = {ourCounty?.Image} alt = "hurricane" />
+      <img src = {"/" + ourCounty?.Image} alt = "hurricane" />
       <h6> {ourCounty?.Image} </h6>
       <h1> {ourCounty?.Population} </h1>
       <h1> {ourCounty?.Land_Area} </h1>
