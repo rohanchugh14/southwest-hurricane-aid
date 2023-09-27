@@ -1,20 +1,26 @@
 [
     {
-        "Name": "Audrey",
-        "Category": "Category2 hurricane",
-        "Date": "June 27 1957",
-        "Image": "/hurricane_images/Audrey_hurricane.png"
+        "Name": "Hurricane Hanna",
+        "Category": "1",
+        "Date": "July 23 2020",
+        "WindSpeed": "90",
+        "Fatalities": "9",
+        "Image": "/hurricane_images/hanna_hurricane.png"
     },
     {
-        "Name": "Debra",
-        "Category": "Category1 hurricane",
-        "Date": "July 25 1959",
-        "Image": "/hurricane_images/Carla_hurricane.png"
+        "Name": "Hurricane Laura",
+        "Category": "4",
+        "Date": "August 20 2020",
+        "WindSpeed": "150",
+        "Fatalities": "81",
+        "Image": "/hurricane_images/laura_hurricane.png"
     },
     {
-        "Name": "Carla",
-        "Category": "Category4 hurricane",
-        "Date": "September 11 1961",
-        "Image": "/hurricane_images/Debra_hurricane.png"
+        "Name": "Hurricane Nicholas",
+        "Category": "1",
+        "Date": "September 12 2021",
+        "WindSpeed": "75",
+        "Fatalities": "2",
+        "Image": "/hurricane_images/nicholas_hurricane.png"
     }
 ]

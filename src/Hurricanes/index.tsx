@@ -16,6 +16,8 @@ const Hurricanes = () => {
               name={hurricane.Name}
               category={hurricane.Category}
               date={hurricane.Date}
+              WindSpeed={hurricane.WindSpeed}
+              Fatalities={hurricane.Fatalities}
             />
           </Grid>
         ))}
