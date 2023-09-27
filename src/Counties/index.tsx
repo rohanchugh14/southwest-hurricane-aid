@@ -1,18 +1,80 @@
+import { Typography, Grid } from '@mui/material'
 import React from 'react'
-import './Counties.css'
+import CountyCard from './CountyCard'
 
-
-const Counties = () => {
+const About = () => {
   return (
-    <div className = "page-title">Counties
-        <div className = "county">
-            <img src = "https://picsum.photos/200/300" alt = "Card Image" className = "county-image"/>
-            <h1 className = "county-name"> Harris County</h1>
-            <p className = "county-description">This is a county in Texas</p>
-            <a href = "cardPage" className = "county-button">Learn More </a>
-        </div>
+    <div style={{margin: "10px"}}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '50px',
+        paddingBottom: '0px'
+      }}>
+
+        <Typography variant="h3">Texas Counties</Typography>
+
+      </div>
+
+      <div style={{padding: "100px"}}>
+
+        <Typography variant="subtitle1">
+
+          <b>Southwest Hurricane Aid</b> Below is a list of all of the counties in Texas 
+          along with a few attributes of each county including attributes such as One,
+          Two, Three, Four, Five. 
+
+        </Typography>
+
+      </div>
+
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+
+      </div>
+
+      <div>
+      <Grid container spacing={10} padding={30} paddingTop={5} paddingBottom={5}>
+        <Grid item xs={4} style={{display: "flex", justifyContent: "center"}}>
+          <CountyCard name='Anderson County' imgurl='county-images/anderson-county-img.png' population = '58,064'
+          landarea = '1,071 sq mi' />
+        </Grid>
+
+        <Grid item xs={4} style={{display: "flex", justifyContent: "center"}}>
+          <CountyCard name='Andrews County' imgurl='county-images/andrews-county-img.png' population = '18,334'
+          landarea = '1,501 sq mi'/>
+        </Grid>
+
+        <Grid item xs={4} style={{display: "flex", justifyContent: "center"}}>
+          <CountyCard name='Angelina County' imgurl='county-images/angelina-county-img.png' population = '87,101'
+          landarea = '802 sq mi'/>
+        </Grid>
+
+        <Grid item xs={4} style={{display: "flex", justifyContent: "center"}}>
+          <CountyCard name='Aransas County' imgurl='county-images/aransas-county-img.png' population = '24,944'
+          landarea = '252 sq mi'/>
+        </Grid>
+
+        <Grid item xs={4} style={{display: "flex", justifyContent: "center"}}>
+          <CountyCard name='Archer County' imgurl='county-images/archer-county-img.png' population = '8,835'
+          landarea = '910 sq mi'/>
+        </Grid>
+
+      </Grid>
+      </div>
+
+
+      <div style={{paddingLeft: "100px"}}>
+
+
+        
+      </div>
     </div>
   )
 }
 
-export default Counties
+export default About
