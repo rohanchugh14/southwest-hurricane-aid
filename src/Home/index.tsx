@@ -27,7 +27,7 @@ class Home extends Component {
 render() {
 	return (
 	<div className="homePage">
-    <h1 className="title">Southwest Hurricane Aid</h1>
+    <h1 className="title">SOUTHWEST HURRICANE AID</h1>
     <h6>Providing aid to those affect by hurricanes in Texas</h6>
 	</div>
 	);
