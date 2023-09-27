@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
-import CardActions from "@mui/material/CardActions";
-// import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
-import {BrowserRouter as Router, Route, Routes, Link,} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface HurricaneDataProps {
-  // image: string;
+  // image: string; 
   name: string;
   category: string;
   date: string;
@@ -40,7 +37,6 @@ export default function HurricaneCard(props: HurricaneDataProps) {
       }}>
         <Tooltip title="Click for More Info">
           <CardActionArea onClick={handleOpen}>
-            {/* <CardMedia style={{ height: 220, width: "100%" }} image={props.image} /> */}
             <CardContent>
               <Typography gutterBottom variant="h5">
                 {props.name}
