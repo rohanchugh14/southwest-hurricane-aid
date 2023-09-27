@@ -31,10 +31,16 @@ const HurricaneInstances = () => {
 
           <List component="nav" aria-label="mailbox folders">
             <ListItem divider>
-              <ListItemText primary={"Category " + ourHurricane?.Category.charAt(8)}  />
+              <ListItemText primary={"Category "} secondary={ourHurricane?.Category}  />
+            </ListItem>
+            <ListItem divider>
+              <ListItemText primary={"Date "} secondary={ourHurricane?.Date} />
+            </ListItem>
+            <ListItem divider>
+              <ListItemText primary={"Wind Speed "} secondary={ourHurricane?.WindSpeed + " MPH"} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={"Date: " + ourHurricane?.Date} />
+              <ListItemText primary={"Fatalities "} secondary={ourHurricane?.Fatalities} />
             </ListItem>
           </List>
 
