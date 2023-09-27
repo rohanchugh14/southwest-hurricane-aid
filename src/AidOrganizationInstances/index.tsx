@@ -54,6 +54,7 @@ const AidOrganizationInstances = () => {
                             ? ourOrg?.attributes.org_main_phone
                             : "Not listed"}
                     </Typography>
+                    <Link to="/Aid Organizations" className = "back-button">Back </Link>
                 </CardContent>
             </Card>
         </div>
