@@ -1,671 +1,110 @@
+
 {
-    "objectIdFieldName": "objectid",
-    "globalIdFieldName": "",
-    "geometryType": "esriGeometryPoint",
-    "spatialReference": {
-       "wkid": 4326,
-       "latestWkid": 4326
-    },
-    "fields": [
-       {
-          "name": "shelter_id",
-          "alias": "SHELTER_ID",
-          "type": "esriFieldTypeInteger"
-       },
-       {
-          "name": "shelter_name",
-          "alias": "SHELTER_NAME",
-          "type": "esriFieldTypeString",
-          "length": 255
-       },
-       {
-          "name": "address_1",
-          "alias": "ADDRESS",
-          "type": "esriFieldTypeString",
-          "length": 255
-       },
-       {
-          "name": "city",
-          "alias": "CITY",
-          "type": "esriFieldTypeString",
-          "length": 28
-       },
-       {
-          "name": "county_parish",
-          "alias": "COUNTY_PARISH",
-          "type": "esriFieldTypeString",
-          "length": 50
-       },
-       {
-          "name": "fips_code",
-          "alias": "FIPS_CODE",
-          "type": "esriFieldTypeString",
-          "length": 5
-       },
-       {
-          "name": "state",
-          "alias": "STATE",
-          "type": "esriFieldTypeString",
-          "length": 2
-       },
-       {
-          "name": "zip",
-          "alias": "ZIP",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "mail_addr_same_as_phys_addr",
-          "alias": "MAIL_ADDR_SAME_AS_PHYS_ADDR",
-          "type": "esriFieldTypeString",
-          "length": 3
-       },
-       {
-          "name": "mailing_address_1",
-          "alias": "MAILING_ADDRESS_1",
-          "type": "esriFieldTypeString",
-          "length": 100
-       },
-       {
-          "name": "mailing_address_2",
-          "alias": "MAILING_ADDRESS_2",
-          "type": "esriFieldTypeString",
-          "length": 100
-       },
-       {
-          "name": "mailing_city",
-          "alias": "MAILING_CITY",
-          "type": "esriFieldTypeString",
-          "length": 28
-       },
-       {
-          "name": "mailing_county_parish",
-          "alias": "MAILING_COUNTY_PARISH",
-          "type": "esriFieldTypeString",
-          "length": 50
-       },
-       {
-          "name": "mailing_state",
-          "alias": "MAILING_STATE",
-          "type": "esriFieldTypeString",
-          "length": 2
-       },
-       {
-          "name": "mailing_zip",
-          "alias": "MAILING_ZIP",
-          "type": "esriFieldTypeString",
-          "length": 5
-       },
-       {
-          "name": "facility_usage_code",
-          "alias": "FACILITY_USAGE_CODE",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "evacuation_capacity",
-          "alias": "EVACUATION_CAPACITY",
-          "type": "esriFieldTypeInteger"
-       },
-       {
-          "name": "post_impact_capacity",
-          "alias": "POST_IMPACT_CAPACITY",
-          "type": "esriFieldTypeInteger"
-       },
-       {
-          "name": "ada_compliant",
-          "alias": "ADA_COMPLIANT",
-          "type": "esriFieldTypeString",
-          "length": 3
-       },
-       {
-          "name": "wheelchair_accessible",
-          "alias": "WHEELCHAIR_ACCESSIBLE",
-          "type": "esriFieldTypeString",
-          "length": 3
-       },
-       {
-          "name": "pet_accommodations_code",
-          "alias": "PET_ACCOMMODATIONS_CODE",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "pet_accommodations_desc",
-          "alias": "PET_ACCOMMODATIONS_DESC",
-          "type": "esriFieldTypeString",
-          "length": 200
-       },
-       {
-          "name": "generator_onsite",
-          "alias": "GENERATOR_ONSITE",
-          "type": "esriFieldTypeString",
-          "length": 3
-       },
-       {
-          "name": "self_sufficient_electricity",
-          "alias": "SELF_SUFFICIENT_ELECTRICITY",
-          "type": "esriFieldTypeString",
-          "length": 3
-       },
-       {
-          "name": "latitude",
-          "alias": "LATITUDE",
-          "type": "esriFieldTypeDouble"
-       },
-       {
-          "name": "longitude",
-          "alias": "LONGITUDE",
-          "type": "esriFieldTypeDouble"
-       },
-       {
-          "name": "in_100_yr_floodplain",
-          "alias": "IN_100_YR_FLOODPLAIN",
-          "type": "esriFieldTypeString",
-          "length": 3
-       },
-       {
-          "name": "in_500_yr_floodplain",
-          "alias": "IN_500_YR_FLOODPLAIN",
-          "type": "esriFieldTypeString",
-          "length": 3
-       },
-       {
-          "name": "in_surge_slosh_area",
-          "alias": "IN_SURGE_SLOSH_AREA",
-          "type": "esriFieldTypeString",
-          "length": 3
-       },
-       {
-          "name": "pre_landfall_shelter",
-          "alias": "PRE_LANDFALL_SHELTER",
-          "type": "esriFieldTypeString",
-          "length": 3
-       },
-       {
-          "name": "shelter_code",
-          "alias": "SHELTER_CODE",
-          "type": "esriFieldTypeString",
-          "length": 30
-       },
-       {
-          "name": "org_organization_id",
-          "alias": "ORG_ORGANIZATION_ID",
-          "type": "esriFieldTypeInteger"
-       },
-       {
-          "name": "org_organization_name",
-          "alias": "ORG_ORGANIZATION_NAME",
-          "type": "esriFieldTypeString",
-          "length": 75
-       },
-       {
-          "name": "org_main_phone",
-          "alias": "ORG_MAIN_PHONE",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "org_fax",
-          "alias": "ORG_FAX",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "org_email",
-          "alias": "ORG_EMAIL",
-          "type": "esriFieldTypeString",
-          "length": 75
-       },
-       {
-          "name": "org_hotline_phone",
-          "alias": "ORG_HOTLINE_PHONE",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "org_other_phone",
-          "alias": "ORG_OTHER_PHONE",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "org_address",
-          "alias": "ORG_ADDRESS",
-          "type": "esriFieldTypeString",
-          "length": 38
-       },
-       {
-          "name": "org_city",
-          "alias": "ORG_CITY",
-          "type": "esriFieldTypeString",
-          "length": 28
-       },
-       {
-          "name": "org_state",
-          "alias": "ORG_STATE",
-          "type": "esriFieldTypeString",
-          "length": 2
-       },
-       {
-          "name": "org_zip",
-          "alias": "ORG_ZIP",
-          "type": "esriFieldTypeString",
-          "length": 5
-       },
-       {
-          "name": "org_poc_name",
-          "alias": "ORG_POC_NAME",
-          "type": "esriFieldTypeString",
-          "length": 75
-       },
-       {
-          "name": "org_poc_phone",
-          "alias": "ORG_POC_PHONE",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "org_poc_after_hours_phone",
-          "alias": "ORG_POC_AFTER_HOURS_PHONE",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "org_poc_email",
-          "alias": "ORG_POC_EMAIL",
-          "type": "esriFieldTypeString",
-          "length": 75
-       },
-       {
-          "name": "org_hours_of_operation",
-          "alias": "ORG_HOURS_OF_OPERATION",
-          "type": "esriFieldTypeString",
-          "length": 75
-       },
-       {
-          "name": "population_code",
-          "alias": "POPULATION_CODE",
-          "type": "esriFieldTypeString",
-          "length": 30
-       },
-       {
-          "name": "incident_id",
-          "alias": "INCIDENT_ID",
-          "type": "esriFieldTypeInteger"
-       },
-       {
-          "name": "shelter_status_code",
-          "alias": "SHELTER_STATUS_CODE",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "shelter_open_date",
-          "alias": "SHELTER_OPEN_DATE",
-          "type": "esriFieldTypeDate",
-          "length": 8
-       },
-       {
-          "name": "shelter_closed_date",
-          "alias": "SHELTER_CLOSED_DATE",
-          "type": "esriFieldTypeDate",
-          "length": 8
-       },
-       {
-          "name": "reporting_period",
-          "alias": "REPORTING_PERIOD",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "general_population",
-          "alias": "GENERAL_POPULATION",
-          "type": "esriFieldTypeInteger"
-       },
-       {
-          "name": "medical_needs_population",
-          "alias": "MEDICAL_NEEDS_POPULATION",
-          "type": "esriFieldTypeInteger"
-       },
-       {
-          "name": "other_population",
-          "alias": "OTHER_POPULATION",
-          "type": "esriFieldTypeInteger"
-       },
-       {
-          "name": "other_population_description",
-          "alias": "OTHER_POPULATION_DESCRIPTION",
-          "type": "esriFieldTypeString",
-          "length": 200
-       },
-       {
-          "name": "total_population",
-          "alias": "TOTAL_POPULATION",
-          "type": "esriFieldTypeInteger"
-       },
-       {
-          "name": "pet_population",
-          "alias": "PET_POPULATION",
-          "type": "esriFieldTypeInteger"
-       },
-       {
-          "name": "incident_number",
-          "alias": "INCIDENT_NUMBER",
-          "type": "esriFieldTypeString",
-          "length": 25
-       },
-       {
-          "name": "incident_name",
-          "alias": "INCIDENT_NAME",
-          "type": "esriFieldTypeString",
-          "length": 250
-       },
-       {
-          "name": "incident_code",
-          "alias": "INCIDENT_CODE",
-          "type": "esriFieldTypeString",
-          "length": 10
-       },
-       {
-          "name": "objectid",
-          "alias": "OBJECTID",
-          "type": "esriFieldTypeOID"
-       },
-       {
-          "name": "score",
-          "alias": "SCORE",
-          "type": "esriFieldTypeSmallInteger"
-       },
-       {
-          "name": "status",
-          "alias": "STATUS",
-          "type": "esriFieldTypeString",
-          "length": 5
-       },
-       {
-          "name": "match_type",
-          "alias": "MATCH_TYPE",
-          "type": "esriFieldTypeString",
-          "length": 5
-       },
-       {
-          "name": "loc_name",
-          "alias": "LOC_NAME",
-          "type": "esriFieldTypeString",
-          "length": 40
-       },
-       {
-          "name": "geox",
-          "alias": "GEOX",
-          "type": "esriFieldTypeDouble"
-       },
-       {
-          "name": "geoy",
-          "alias": "GEOY",
-          "type": "esriFieldTypeDouble"
-       },
-       {
-          "name": "facility_type",
-          "alias": "FACILITY_TYPE",
-          "type": "esriFieldTypeString",
-          "length": 20
-       },
-       {
-          "name": "subfacility_code",
-          "alias": "SUBFACILITY_CODE",
-          "type": "esriFieldTypeString",
-          "length": 20
-       },
-       {
-          "name": "data_source_id",
-          "alias": "DATA_SOURCE_ID",
-          "type": "esriFieldTypeInteger"
-       }
-    ],
-    "features": [
-       {
-          "attributes": {
-             "imgurl": "aidpictures/Screenshot 2023-09-26 at 9.31.06 PM.png",
-             "shelter_id": 324116,
-             "shelter_name": "Silver Creek Elementary School",
-             "address_1": "10300 FM 730 SOUTH",
-             "city": "AZLE",
-             "county_parish": "TARRANT",
-             "fips_code": " ",
-             "state": "TX",
-             "zip": "76020",
-             "mail_addr_same_as_phys_addr": "NO",
-             "mailing_address_1": " ",
-             "mailing_address_2": " ",
-             "mailing_city": " ",
-             "mailing_county_parish": " ",
-             "mailing_state": " ",
-             "mailing_zip": " ",
-             "facility_usage_code": "EVAC",
-             "evacuation_capacity": 60,
-             "post_impact_capacity": 0,
-             "ada_compliant": " ",
-             "wheelchair_accessible": " ",
-             "pet_accommodations_code": " ",
-             "pet_accommodations_desc": " ",
-             "generator_onsite": " ",
-             "self_sufficient_electricity": " ",
-             "latitude": 32.87068136,
-             "longitude": -97.59562019,
-             "in_100_yr_floodplain": " ",
-             "in_500_yr_floodplain": " ",
-             "in_surge_slosh_area": " ",
-             "pre_landfall_shelter": " ",
-             "shelter_code": "GENERAL",
-             "org_organization_id": 121293,
-             "org_organization_name": "CHISHOLM TRAIL",
-             "org_main_phone": " ",
-             "org_fax": " ",
-             "org_email": " ",
-             "org_hotline_phone": " ",
-             "org_other_phone": " ",
-             "org_address": "1515 S SYLVANIA AVE",
-             "org_city": "FORT WORTH",
-             "org_state": "TX",
-             "org_zip": "76111",
-             "org_poc_name": " ",
-             "org_poc_phone": " ",
-             "org_poc_after_hours_phone": " ",
-             "org_poc_email": " ",
-             "org_hours_of_operation": "5-Aug",
-             "population_code": "GENERAL",
-             "incident_id": 0,
-             "shelter_status_code": "CLOSED",
-             "shelter_open_date": null,
-             "shelter_closed_date": null,
-             "reporting_period": " ",
-             "general_population": 0,
-             "medical_needs_population": 0,
-             "other_population": 0,
-             "other_population_description": " ",
-             "total_population": 0,
-             "pet_population": 0,
-             "incident_number": " ",
-             "incident_name": " ",
-             "incident_code": " ",
-             "objectid": 651877,
-             "score": 74,
-             "status": "M",
-             "match_type": "A",
-             "loc_name": "Street",
-             "geox": -97.59562019,
-             "geoy": 32.87068136,
-             "facility_type": "SHELTER",
-             "subfacility_code": "GENPOPSHEL",
-             "data_source_id": 0
-          },
-          "geometry": {
-             "x": -97.59562018699995,
-             "y": 32.870681356000034
-          }
-       },
-       {
-          "attributes": {
-             "imgurl": "aidpictures/Screenshot 2023-09-26 at 9.34.40 PM.png",
-             "shelter_id": 322639,
-             "shelter_name": "Denton civic Center",
-             "address_1": "321 E McKinney St",
-             "city": "DENTON",
-             "county_parish": "DENTON",
-             "fips_code": " ",
-             "state": "TX",
-             "zip": "76201",
-             "mail_addr_same_as_phys_addr": "YES",
-             "mailing_address_1": " ",
-             "mailing_address_2": " ",
-             "mailing_city": " ",
-             "mailing_county_parish": " ",
-             "mailing_state": " ",
-             "mailing_zip": " ",
-             "facility_usage_code": "POST",
-             "evacuation_capacity": 0,
-             "post_impact_capacity": 281,
-             "ada_compliant": " ",
-             "wheelchair_accessible": " ",
-             "pet_accommodations_code": " ",
-             "pet_accommodations_desc": " ",
-             "generator_onsite": " ",
-             "self_sufficient_electricity": " ",
-             "latitude": 33.21650665,
-             "longitude": -97.1297444,
-             "in_100_yr_floodplain": "YES",
-             "in_500_yr_floodplain": " ",
-             "in_surge_slosh_area": " ",
-             "pre_landfall_shelter": " ",
-             "shelter_code": "GENERAL",
-             "org_organization_id": 121336,
-             "org_organization_name": "DALLAS AREA CHAPTER",
-             "org_main_phone": " ",
-             "org_fax": " ",
-             "org_email": " ",
-             "org_hotline_phone": " ",
-             "org_other_phone": " ",
-             "org_address": "4800 HARRY HINES BLVD",
-             "org_city": "DALLAS",
-             "org_state": "TX",
-             "org_zip": "75235",
-             "org_poc_name": " ",
-             "org_poc_phone": " ",
-             "org_poc_after_hours_phone": " ",
-             "org_poc_email": " ",
-             "org_hours_of_operation": "5-Aug",
-             "population_code": "GENERAL",
-             "incident_id": 0,
-             "shelter_status_code": "CLOSED",
-             "shelter_open_date": null,
-             "shelter_closed_date": null,
-             "reporting_period": " ",
-             "general_population": 0,
-             "medical_needs_population": 0,
-             "other_population": 0,
-             "other_population_description": " ",
-             "total_population": 0,
-             "pet_population": 0,
-             "incident_number": " ",
-             "incident_name": " ",
-             "incident_code": " ",
-             "objectid": 652024,
-             "score": 86,
-             "status": "M",
-             "match_type": "A",
-             "loc_name": "Street",
-             "geox": -97.1297444,
-             "geoy": 33.21650665,
-             "facility_type": "SHELTER",
-             "subfacility_code": "GENPOPSHEL",
-             "data_source_id": 0
-          },
-          "geometry": {
-             "x": -97.12974439599998,
-             "y": 33.21650664900005
-          }
-       },
-       {
-          "attributes": {
-             "imgurl": "aidpictures/Screenshot 2023-09-26 at 9.36.17 PM.png",
-             "shelter_id": 322626,
-             "shelter_name": "Rockport- Fulton Junior High School",
-             "address_1": "1600 BUC DRIVE",
-             "city": "ROCKPORT",
-             "county_parish": "ARANSAS",
-             "fips_code": " ",
-             "state": "TX",
-             "zip": "78382",
-             "mail_addr_same_as_phys_addr": "NO",
-             "mailing_address_1": " ",
-             "mailing_address_2": " ",
-             "mailing_city": " ",
-             "mailing_county_parish": " ",
-             "mailing_state": " ",
-             "mailing_zip": " ",
-             "facility_usage_code": "POST",
-             "evacuation_capacity": 0,
-             "post_impact_capacity": 300,
-             "ada_compliant": " ",
-             "wheelchair_accessible": " ",
-             "pet_accommodations_code": " ",
-             "pet_accommodations_desc": " ",
-             "generator_onsite": " ",
-             "self_sufficient_electricity": " ",
-             "latitude": 28.04224836,
-             "longitude": -97.04503725,
-             "in_100_yr_floodplain": " ",
-             "in_500_yr_floodplain": " ",
-             "in_surge_slosh_area": " ",
-             "pre_landfall_shelter": " ",
-             "shelter_code": "OTHER",
-             "org_organization_id": 121878,
-             "org_organization_name": "TEXAS COASTAL BEND",
-             "org_main_phone": " ",
-             "org_fax": " ",
-             "org_email": " ",
-             "org_hotline_phone": " ",
-             "org_other_phone": " ",
-             "org_address": "1721 S BROWNLEE BLVD",
-             "org_city": "CORPUS CHRISTI",
-             "org_state": "TX",
-             "org_zip": "78463",
-             "org_poc_name": " ",
-             "org_poc_phone": " ",
-             "org_poc_after_hours_phone": " ",
-             "org_poc_email": " ",
-             "org_hours_of_operation": "8",
-             "population_code": "OTHER",
-             "incident_id": 0,
-             "shelter_status_code": "CLOSED",
-             "shelter_open_date": null,
-             "shelter_closed_date": null,
-             "reporting_period": " ",
-             "general_population": 0,
-             "medical_needs_population": 0,
-             "other_population": 0,
-             "other_population_description": " ",
-             "total_population": 0,
-             "pet_population": 0,
-             "incident_number": " ",
-             "incident_name": " ",
-             "incident_code": " ",
-             "objectid": 652072,
-             "score": 100,
-             "status": "M",
-             "match_type": "A",
-             "loc_name": "Street",
-             "geox": -97.04503725,
-             "geoy": 28.04224836,
-             "facility_type": "SHELTER",
-             "subfacility_code": "OTHER",
-             "data_source_id": 0
-          },
-          "geometry": {
-             "x": -97.04503725399996,
-             "y": 28.042248361000077
-          }
-       }
-    ]
+   "objectIdFieldName": "objectid",
+   "globalIdFieldName": "",
+   "geometryType": "esriGeometryPoint",
+   "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326
+   },
+   "fields": [
+      {
+         "name": "shelter_name",
+         "alias": "SHELTER_NAME",
+         "type": "esriFieldTypeString",
+         "length": 255
+      },
+      {
+         "name": "city",
+         "alias": "CITY",
+         "type": "esriFieldTypeString",
+         "length": 28
+      },
+      {
+         "name": "state",
+         "alias": "STATE",
+         "type": "esriFieldTypeString",
+         "length": 2
+      },
+      {
+         "name": "org_main_phone",
+         "alias": "ORG_MAIN_PHONE",
+         "type": "esriFieldTypeString",
+         "length": 10
+      },
+      {
+         "name": "org_organization_name",
+         "alias": "ORG_ORGANIZATION_NAME",
+         "type": "esriFieldTypeString",
+         "length": 75
+      },
+      {
+         "name": "county_parish",
+         "alias": "COUNTY_PARISH",
+         "type": "esriFieldTypeString",
+         "length": 50
+      },
+      {
+         "name": "imgurl",
+         "alias": "IMGURL",
+         "type": "esriFieldTypeString",
+         "length": 100
+      },
+      {
+         "name": "address_1",
+         "alias": "ADDRESS",
+         "type": "esriFieldTypeString",
+         "length": 255
+      }
+   ],
+   "features": [
+      {
+         "attributes": {
+            "shelter_name": "Rockport- Fulton Junior High School",
+            "city": "ROCKPORT",
+            "state": "TX",
+            "org_main_phone": " ",
+            "org_organization_name": "TEXAS COASTAL BEND",
+            "county_parish": "ARANSAS",
+            "address_1": "1600 BUC DRIVE",
+            "imgurl": "aidpictures/Rockport Fulton Junior High.png"
+         },
+         "geometry": {
+            "x": -97.04503725399996,
+            "y": 28.042248361000077
+         }
+      },
+      {
+         "attributes": {
+            "shelter_name": "C E King Middle School",
+            "city": "HOUSTON",
+            "state": "TX",
+            "org_main_phone": " ",
+            "org_organization_name": " ",
+            "county_parish": "HARRIS",
+            "address_1": "8530 C.E. King Parkway",
+            "imgurl": "aidpictures/C E King Middle School.png"
+         },
+         "geometry": {
+            "x": -95.21419399999996,
+            "y": 29.847690000000057
+         }
+      },
+      {
+         "attributes": {
+            "shelter_name": "San Benito Community Center",
+            "city": "SAN BENITO",
+            "state": "TX",
+            "org_main_phone": " ",
+            "org_organization_name": "SOUTH TEXAS",
+            "county_parish": "CAMERON",
+            "address_1": "210 E Haywood",
+            "imgurl": "aidpictures/San Benito Comunity Center.png"
+         },
+         "geometry": {
+            "x": -97.62941670899994,
+            "y": 26.132591990000037
+         }
+      }
+   ]
 }
