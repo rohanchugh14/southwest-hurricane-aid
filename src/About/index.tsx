@@ -126,6 +126,7 @@ const About = () => {
             <MemberCard
               name='James Stewart'
               imgurl='james.webp'
+              bio="I'm a senior at UT Austin studying Computer Science and French. This is is first website I've worked on."
               commits={
                 (commits.filter((commit) => commit.committer_name === "James Aidan Stewart")).length
               }
