@@ -39,11 +39,9 @@
 - Historic Hurricane data
     - Category
     - Wind speeds
-    - Rainfall
+    - Fatalities
     - Locations affected
     - Description of the hurricane
-    - Injuries/Casualties
-
 
 - Texas Counties
     - Land Area
