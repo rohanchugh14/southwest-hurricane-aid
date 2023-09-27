@@ -9,6 +9,7 @@ import Hurricanes from "./Hurricanes";
 import Counties from "./Counties";
 import AidOrganizations from "./Aid Organizations";
 import HurricaneInstances from "./HurricaneInstances";
+import CountyInstances from "./CountyInstances";
 
 function App() {
   return (      
@@ -21,6 +22,7 @@ function App() {
         <Route path="/counties" element = {<Counties />} />
         <Route path="/aid organizations" element = {<AidOrganizations />} />
         <Route path="/Hurricanes/HurricaneInstances/:instance" element = {<HurricaneInstances />} />
+        <Route path="/Counties/CountyInstances/:instance" element = {<CountyInstances />} />
       </Routes>
     </BrowserRouter>
   );

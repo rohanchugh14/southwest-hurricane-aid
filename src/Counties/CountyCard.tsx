@@ -1,6 +1,7 @@
 import { Image } from '@mui/icons-material'
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
+import {BrowserRouter as Router, Route, Routes, Link,} from "react-router-dom";
 
 const CountyCard = (props:
   {
@@ -36,7 +37,9 @@ const CountyCard = (props:
         <Typography variant="body1" color="text.secondary">
           <b>Land Area: </b> {props.landarea}
         </Typography>
-
+        <li key={props.name}>
+          <Link to = {`CountyInstances/${props.name}`}>{"Learn More"} </Link>
+        </li>
 
       </CardContent>
     </Card>
