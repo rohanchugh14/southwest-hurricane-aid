@@ -14,7 +14,6 @@ const HurricaneInstances = () => {
     <>
       <h1> {name} </h1>
       <img src = {ourHurricane?.Image} alt="hurricane"/>
-      <h6> {ourHurricane?.Image} </h6>
       <h1> {ourHurricane?.Category} </h1>
       <h1> {ourHurricane?.Date} </h1>
       <Link to = "/Hurricanes" className = "back-button">Back </Link>
