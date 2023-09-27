@@ -13,10 +13,10 @@ const CountyInstances = () => {
   return (
     <>
       <h1> {name} </h1>
-      <img src = {"/" + ourCounty?.Image} alt = "hurricane" />
-      <h6> {ourCounty?.Image} </h6>
-      <h1> {ourCounty?.Population} </h1>
-      <h1> {ourCounty?.Land_Area} </h1>
+      <img src = {"/" + ourCounty?.Image} alt = "no image" />
+      <h6> {"Image Link: " + ourCounty?.Image} </h6>
+      <h1> {"Population: " + ourCounty?.Population} </h1>
+      <h1> {"Land Area: " + ourCounty?.Land_Area + " sq. miles"} </h1>
       <Link to="/Counties" className = "back-button">Back </Link>
     </>
   )
