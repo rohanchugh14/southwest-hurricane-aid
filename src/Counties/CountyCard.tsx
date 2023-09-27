@@ -6,15 +6,10 @@ const CountyCard = (props:
   {
     name: string,
     imgurl: string,
-    bio: string,
-    responsibilities: string,
-    commits: number,
-    issues: number,
     population: string,
     landarea: string,
     region: string,
-    precipitation: number,
-    unittests: number
+    precipitation: string,
   }) => {
   return (
     <Card sx={{ width: 300 }}>
@@ -61,14 +56,9 @@ const CountyCard = (props:
 CountyCard.defaultProps = {
   name: "Firstname Lastname",
   imgurl: "logo192.png",
-  bio: "bio goes here",
-  responsibilities: "responsibilities go here",
-  commits: 0,
-  issues: 0,
-  unittests: 0,
   population: "0",
   region: "None",
-  precipitation: 0,
+  precipitation: "0",
   landarea: "0"
 }
 
