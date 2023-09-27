@@ -2,19 +2,25 @@
     {
         "Name": "Anderson County",
         "Image": "county-images/anderson-county-img.png",
-        "Population": 58064,
-        "Land_Area": 1071
+        "Population": "58064",
+        "Land_Area": "1071",
+        "region" : "East Texas",
+        "precipitation": "46.38"
     },
     {
         "Name": "Andrews County",
         "Image": "county-images/andrews-county-img.png",
-        "Population": 18334,
-        "Land_Area": 1501
+        "Population": "18334",
+        "Land_Area": "1501",
+        "region" : "West Texas",
+        "precipitation": "15.15"
     },
     {
         "Name": "Angelina County",
         "Image": "county-images/angelina-county-img.png",
-        "Population": 87101,
-        "Land_Area": 802
+        "Population": "87101",
+        "Land_Area": "802",
+        "region": "East Texas",
+        "precipitation": "46.62"
     }
 ]
