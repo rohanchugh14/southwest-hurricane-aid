@@ -1,3 +1,7 @@
+**Link to Website**
+
+https://southwesthurricaneaid.me/
+
 **Canvas / Ed Discussion group number:**
 - Group 21
 
@@ -14,6 +18,16 @@
 
 **The proposed project**
 - Providing aid to those living in hurricane-prone areas
+
+**Phase Leaders**
+
+Phase 1: Rohan Chugh
+
+**Estimated vs Actual Time**
+
+Estimated time: 10 hours \
+Actual time: 15 hours
+
 
 **URLs of at least three data sources that you will programmatically scrape using a RESTful API (be very sure about this)**
 - https://www.weather.gov/documentation/services-web-api 
