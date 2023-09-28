@@ -5,7 +5,8 @@
         "Population": "24944",
         "Land_Area": "252",
         "region" : "South Texas",
-        "precipitation": "35.96"
+        "precipitation": "35.96",
+        "aid": "Rockport- Fulton Junior High School"
     },
     {
         "Name": "Cameron County",
@@ -13,7 +14,8 @@
         "Population": "425208",
         "Land_Area": "906",
         "region" : "South Texas",
-        "precipitation": "27.55"
+        "precipitation": "27.55",
+        "aid": "San Benito Community Center"
     },
     {
         "Name": "Harris County",
@@ -21,6 +23,7 @@
         "Population": "4780913",
         "Land_Area": "1729",
         "region": "Upper Gulf Coast",
-        "precipitation": "53.96"
+        "precipitation": "53.96",
+        "aid": "C E King Middle School"
     }
 ]
