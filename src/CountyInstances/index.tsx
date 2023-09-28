@@ -47,6 +47,14 @@ const CountyInstances = () => {
           {ourCounty?.aid}{" "}
         </Link>
         <Typography> <b> </b> </Typography>
+        <Link to = {"/Hurricanes/HurricaneInstances/" + ourCounty?.Hurricane[0]}> 
+          {ourCounty?.Hurricane[0]} 
+        </Link>
+        <Typography> <b> </b> </Typography>
+        <Link to = {"/Hurricanes/HurricaneInstances/" + ourCounty?.Hurricane[1]}> 
+          {ourCounty?.Hurricane[1]} <b> </b>
+        </Link>
+        <Typography> <b> </b> </Typography>
         <Link to="/Counties" className = "back-button">Back </Link>
     </CardContent>
   </Card>

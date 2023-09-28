@@ -54,6 +54,15 @@ const AidOrganizationInstances = () => {
                             ? ourOrg?.attributes.org_main_phone
                             : "Not listed"}
                     </Typography>
+                    <Typography> <b> </b> </Typography>
+                    <Link to = {"/Hurricanes/HurricaneInstances/" + ourOrg?.attributes.hurricane[0]}> 
+                        {ourOrg?.attributes.hurricane[0]} 
+                    </Link>
+                    <Typography> <b> </b> </Typography>
+                    <Link to = {"/Hurricanes/HurricaneInstances/" + ourOrg?.attributes.hurricane[1]}> 
+                        {ourOrg?.attributes.hurricane[1]} <b> </b>
+                    </Link>
+                    <Typography> <b> </b> </Typography>
                     <Link to="/Aid Organizations" className = "back-button">Back </Link>
                 </CardContent>
             </Card>
