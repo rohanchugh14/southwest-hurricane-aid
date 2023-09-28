@@ -112,6 +112,8 @@ const About = () => {
             <MemberCard
               name='Eshitha Bangray'
               imgurl='eshitha.jpg'
+              bio = 'Hey! I am a junior CS student at UT Austin interested in Frontend development. I enjoy dancing, cooking, and watching netflix in my free time :)'
+              responsibilities='My responsibilities are to focus on the frontend of the application and to help with the backend when needed.'
               commits={
                 (commits.filter((commit) => commit.committer_name === "eshub1" || commit.committer_email === "eshitha.bangray@gmail.com")).length
               }
@@ -125,9 +127,7 @@ const About = () => {
           <Grid item xs={4} style={{ display: "flex", justifyContent: "center" }}>
             <MemberCard
               name='James Stewart'
-              imgurl='james.png'
-              bio = 'Hi! I am a junior CS student at UT Austin interested in Frontend development. I enjoy dancing, cooking, and watching netflix in my free time :)'
-              responsibilities='My responsibilities are to focus on the frontend of the application and to help with the backend when needed.'
+              imgurl='james.png'        
               commits={
                 (commits.filter((commit) => commit.committer_name === "James Aidan Stewart" || commit.committer_email === "jastew15@gmail.com")).length
               }
