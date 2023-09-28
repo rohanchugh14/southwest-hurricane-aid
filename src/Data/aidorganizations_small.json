@@ -55,6 +55,12 @@
          "alias": "ADDRESS",
          "type": "esriFieldTypeString",
          "length": 255
+      },
+      {
+         "name": "hurricane",
+         "alias": "HURRICANE",
+         "type": "esriFieldTypeString",
+         "length": 255
       }
    ],
    "features": [
@@ -67,7 +73,8 @@
             "org_organization_name": "TEXAS COASTAL BEND",
             "county_parish": "ARANSAS",
             "address_1": "1600 BUC DRIVE",
-            "imgurl": "aidpictures/Rockport Fulton Junior High.png"
+            "imgurl": "aidpictures/Rockport Fulton Junior High.png",
+            "hurricane": []
          },
          "geometry": {
             "x": -97.04503725399996,
@@ -83,7 +90,8 @@
             "org_organization_name": " ",
             "county_parish": "HARRIS",
             "address_1": "8530 C.E. King Parkway",
-            "imgurl": "aidpictures/C E King Middle School.png"
+            "imgurl": "aidpictures/C E King Middle School.png",
+            "hurricane": ["Hurricane Laura", "Hurricane Nicholas"]
          },
          "geometry": {
             "x": -95.21419399999996,
@@ -99,7 +107,8 @@
             "org_organization_name": "SOUTH TEXAS",
             "county_parish": "CAMERON",
             "address_1": "210 E Haywood",
-            "imgurl": "aidpictures/San Benito Comunity Center.png"
+            "imgurl": "aidpictures/San Benito Comunity Center.png",
+            "hurricane": ["Hurricane Hanna"]
          },
          "geometry": {
             "x": -97.62941670899994,
