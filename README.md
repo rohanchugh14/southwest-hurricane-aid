@@ -28,6 +28,8 @@ Phase 1: Rohan Chugh
 Estimated time: 10 hours \
 Actual time: 15 hours
 
+**Git SHA**
+da4e55ba6e071b6313ff76b08b3157331cd8aad8
 
 **URLs of at least three data sources that you will programmatically scrape using a RESTful API (be very sure about this)**
 - https://www.weather.gov/documentation/services-web-api 
