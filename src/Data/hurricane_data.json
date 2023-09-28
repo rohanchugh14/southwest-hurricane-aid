@@ -6,7 +6,8 @@
         "WindSpeed": "90",
         "Fatalities": "9",
         "Image": "/hurricane_images/hanna_hurricane.png",
-        "County": "Cameron County"
+        "County": "Cameron County",
+        "Aid": "San Benito Community Center"
     },
     {
         "Name": "Hurricane Laura",
@@ -15,7 +16,8 @@
         "WindSpeed": "150",
         "Fatalities": "81",
         "Image": "/hurricane_images/laura_hurricane.png",
-        "County": "Harris County"
+        "County": "Harris County",
+        "Aid": "C E King Middle School"
     },
     {
         "Name": "Hurricane Nicholas",
@@ -24,6 +26,7 @@
         "WindSpeed": "75",
         "Fatalities": "2",
         "Image": "/hurricane_images/nicholas_hurricane.png",
-        "County": "Harris County"
+        "County": "Harris County",
+        "Aid": "C E King Middle School"
     }
 ]
