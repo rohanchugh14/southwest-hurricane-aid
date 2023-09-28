@@ -129,7 +129,7 @@ const About = () => {
               name='James Stewart'
               imgurl='james.png'  
               bio="Hi, I'm a senior Computer Science and French major at UT Austin. This is the first website I've worked on."
-              responsibilities="My responsibilities include working on the backend of the site and helping out occasionally with the fromtend."
+              responsibilities="My responsibilities include working on the backend of the site and helping out occasionally with the frontend."
               commits={
                 (commits.filter((commit) => commit.committer_name === "James Aidan Stewart" || commit.committer_email === "jastew15@gmail.com")).length
               }
