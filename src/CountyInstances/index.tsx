@@ -43,6 +43,10 @@ const CountyInstances = () => {
         <Typography variant="body1" color="text.secondary">
           <b>Precipitation: </b> {ourCounty?.precipitation} <b> inches</b>
         </Typography>
+        <Link to={`/Aid Organizations/AidOrganizationInstances/${ourCounty?.aid}`}>
+          {ourCounty?.aid}{" "}
+        </Link>
+        <Typography> <b> </b> </Typography>
         <Link to="/Counties" className = "back-button">Back </Link>
     </CardContent>
   </Card>
