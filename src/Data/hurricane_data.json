@@ -5,7 +5,8 @@
         "Date": "July 23 2020",
         "WindSpeed": "90",
         "Fatalities": "9",
-        "Image": "/hurricane_images/hanna_hurricane.png"
+        "Image": "/hurricane_images/hanna_hurricane.png",
+        "County": "Cameron County"
     },
     {
         "Name": "Hurricane Laura",
@@ -13,7 +14,8 @@
         "Date": "August 20 2020",
         "WindSpeed": "150",
         "Fatalities": "81",
-        "Image": "/hurricane_images/laura_hurricane.png"
+        "Image": "/hurricane_images/laura_hurricane.png",
+        "County": "Harris County"
     },
     {
         "Name": "Hurricane Nicholas",
@@ -21,6 +23,7 @@
         "Date": "September 12 2021",
         "WindSpeed": "75",
         "Fatalities": "2",
-        "Image": "/hurricane_images/nicholas_hurricane.png"
+        "Image": "/hurricane_images/nicholas_hurricane.png",
+        "County": "Harris County"
     }
 ]
