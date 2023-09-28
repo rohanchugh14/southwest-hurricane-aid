@@ -98,6 +98,8 @@ const About = () => {
             <MemberCard
               name='Carolyn Stripling'
               imgurl='carolyn.png'
+              bio="Hi! I'm a senior at UT Austin majoring in computer science. I like frontend and mobile development!"
+              responsibilities="My responsibilities are mostly on the frontend, but I help with the backend when it's needed."
               commits={
                 (commits.filter((commit) => commit.committer_name === "Carolyn Stripling")).length
               }
