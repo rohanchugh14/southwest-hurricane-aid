@@ -6,7 +6,8 @@
         "Land_Area": "252",
         "region" : "South Texas",
         "precipitation": "35.96",
-        "aid": "Rockport- Fulton Junior High School"
+        "aid": "Rockport- Fulton Junior High School",
+        "Hurricane": []
     },
     {
         "Name": "Cameron County",
@@ -15,7 +16,8 @@
         "Land_Area": "906",
         "region" : "South Texas",
         "precipitation": "27.55",
-        "aid": "San Benito Community Center"
+        "aid": "San Benito Community Center",
+        "Hurricane": ["Hurricane Hanna"]
     },
     {
         "Name": "Harris County",
@@ -24,6 +26,7 @@
         "Land_Area": "1729",
         "region": "Upper Gulf Coast",
         "precipitation": "53.96",
-        "aid": "C E King Middle School"
+        "aid": "C E King Middle School",
+        "Hurricane": ["Hurricane Laura", "Hurricane Nicholas"]
     }
 ]
