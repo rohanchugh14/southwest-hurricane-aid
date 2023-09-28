@@ -9,7 +9,7 @@
     },
     {
         "Name": "Cameron County",
-        "Image": "county-images/andrews-county-img.png",
+        "Image": "county-images/cameron-county-img.png",
         "Population": "425208",
         "Land_Area": "906",
         "region" : "South Texas",
@@ -17,7 +17,7 @@
     },
     {
         "Name": "Harris County",
-        "Image": "county-images/angelina-county-img.png",
+        "Image": "county-images/harris-county-img.png",
         "Population": "4780913",
         "Land_Area": "1729",
         "region": "Upper Gulf Coast",
