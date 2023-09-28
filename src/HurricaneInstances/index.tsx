@@ -42,6 +42,8 @@ const HurricaneInstances = () => {
             <ListItem>
               <ListItemText primary={"Fatalities "} secondary={ourHurricane?.Fatalities} />
             </ListItem>
+            <Link style={{textDecoration: "none", color: "inherit"}} to = {"/Counties/CountyInstances/" + ourHurricane?.County}> {ourHurricane?.County}  
+            </Link>
           </List>
 
         </Card>
