@@ -22,8 +22,9 @@ def get_valid_links() -> List[str]:
     for link in hurricane_links:
         href = link["href"]
         if(re.search(valid_link_regex, href)):
-            valid_links.append(href)
+            valid_links.append("https://en.wikipedia.org" + href)
     
+    return valid_links
 
 
 
