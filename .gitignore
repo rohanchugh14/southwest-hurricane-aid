@@ -2,15 +2,18 @@
 
 # dependencies
 /node_modules
+/frontend/node_modules
 /.pnp
 .pnp.js
+/backend/scripts/hurricane_data.json
+/backend/scripts/__pycache__
 
 # testing
 /coverage
 
 # production
+/frontend/build
 /build
-
 # misc
 .DS_Store
 .env.local

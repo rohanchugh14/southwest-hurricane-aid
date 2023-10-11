@@ -11,17 +11,20 @@ cache:
 install_dependencies:
   stage: build
   script:
+    - cd frontend
     - npm install
     - npm run build
   artifacts:
     paths:
-      - ./build/
+      - ./frontend/build/
+  only:
+    - main
 
 deploy_to_s3:
   stage: deploy
   image: python:latest
   script:
     - pip install awscli
-    - aws s3 sync ./build/ s3://www.southwesthurricaneaid.me/ --delete
+    - aws s3 sync ./frontend/build/ s3://www.southwesthurricaneaid.me/ --delete
   only:
     - main
