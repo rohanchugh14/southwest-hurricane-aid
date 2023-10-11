@@ -7,6 +7,7 @@
 .pnp.js
 /backend/scripts/hurricane_data.json
 /backend/scripts/__pycache__
+/backend/models/__pycache__
 
 # testing
 /coverage

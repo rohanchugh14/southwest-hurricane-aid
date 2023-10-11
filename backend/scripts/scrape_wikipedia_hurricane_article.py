@@ -91,14 +91,14 @@ def scrape_article(url: str, all_towns_in_texas: List[str], counties_by_city: Di
         # get the name of the hurricane
         hurricane_name = hurricane_table.find(
             'caption', class_='infobox-title').text
-        data["name"] = hurricane_name
+        data["name"] = hurricane_name.replace("\xa0", " ").replace("&nbsp;", " ")
 
         # get the image
         image_src = "https:" + hurricane_table.find('img')["src"]
         image_caption = hurricane_table.find(
             'div', class_="infobox-caption").text
         data["image_src"] = image_src
-        data["image_caption"] = image_caption
+        data["image_caption"] = image_caption.replace("\xa0", " ").replace("&nbsp;", " ")
 
         # get the hurricane data from the table
         rows = hurricane_table.findAll('tr')
@@ -106,10 +106,19 @@ def scrape_article(url: str, all_towns_in_texas: List[str], counties_by_city: Di
         for row in rows:
             if(row.find(class_="infobox-label") is not None):
 
-                row_label = row.find(class_="infobox-label").text
-                row_data = row.find(class_="infobox-data").text
-
+                row_label = row.find(class_="infobox-label").text.replace("&nbsp;", " ").replace("\xa0", " ")
+                row_data = row.find(class_="infobox-data").text.replace("&nbsp;", " ").replace("\xa0", " ")
                 data[row_label] = row_data
+            elif row.find(class_="infobox-header") is not None:
+                span = row.find('span')
+                if not span:
+                    continue
+                if "depression" in span.text.lower():
+                    data["category"] = -1 # tropical depression
+                elif "storm" in span.text.lower():
+                    data["category"] = 0 # tropical storm
+                elif "category" in span.text.lower():
+                    data["category"] = int(span.text[len("Category "):len("Category ") + 1])
 
         # Get the cities/towns mentioned in the article
         try:
@@ -153,11 +162,31 @@ def scrape_all(urls: List[str]):
         article_data = scrape_article(url, all_towns_in_texas, counties_by_city_texas)
         if article_data is not None:
             data.append(article_data)
-
+    # UNCOMMENT BELOW TO WRITE TO FILE
+    # with open('hurricane_data.json', 'w', encoding='utf-8') as f:
+    #     json.dump(data, f, ensure_ascii=False, indent=4)
     print(f"Data size: {len(data)}")
-
-    with open('hurricane_data.json', 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+    for hurricane in data:
+        # make a POST request to http://localhost:4000/api/hurricanes
+        json_data = {
+            "name": hurricane["name"],
+            "url": hurricane["url"],
+            "formed": hurricane.get("Formed"),
+            "image": hurricane["image_src"],
+            "caption": hurricane["image_caption"],
+            "dissipated": hurricane.get("Dissipated"),
+            "category": hurricane["category"],
+            "highest_winds": hurricane.get("Highest winds"),
+            "lowest_pressure": hurricane.get("Lowest pressure"),
+            "deaths": hurricane.get("Fatalities"),
+            "damage": hurricane.get("Damage"),
+            "areas_affected": hurricane["Areas affected"],
+            "counties_mentioned": hurricane["counties_mentioned"]
+        }
+        response = requests.post("http://localhost:4000/api/hurricanes", json=json_data)
+        if(response.status_code != 201):
+            print(f"Error adding hurricane {hurricane['name']} to database")
+            print(response.text)
 
 
 if __name__=="__main__": 

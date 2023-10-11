@@ -10,6 +10,8 @@ services:
       DATABASE_URI: postgresql://postgres:password@db:5432/mydatabase
     depends_on:
       - db
+    volumes:
+      - ./backend:/app
 
   db:
     image: postgres:13
