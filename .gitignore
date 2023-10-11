@@ -5,6 +5,8 @@
 /frontend/node_modules
 /.pnp
 .pnp.js
+/backend/scripts/hurricane_data.json
+/backend/scripts/__pycache__
 
 # testing
 /coverage
