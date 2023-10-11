@@ -43,7 +43,7 @@ def add_hurricane():
         caption=data['caption'],
         dissipated=data.get('dissipated'),
         category=data['category'],
-        highest_winds=data.get('highest_winds_mph'),
+        highest_winds=data.get('highest_winds'),
         lowest_pressure=data.get('lowest_pressure'),
         deaths=data['deaths'],
         damage=data['damage'],
