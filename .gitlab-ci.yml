@@ -18,7 +18,7 @@ install_dependencies:
     paths:
       - ./frontend/build/
   only:
-    - main
+    - prod
 
 deploy_to_s3:
   stage: deploy
@@ -27,4 +27,4 @@ deploy_to_s3:
     - pip install awscli
     - aws s3 sync ./frontend/build/ s3://www.southwesthurricaneaid.me/ --delete
   only:
-    - main
+    - prod
