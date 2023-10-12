@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
+import hurricaneIcon from "./hurricane.png";
 
 const pages = ["About", "Hurricanes", "Counties", "Aid Organizations"];
 
@@ -28,11 +29,18 @@ function Navbar() {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: 'gray' }}>
+        <AppBar position="static" sx={{ backgroundColor: '#292929' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon
-                        sx={{ display: { xs: "none", md: "flex" }, mr: 2 }}
+                    {/* img element replacing AdbIcon */}
+                    <img
+                        src={hurricaneIcon}
+                        alt="Hurricane Icon"
+                        style={{
+                            width: "30px", // Set the width as needed
+                            height: "30px", // Set the height as needed
+                            marginRight: "10px", // Optional: Add some spacing between the icon and text
+                        }}
                     />
                     <Typography
                         variant="h6"
