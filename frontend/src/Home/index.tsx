@@ -17,30 +17,31 @@ const Home = () => {
 			<div className="each-slide-effect">
 				<div style={{ 'backgroundImage': `url(${images[0]})` }}>
 					<span>Southwest Hurricane Aid</span>
+					
 				</div>
 			</div>
 
 			<div className="each-slide-effect">
 				<div style={{ 'backgroundImage': `url(${images[1]})` }}>
-					<span>Slide 2</span>
+					<span>Southwest Hurricane Aid</span>
 				</div>
 			</div>
 
 			<div className="each-slide-effect">
 				<div style={{ 'backgroundImage': `url(${images[2]})` }}>
-					<span>Slide 3</span>
+					<span>Southwest Hurricane Aid</span>
 				</div>
 			</div>
 			
 			<div className="each-slide-effect">
 				<div style={{ 'backgroundImage': `url(${images[3]})` }}>
-					<span>Slide 4</span>
+					<span>Southwest Hurricane Aid</span>
 				</div>
 			</div>
 			
 			<div className="each-slide-effect">
 				<div style={{ 'backgroundImage': `url(${images[4]})` }}>
-					<span>Slide 5</span>
+					<span>Southwest Hurricane Aid</span>
 				</div>
 			</div>
 			
