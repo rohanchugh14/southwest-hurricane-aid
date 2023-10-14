@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element = {<Home />} />
         <Route path="/about" element = {<About />} />
-        <Route path="/hurricanes" element = {<Hurricanes />} />
+        <Route path="/hurricanes/:instance" element = {<Hurricanes/>} />
         <Route path="/counties" element = {<Counties />} />
         <Route path="/Aid Organizations" element = {<AidOrganizations />} />
         <Route path="/Aid Organizations/AidOrganizationInstances/:instance" element = {<AidOrganizationInstances />} />

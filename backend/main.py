@@ -3,7 +3,9 @@ from flask import Flask, Blueprint, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from models import db
 from models.hurricane import Hurricane
+from flask_cors import CORS
 app = Flask(__name__)
+cors = CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URI']
 
 # Initialize the database

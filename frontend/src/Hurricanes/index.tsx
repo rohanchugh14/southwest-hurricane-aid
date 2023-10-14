@@ -1,10 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HurricaneCard from "../components/HurricaneCard";
-import hurricaneData from "../Data/hurricane_data.json";
 import Grid from "@mui/material/Grid";
-import { Typography } from "@mui/material";
+import { Pagination, PaginationItem, Typography } from "@mui/material";
+import { Link, useParams } from "react-router-dom";
+
+
 
 const Hurricanes = () => {
+
+    const [hurricanes, setHurricanes] = useState<any[]>([]);
+    const [pageNum, setPageNum] = useState(parseInt(useParams().instance?.toString() ?? "1"));
+    const pagesize = 20;
+    const numHurricanes = 91;
+    const numPages = Math.ceil(numHurricanes / pagesize)
+
+    const getHurricanes = async () => {
+        let hurricanesData = []
+
+        //hurricane numbers start at 1, page numbers also start at 1
+        let startIndex = (pageNum - 1) * pagesize + 1
+        let endIndex = startIndex + pagesize
+
+        if(endIndex > numHurricanes + 1) {
+            endIndex = numHurricanes + 1
+        }
+
+        for(let i = startIndex; i < endIndex; i++) {
+
+            let res = await fetch(`http://localhost:4000/api/hurricanes/${i}`, {method: "GET"})
+
+            let resArray = await res.json()
+
+            resArray["number"] = i;
+
+            hurricanesData.push(resArray)
+        }
+
+        
+        setHurricanes(hurricanesData)
+    
+    }
+
+    const handlePageChange = (
+        _event: React.ChangeEvent<unknown> | null,
+        newPage: number) => {
+        console.log(`Set page to ${newPage}`)
+        setPageNum(newPage)
+        // getHurricanes()
+    }
+
+    useEffect(() => {
+        getHurricanes()
+      }, [pageNum]);
+
     return (
         <div style={{ margin: "10px" }}>
             <div
@@ -35,25 +83,54 @@ const Hurricanes = () => {
                         justifyContent: "center",
                     }}
                 >
-                    {hurricaneData.map((hurricane) => (
+                    <Grid container spacing={5}>
+                    {hurricanes.map((hurricane, index) => (
                         <Grid
                             item
                             xs={12}
                             sm={3}
-                            style={{ padding: "10px", width: 300 }}
                         >
                             <HurricaneCard
-                                image={hurricane.Image}
-                                name={hurricane.Name}
-                                category={hurricane.Category}
-                                date={hurricane.Date}
-                                WindSpeed={hurricane.WindSpeed}
-                                Fatalities={hurricane.Fatalities}
+                                index={((pageNum - 1) * pagesize) + index + 1}
+                                name={hurricane.name}
+                                url={hurricane.url}
+                                formed={hurricane.formed}
+                                image={hurricane.image}
+                                caption={hurricane.caption}
+                                dissipated={hurricane.dissipated}
+                                category={hurricane.category}
+                                highest_winds={hurricane.highest_winds}
+                                lowest_pressure={hurricane.lowest_pressure}
+                                deaths={hurricane.deaths}
+                                damage={hurricane.damage}
+                                areas_affected={hurricane.areas_affected}
+                                counties_mentioned={hurricane.counties_mentioned}
                             />
                         </Grid>
+
                     ))}
+                    </Grid>
                 </div>
+                <div>
+                <Pagination
+                  page={pageNum}
+                  count={numPages} 
+                  style={{padding: "50px"}} 
+                  renderItem={(item) => (
+                    <PaginationItem
+                        component={Link}
+                        to={`/Hurricanes/${item.page}`}
+                        {...item}
+                    />
+
+                  )}
+                  onChange={handlePageChange}/>
+
+                </div>
+                
             </div>
+
+
         </div>
     );
 };

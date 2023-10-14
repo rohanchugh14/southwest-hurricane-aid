@@ -8,12 +8,20 @@ import { Link } from "react-router-dom";
 import CardMedia from "@mui/material/CardMedia";
 
 interface HurricaneDataProps {
-    image: string;
-    name: string;
-    category: string;
-    date: string;
-    WindSpeed: string;
-    Fatalities: string;
+    index: number,
+    name: string,
+    url: string,
+    formed: string,
+    image: string,
+    caption: string,
+    dissipated: string,
+    category: string,
+    highest_winds: string,
+    lowest_pressure: string,
+    deaths: string,
+    damage: string,
+    areas_affected: string,
+    counties_mentioned: string,
 }
 
 export default function HurricaneCard(props: HurricaneDataProps) {
@@ -30,7 +38,7 @@ export default function HurricaneCard(props: HurricaneDataProps) {
             >
                 <Tooltip title="Click for More Info">
                     <Link
-                        to={`HurricaneInstances/${props.name}`}
+                        to={`/Hurricanes/HurricaneInstances/${props.index}`}
                         style={{ textDecoration: "none" }}
                     >
                         <CardActionArea>
@@ -65,7 +73,7 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                                         }}
                                     >
                                         <b>Date: </b>
-                                        {props.date}
+                                        {props.formed}
                                         </Typography>
                                     <Typography
                                         variant="body1"
@@ -75,7 +83,7 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                                         }}
                                     >
                                         <b>Wind Speed: </b>
-                                        {props.WindSpeed}MPH
+                                        {props.highest_winds}
                                         </Typography>
                                     <Typography
                                         variant="body1"
@@ -85,7 +93,7 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                                         }}
                                     >
                                         <b>Fatalities: </b>
-                                        {props.Fatalities}
+                                        {props.deaths}
                                         </Typography>
                                 </Typography>
                             </CardContent>
