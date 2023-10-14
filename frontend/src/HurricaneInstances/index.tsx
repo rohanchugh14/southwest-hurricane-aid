@@ -1,5 +1,4 @@
-import React from "react";
-import hurricaneData from "../Data/hurricane_data.json";
+import React, {useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   Card,
@@ -12,10 +11,42 @@ import {
 
 const HurricaneInstances = () => {
   const name = useParams().instance;
-  const ourHurricane = hurricaneData.find((currObject) => {
-    return currObject.Name === name;
-  });
-  console.log(ourHurricane);
+  const pagesize = 20
+
+  const [ourHurricane, setHurricane] = useState({
+    'id': 0,
+    'name': "",
+    'url': "",
+    'formed': "",
+    'image': "",
+    'caption': "",
+    'dissipated': "",
+    'category': "",
+    'highest_winds': "",
+    'lowest_pressure': "",
+    'deaths': "",
+    'damage': "",
+    'areas_affected': "",
+    'counties_mentioned': ""
+  })
+
+  const [index, setIndex] = useState(parseInt(name?.toString() ?? "1"))
+
+
+  const getHurricane = async (index: number) => {
+
+    let res = await fetch(`http://localhost:4000/api/hurricanes/${index}`, {method: "GET"})
+
+    let resArray = await res.json()
+    
+    setHurricane(resArray)
+
+  } 
+
+  useEffect(() => {
+    getHurricane(index)
+  }, [index]);
+
   return (
     <>
       <Card
@@ -30,49 +61,50 @@ const HurricaneInstances = () => {
       >
         <Link
           style={{ textDecoration: "none", color: "inherit" }}
-          to="/Hurricanes"
+          to={`/Hurricanes/${Math.ceil(index / pagesize)}`}
           className="back-button"
         >
           <Fab sx={{ margin: 1 }}>Back </Fab>
         </Link>
 
         <Typography variant="h1" textAlign="center">
-          {name}
+          {ourHurricane.name}
         </Typography>
-        <img src={ourHurricane?.Image} width="100%" alt="hurricane" />
+        <img src={ourHurricane?.image} width="100%" alt="hurricane" />
 
         <List component="nav" aria-label="mailbox folders">
           <ListItem divider>
             <ListItemText
               primary={"Category "}
-              secondary={ourHurricane?.Category}
+              secondary={ourHurricane?.category}
             />
           </ListItem>
           <ListItem divider>
-            <ListItemText primary={"Date "} secondary={ourHurricane?.Date} />
+            <ListItemText primary={"Date "} secondary={ourHurricane?.formed} />
           </ListItem>
           <ListItem divider>
             <ListItemText
               primary={"Wind Speed "}
-              secondary={ourHurricane?.WindSpeed + " MPH"}
+              secondary={ourHurricane?.highest_winds + " MPH"}
             />
           </ListItem>
           <ListItem>
             <ListItemText
               primary={"Fatalities "}
-              secondary={ourHurricane?.Fatalities}
+              secondary={ourHurricane?.deaths}
             />
           </ListItem>
           <ListItem>
             <Link
               style={{ textDecoration: "none" }}
-              to={"/Counties/CountyInstances/" + ourHurricane?.County}
+              to={"/Counties/CountyInstances/" + ourHurricane?.counties_mentioned.split(",")[0]}
             >
+              {/* TODO change this to have multiple links */}
               {" "}
-              {ourHurricane?.County}{" "}
+              {ourHurricane?.counties_mentioned.split(",")[0]}{" "}
             </Link>
             </ListItem>
-            <ListItem>
+            {/* <ListItem>
             <Link
               style={{ textDecoration: "none" }}
               to={
@@ -83,7 +115,7 @@ const HurricaneInstances = () => {
               {" "}
               {ourHurricane?.Aid}{" "}
             </Link>
-          </ListItem>
+          </ListItem> */}
         </List>
       </Card>
     </>

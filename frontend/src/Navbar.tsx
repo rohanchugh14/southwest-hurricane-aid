@@ -13,7 +13,8 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 import hurricaneIcon from "./hurricane.png";
 
-const pages = ["About", "Hurricanes", "Counties", "Aid Organizations"];
+const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations"];
+const pageRoutes = ["About", "Hurricanes/1", "Counties", "Aid Organizations"]
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -94,7 +95,7 @@ function Navbar() {
                                 display: { xs: "block", md: "none"},
                             }}
                         >
-                            {pages.map((page) => (
+                            {pageNames.map((page) => (
                                 <MenuItem
                                     key={page}
                                     onClick={handleCloseNavMenu}
@@ -138,13 +139,13 @@ function Navbar() {
                             display: { xs: "none", md: "flex" },
                         }}
                     >
-                        {pages.map((page) => (
+                        {pageNames.map((pageName, index) => (
                             <Link
-                                to={`/${page}`}
+                                to={`/${pageRoutes[index]}`}
                                 style={{ textDecoration: "none" }}
                             >
                                 <Button
-                                    key={page}
+                                    key={pageName}
                                     onClick={handleCloseNavMenu}
                                     sx={{
                                         my: 2,
@@ -153,7 +154,7 @@ function Navbar() {
                                         display: "block",
                                     }}
                                 >
-                                    {page}
+                                    {pageName}
                                 </Button>
                             </Link>
                         ))}
