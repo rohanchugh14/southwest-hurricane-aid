@@ -1,4 +1,4 @@
-import React  from "react";
+import React, {useState, useEffect}  from "react";
 import countyData from "../Data/county_data.json";
 import { Link, useParams } from "react-router-dom";
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
@@ -7,10 +7,34 @@ import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 
 const CountyInstances = () => {
   const name = useParams().instance;
-  const ourCounty = countyData.find((currObject) => {
-    return currObject.Name === name;
-  });
-  console.log(ourCounty)
+  const pagesize = 20
+
+  const [ourCounty, setCounty] = useState({
+    'id': 0,
+    'name': "",
+    'est': "",
+    'population': "",
+    'area': "",
+    'map': "",
+  })
+
+  const [index, setIndex] = useState(parseInt(name?.toString() ?? "1"))
+
+  const getCounty = async (index: number) => {
+
+    let res = await fetch(`http://localhost:4000/api/counties/${index}`, {method: "GET"})
+
+    let resArray = await res.json()
+    
+    setCounty(resArray)
+
+  } 
+
+  useEffect(() => {
+    getCounty(index)
+  }, [index]);
+
+
   return (
     /*<>
       <h1> {name} </h1>
@@ -24,38 +48,32 @@ const CountyInstances = () => {
     <Card sx={{ margin: "auto" , width: "50%" }}>
       <CardContent>
         <Typography variant="h1" component="div" style={{ textAlign: "center" }}>
-          {ourCounty?.Name}
-        </Typography>
-        <Typography variant="h3" component="div" style={{ textAlign: "center" }}>
-          {ourCounty?.region}
+          {ourCounty?.name}
         </Typography>
         <CardMedia
           sx={{ margin: "auto" , width: "50%" }}
           component="img"
-          image={"/" + ourCounty?.Image}
+          image={ourCounty?.map}
           alt="member image" />
         <Typography variant="body1" color="text.secondary">
-          <b>Population: </b> {ourCounty?.Population}
+          <b>Population: </b> {ourCounty?.population}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          <b>Land area: </b> {ourCounty?.Land_Area} <b> sq. miles</b>
+          <b>Land area: </b> {ourCounty?.area} <b> sq. miles</b>
         </Typography>
-        <Typography variant="body1" color="text.secondary">
-          <b>Precipitation: </b> {ourCounty?.precipitation} <b> inches</b>
-        </Typography>
-        <Link to={`/Aid Organizations/AidOrganizationInstances/${ourCounty?.aid}`}>
+        {/* <Link to={`/Aid Organizations/AidOrganizationInstances/${ourCounty?.aid}`}>
           {ourCounty?.aid}{" "}
-        </Link>
+        </Link> */}
         <Typography> <b> </b> </Typography>
-        <Link to = {"/Hurricanes/HurricaneInstances/" + ourCounty?.Hurricane[0]}> 
+        {/* <Link to = {"/Hurricanes/HurricaneInstances/" + ourCounty?.Hurricane[0]}> 
           {ourCounty?.Hurricane[0]} 
-        </Link>
+        </Link> */}
         <Typography> <b> </b> </Typography>
-        <Link to = {"/Hurricanes/HurricaneInstances/" + ourCounty?.Hurricane[1]}> 
+        {/* <Link to = {"/Hurricanes/HurricaneInstances/" + ourCounty?.Hurricane[1]}> 
           {ourCounty?.Hurricane[1]} <b> </b>
-        </Link>
+        </Link> */}
         <Typography> <b> </b> </Typography>
-        <Link to="/Counties" className = "back-button">Back </Link>
+        <Link to={`/Counties/${Math.ceil(index / pagesize)}`} className = "back-button">Back </Link>
     </CardContent>
   </Card>
 

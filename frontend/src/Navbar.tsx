@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import hurricaneIcon from "./hurricane.png";
 
 const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations"];
-const pageRoutes = ["About", "Hurricanes/1", "Counties", "Aid Organizations/1"]
+const pageRoutes = ["About", "Hurricanes/1", "Counties/1", "Aid Organizations/1"]
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(

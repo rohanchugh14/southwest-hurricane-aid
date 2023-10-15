@@ -4,12 +4,12 @@ import Tooltip from "@mui/material/Tooltip";
 import { Link } from "react-router-dom";
 
 const CountyCard = (props: {
-    name: string;
-    imgurl: string;
-    population: string;
-    landarea: string;
-    region: string;
-    precipitation: string;
+    index: number,
+    name: string,
+    est: string,
+    population: string,
+    area: string,
+    imgurl: string
 }) => {
     return (
         <Card
@@ -21,7 +21,7 @@ const CountyCard = (props: {
         >
             <Tooltip title="Click for More Info">
                 <Link
-                    to={`CountyInstances/${props.name}`}
+                    to={`/Counties/CountyInstances/${props.index}`}
                     style={{ textDecoration: "none" }}
                 >
                   <CardActionArea>
@@ -52,21 +52,15 @@ const CountyCard = (props: {
                         <Typography variant="body1" color="text.secondary" style={{
                           marginTop: "5px"
                         }}>
-                            <b>Land Area: </b> {props.landarea}
+                            <b>Land Area: </b> {props.area}
                         </Typography>
 
                         <Typography variant="body1" color="text.secondary" style={{
                           marginTop: "5px"
                         }}>
-                            <b>Region: </b> {props.region}
+                            <b>Est: </b> {props.est}
                         </Typography>
 
-                        <Typography variant="body1" color="text.secondary" style={{
-                          marginTop: "5px"
-                        }}>
-                            <b>Avg Mean Precipitation: </b>{" "}
-                            {props.precipitation} in.
-                        </Typography>
                     </CardContent>
                     </CardActionArea>
                 </Link>
