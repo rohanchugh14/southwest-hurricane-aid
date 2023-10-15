@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from models import db
 from models.hurricane import Hurricane
 from models.aidorganization import AidOrganization
+from models.county import County
 from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app)
@@ -105,9 +106,38 @@ def add_organization():
 
     return jsonify(new_org.serialize()), 201
 
+@api_bp.route('/counties/<int:id>', methods=['GET'])
+def get_county_by_id(id):
+    county = County.query.get(id)
+    if not county:
+        return jsonify({"error": "County not found"}), 404
+    return jsonify(county.serialize())
+
+@api_bp.route('/counties', methods=['POST'])
+def add_county():
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "No input data provided"}), 400
+    # Validate data here (e.g., check if all required fields are present)
+    print(data)
+    new_county = County(
+        name=data['name'],
+        est=data['est'],
+        population=data['population'],
+        area=data['area'],
+        map=data['map'],
+    )
+
+    db.session.add(new_county)
+    db.session.commit()
+
+    return jsonify(new_county.serialize()), 201
+
+
 app.register_blueprint(api_bp)
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(host='0.0.0.0', port=4000)
+
