@@ -189,6 +189,10 @@ def scrape_all(urls: List[str]):
             print(response.text)
 
 
-if __name__=="__main__": 
+def get_all_hurricanes():
     scrape_all(get_valid_links())
+
+
+if __name__=="__main__": 
+    get_all_hurricanes()
 
