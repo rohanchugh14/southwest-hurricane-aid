@@ -21,7 +21,7 @@ function App() {
         <Route path="/about" element = {<About />} />
         <Route path="/hurricanes/:instance" element = {<Hurricanes/>} />
         <Route path="/counties" element = {<Counties />} />
-        <Route path="/Aid Organizations" element = {<AidOrganizations />} />
+        <Route path="/Aid Organizations/:instance" element = {<AidOrganizations />} />
         <Route path="/Aid Organizations/AidOrganizationInstances/:instance" element = {<AidOrganizationInstances />} />
         <Route path="/Hurricanes/HurricaneInstances/:instance" element = {<HurricaneInstances />} />
         <Route path="/Counties/CountyInstances/:instance" element = {<CountyInstances />} />

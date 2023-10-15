@@ -1,20 +1,60 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
-import aidOrganizationData from "../Data/aidorganizations_small.json";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const AidOrganizationInstances = () => {
     const name = useParams().instance;
-    const ourOrg = aidOrganizationData.features.find((currObject) => {
-        return currObject.attributes.shelter_name === name;
-    });
-    const countyLink =
-        ourOrg?.attributes.county_parish
-            .substring(0, 1)
-            .concat(
-                ourOrg?.attributes.county_parish.toLowerCase().substring(1)
-            ) + " County";
+    const pagesize = 20
+
+    const [ourOrg, setOrg] = useState({
+        'id': 0,
+        'shelter_name': "",
+        'address_1': "",
+        'city': "",
+        'state': "",
+        'county_parish': "",
+        'zip': "",
+        'ada_compliant': "",
+        'wheelchair_accessible': "",
+        'generator_onsite': "",
+        'self_sufficient_electricity': "",
+        'in_surge_slosh_area': "",
+        'org_organization_name': "",
+        'org_main_phone': "",
+        'org_email': "",
+        'score': 0,
+        'in_100_yr_floodplain': "",
+        'status': "",
+        'longitude': 0.0,
+        'latitude': 0.0
+    })
+
+    const [index, setIndex] = useState(parseInt(name?.toString() ?? "1"))
+
+    const getOrg = async (index: number) => {
+
+        let res = await fetch(`http://localhost:4000/api/aidorganizations/${index}`, {method: "GET"})
+    
+        let resArray = await res.json()
+        
+        setOrg(resArray)
+    
+      } 
+
+
+    const countyLink = "county"
+        // ourOrg.county_parish
+        //     .substring(0, 1)
+        //     .concat(
+        //         ourOrg.county_parish.toLowerCase().substring(1)
+        //     ) + " County";
+    
+    useEffect(() => {
+        getOrg(index)
+        }, [index]);
+
+    
     return (
         <div>
             <Card
@@ -29,41 +69,41 @@ const AidOrganizationInstances = () => {
             >
                 <CardMedia
                     sx={{ height: 300, width: "100%" }}
-                    image={"/" + ourOrg?.attributes.imgurl}
+                    image={"logo192.png"}
                     title="organization"
                 />
                 <CardContent>
                     <Typography variant="h2">
-                        {ourOrg?.attributes.shelter_name}
+                        {ourOrg?.shelter_name}
                     </Typography>
                     <Typography variant="body1">
                         <strong>Address: </strong>
-                        {ourOrg?.attributes.address_1},{" "}
-                        {ourOrg?.attributes.city} TX
+                        {ourOrg?.address_1},{" "}
+                        {ourOrg?.city} TX
                         <br />
                         <strong>County: </strong>
                         <Link to={`/Counties/CountyInstances/${countyLink}`}>
-                            {ourOrg?.attributes.county_parish}{" "}
+                            {ourOrg?.county_parish}{" "}
                         </Link>
                         <br />
                         <b>Organization name: </b>{" "}
-                        {ourOrg?.attributes.org_organization_name}
+                        {ourOrg?.org_organization_name}
                         <br />
                         <b>Phone: </b>{" "}
-                        {ourOrg?.attributes.org_main_phone !== " "
-                            ? ourOrg?.attributes.org_main_phone
+                        {ourOrg?.org_main_phone !== " "
+                            ? ourOrg?.org_main_phone
                             : "Not listed"}
                     </Typography>
                     <Typography> <b> </b> </Typography>
-                    <Link to = {"/Hurricanes/HurricaneInstances/" + ourOrg?.attributes.hurricane[0]}> 
-                        {ourOrg?.attributes.hurricane[0]} 
+                    {/* <Link to = {"/Hurricanes/HurricaneInstances/" + ourOrg?.attributes.hurricane[0]}> 
+                        {ourOrg?.hurricane[0]} 
                     </Link>
                     <Typography> <b> </b> </Typography>
                     <Link to = {"/Hurricanes/HurricaneInstances/" + ourOrg?.attributes.hurricane[1]}> 
-                        {ourOrg?.attributes.hurricane[1]} <b> </b>
-                    </Link>
+                        {ourOrg?.hurricane[1]} <b> </b>
+                    </Link> */}
                     <Typography> <b> </b> </Typography>
-                    <Link to="/Aid Organizations" className = "back-button">Back </Link>
+                    <Link to={`/Aid Organizations/${Math.ceil(index / pagesize)}`} className = "back-button">Back </Link>
                 </CardContent>
             </Card>
         </div>

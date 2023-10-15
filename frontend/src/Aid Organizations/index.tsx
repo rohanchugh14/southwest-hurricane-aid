@@ -1,9 +1,57 @@
-import React from "react";
 import AidOrganizationCard from "./AidOrganizationCard";
-import aidOrganizationData from "../Data/aidorganizations_small.json";
-import { Grid, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Pagination, PaginationItem, Typography, Grid } from "@mui/material";
+
 
 const AidOrganizations = () => {
+
+    const [organizations, setOrganizations] = useState<any[]>([]);
+    const [pageNum, setPageNum] = useState(parseInt(useParams().instance?.toString() ?? "1"));
+    const pagesize = 20;
+    const numOrganizations = 365;
+    const numPages = Math.ceil(numOrganizations / pagesize)
+
+
+    const getOrganizations = async () => {
+        let organizationsData = []
+
+        //hurricane numbers start at 1, page numbers also start at 1
+        let startIndex = (pageNum - 1) * pagesize + 1
+        let endIndex = startIndex + pagesize
+
+        if(endIndex > numOrganizations + 1) {
+            endIndex = numOrganizations + 1
+        }
+
+        for(let i = startIndex; i < endIndex; i++) {
+
+            let res = await fetch(`http://localhost:4000/api/aidorganizations/${i}`, {method: "GET"})
+
+            let resArray = await res.json()
+
+            resArray["number"] = i;
+
+            organizationsData.push(resArray)
+        }
+
+        
+        setOrganizations(organizationsData)
+    
+    }
+
+    const handlePageChange = (
+        _event: React.ChangeEvent<unknown> | null,
+        newPage: number) => {
+        console.log(`Set page to ${newPage}`)
+        setPageNum(newPage)
+        // getHurricanes()
+    }
+
+    useEffect(() => {
+        getOrganizations()
+      }, [pageNum]);
+
     return (
         <div style={{ margin: "10px" }}>
             <div
@@ -33,22 +81,40 @@ const AidOrganizations = () => {
                         justifyContent: "center",
                     }}
                 >
-                    {aidOrganizationData.features.map((organization) => (
+                    <Grid container spacing={5}>
+                    {organizations.map((organization, index) => (
                         <Grid item xs={12} sm={3} style={{padding: "10px"}}>
                             <AidOrganizationCard
-                                imgurl={organization.attributes.imgurl}
-                                name={organization.attributes.shelter_name}
-                                city={organization.attributes.city}
-                                address={organization.attributes.address_1}
-                                county={organization.attributes.county_parish}
+                                // imgurl={organization.attributes.imgurl}
+                                name={organization.shelter_name}
+                                index={((pageNum - 1) * pagesize) + index + 1}
+                                city={organization.city}
+                                address={organization.address_1}
+                                county={organization.county_parish}
                                 organization_name={
-                                    organization.attributes
+                                    organization
                                         .org_organization_name
                                 }
                             />
                         </Grid>
                     ))}
+                    </Grid>
                 </div>
+
+                <Pagination
+                  page={pageNum}
+                  count={numPages} 
+                  style={{padding: "50px"}} 
+                  renderItem={(item) => (
+                    <PaginationItem
+                        component={Link}
+                        to={`/Aid Organizations/${item.page}`}
+                        {...item}
+                    />
+
+                  )}
+                  onChange={handlePageChange}
+                  />
             </div>
         </div>
     );

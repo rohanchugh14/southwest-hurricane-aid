@@ -7,24 +7,32 @@ def get_orgs():
     
     features = data["features"]
     
+    final_data = []
+    
     for feature in features:
-        
-        
-        #longitude is x, latitude is y
         longitude = feature["geometry"]["x"]
         latitude = feature["geometry"]["y"]
         
         if(longitude > -97.86 and longitude < -93.29
            and latitude > 25.76 and latitude < 30.338):
-        
             attributes = feature["attributes"]
             
             attributes["longitude"] = longitude
             attributes["latitude"] = latitude
             
-            print(attributes)
-            response = requests.post("http://localhost:4000/api/aidorganizations", json=attributes)
-
+            final_data.append(attributes)
+        
+    
+    incorrect = 0
+    for feature in final_data:
+        
+        response = requests.post("http://localhost:4000/api/aidorganizations", json=feature)
+        if(response.status_code != 201):
+            incorrect += 1
+            print(feature)
+            # i += 1
+            
+    print("incorrect: " + str(incorrect))
 
 
 if __name__=="__main__": 
