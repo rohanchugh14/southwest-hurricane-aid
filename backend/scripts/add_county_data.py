@@ -29,9 +29,8 @@ def get_all_counties_in_texas() -> List[str]:
             county_names.append({
                 "name": name, "est": est, "population": population, "area": area, "map": map
             })
-            
-    print(county_names)
-    return county_names
+    for feature in county_names: 
+        response = requests.post("http://localhost:4000/api/counties", json=feature)
 
 if __name__=="__main__": 
     get_all_counties_in_texas()
