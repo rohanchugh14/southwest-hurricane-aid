@@ -76,13 +76,14 @@ def add_organization():
     if not data:
         return jsonify({"error": "No input data provided"}), 400
     # Validate data here (e.g., check if all required fields are present)
-    print(data)
+    # print(data)
     
     new_org = AidOrganization(
         shelter_name = data['shelter_name'],
         address_1 = data['address_1'],
         city = data['city'],
         state = data['state'],
+        county_parish = data['county_parish'],
         zipcode = data['zip'],
         ada_compliant = data['ada_compliant'],
         wheelchair_accessible = data['wheelchair_accessible'],

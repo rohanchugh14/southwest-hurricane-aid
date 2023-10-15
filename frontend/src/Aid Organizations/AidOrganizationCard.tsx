@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 const AidOrganizationCard = (props: {
     name: string;
+    index: number;
     imgurl: string;
     city: string;
     address: string;
@@ -22,13 +23,14 @@ const AidOrganizationCard = (props: {
         <Card
             sx={{
                 width: 350,
+                height: 500,
                 boxShadow:
                     "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             }}
         >
             <Tooltip title="Click for More Info">
                 <Link
-                    to={`AidOrganizationInstances/${props.name}`}
+                    to={`/Aid Organizations/AidOrganizationInstances/${props.index}`}
                     style={{ textDecoration: "none" }}
                 >
                     <CardActionArea>
