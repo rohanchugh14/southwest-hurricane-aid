@@ -18,6 +18,8 @@ const AidOrganizationCard = (props: {
     county: string;
     organization_name: string;
     phone: string;
+    latitude: number;
+    longitude: number;
 }) => {
     return (
         <Card

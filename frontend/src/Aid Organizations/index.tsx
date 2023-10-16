@@ -91,6 +91,8 @@ const AidOrganizations = () => {
                                 city={organization.city}
                                 address={organization.address_1}
                                 county={organization.county_parish}
+                                latitude={organization.latitude}
+                                longitude={organization.longitude}
                                 organization_name={
                                     organization
                                         .org_organization_name
