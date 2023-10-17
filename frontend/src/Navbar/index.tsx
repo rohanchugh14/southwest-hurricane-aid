@@ -13,7 +13,12 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 
 const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations"];
-const pageRoutes = ["About", "Hurricanes/1", "Counties/1", "Aid Organizations/1"]
+const pageRoutes = [
+    "About",
+    "Hurricanes/1",
+    "Counties/1",
+    "Aid Organizations/1",
+];
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -29,7 +34,7 @@ function Navbar() {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: '#292929' }}>
+        <AppBar position="static" sx={{ backgroundColor: "#292929" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* img element replacing AdbIcon */}
@@ -91,7 +96,7 @@ function Navbar() {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: "block", md: "none"},
+                                display: { xs: "block", md: "none" },
                             }}
                         >
                             {pageNames.map((page) => (

@@ -1,48 +1,29 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Routes from "../Routes";
+import { AidOrganization } from "../types";
 
 const AidOrganizationInstances = () => {
     const name = useParams().instance;
-    const pagesize = 20
+    const pagesize = 20;
 
-    const [ourOrg, setOrg] = useState({
-        'id': 0,
-        'shelter_name': "",
-        'address_1': "",
-        'city': "",
-        'state': "",
-        'county_parish': "",
-        'zip': "",
-        'ada_compliant': "",
-        'wheelchair_accessible': "",
-        'generator_onsite': "",
-        'self_sufficient_electricity': "",
-        'in_surge_slosh_area': "",
-        'org_organization_name': "",
-        'org_main_phone': "",
-        'org_email': "",
-        'score': 0,
-        'in_100_yr_floodplain': "",
-        'status': "",
-        'longitude': 0.0,
-        'latitude': 0.0
-    })
-    const index = parseInt(name?.toString() ?? "1")
-    const countyLink = "county"
-    
+    const [org, setOrg] = useState<AidOrganization | null>(null);
+    const index = parseInt(name ?? "1");
+    const countyLink = "county";
+
     useEffect(() => {
         const getOrg = async (index: number) => {
-            let res = await fetch(`${Routes.aidOrganizations}/${index}`, {method: "GET"})
-            let resArray = await res.json()
-            setOrg(resArray)
-          } 
-        getOrg(index)
-        }, [index]);
+            let res = await fetch(`${Routes.aidOrganizations}/${index}`, {
+                method: "GET",
+            });
+            let resArray = await res.json();
+            setOrg(resArray);
+        };
+        getOrg(index);
+    }, [index]);
 
-    
     return (
         <div>
             <Card
@@ -57,32 +38,31 @@ const AidOrganizationInstances = () => {
             >
                 <CardMedia
                     sx={{ height: 300, width: "100%" }}
-                    image={"logo192.png"}
+                    image={"img/logo192.png"}
                     title="organization"
                 />
                 <CardContent>
-                    <Typography variant="h2">
-                        {ourOrg?.shelter_name}
-                    </Typography>
+                    <Typography variant="h2">{org?.shelter_name}</Typography>
                     <Typography variant="body1">
                         <strong>Address: </strong>
-                        {ourOrg?.address_1},{" "}
-                        {ourOrg?.city} TX
+                        {org?.address_1}, {org?.city} TX
                         <br />
                         <strong>County: </strong>
                         <Link to={`/Counties/CountyInstances/${countyLink}`}>
-                            {ourOrg?.county_parish}{" "}
+                            {org?.county_parish}{" "}
                         </Link>
                         <br />
-                        <b>Organization name: </b>{" "}
-                        {ourOrg?.org_organization_name}
+                        <b>Organization name: </b> {org?.org_organization_name}
                         <br />
                         <b>Phone: </b>{" "}
-                        {ourOrg?.org_main_phone !== " "
-                            ? ourOrg?.org_main_phone
+                        {org?.org_main_phone !== " "
+                            ? org?.org_main_phone
                             : "Not listed"}
                     </Typography>
-                    <Typography> <b> </b> </Typography>
+                    <Typography>
+                        {" "}
+                        <b> </b>{" "}
+                    </Typography>
                     {/* <Link to = {"/Hurricanes/HurricaneInstances/" + ourOrg?.attributes.hurricane[0]}> 
                         {ourOrg?.hurricane[0]} 
                     </Link>
@@ -90,8 +70,16 @@ const AidOrganizationInstances = () => {
                     <Link to = {"/Hurricanes/HurricaneInstances/" + ourOrg?.attributes.hurricane[1]}> 
                         {ourOrg?.hurricane[1]} <b> </b>
                     </Link> */}
-                    <Typography> <b> </b> </Typography>
-                    <Link to={`/Aid Organizations/${Math.ceil(index / pagesize)}`} className = "back-button">Back </Link>
+                    <Typography>
+                        {" "}
+                        <b> </b>{" "}
+                    </Typography>
+                    <Link
+                        to={`/Aid Organizations/${Math.ceil(index / pagesize)}`}
+                        className="back-button"
+                    >
+                        Back{" "}
+                    </Link>
                 </CardContent>
             </Card>
         </div>

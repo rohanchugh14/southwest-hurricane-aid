@@ -37,3 +37,12 @@ export type AidOrganization = {
     longitude: number;
     latitude: number;
 }
+
+export type County = {
+  id: integer;
+  name: string;
+  est: number;
+  population: number;
+  area: number;
+  map: string;
+}
