@@ -3,7 +3,7 @@ from flask import Flask, Blueprint, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from models import db
 from models.hurricane import Hurricane
-from models.aidorganization import AidOrganization
+from models.aid_organization import AidOrganization
 from models.county import County
 from flask_cors import CORS
 app = Flask(__name__)
@@ -62,7 +62,7 @@ def add_hurricane():
 
 
 
-@api_bp.route('/aidorganizations/<int:id>', methods=['GET'])
+@api_bp.route('/aid_organizations/<int:id>', methods=['GET'])
 def get_organization_by_id(id):
     org = AidOrganization.query.get(id)
     if not org:
@@ -71,7 +71,7 @@ def get_organization_by_id(id):
 
 
 
-@api_bp.route('/aidorganizations', methods=['POST'])
+@api_bp.route('/aid_organizations', methods=['POST'])
 def add_organization():
     data = request.get_json()
     if not data:
@@ -135,5 +135,6 @@ def add_county():
 
 
 app.register_blueprint(api_bp)
-
+with app.app_context():
+    db.create_all()
 
