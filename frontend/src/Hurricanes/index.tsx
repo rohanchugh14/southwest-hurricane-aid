@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import HurricaneCard from "../components/HurricaneCard";
+import HurricaneCard from "../HurricaneCard";
 import Grid from "@mui/material/Grid";
 import { Pagination, PaginationItem, Typography } from "@mui/material";
 import { Link, useParams } from "react-router-dom";

@@ -1,16 +1,16 @@
 import React from "react";
 import "./App.css";
-import Home from "./Home";
-import Navbar from "./Navbar";
+import Home from "../Home";
+import Navbar from "../Navbar";
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router-dom";
-import About from "./About";
-import Hurricanes from "./Hurricanes";
-import Counties from "./Counties";
-import AidOrganizations from "./Aid Organizations";
-import HurricaneInstances from "./HurricaneInstances";
-import CountyInstances from "./CountyInstances";
-import AidOrganizationInstances from "./AidOrganizationInstances";
+import About from "../About";
+import Hurricanes from "../Hurricanes";
+import Counties from "../Counties";
+import AidOrganizations from "../Aid Organizations";
+import HurricaneInstances from "../HurricaneInstances";
+import CountyInstances from "../CountyInstances";
+import AidOrganizationInstances from "../AidOrganizationInstances";
 
 function App() {
   return (      
