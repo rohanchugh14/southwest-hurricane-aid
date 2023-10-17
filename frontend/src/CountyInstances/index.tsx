@@ -1,5 +1,4 @@
 import React, {useState, useEffect}  from "react";
-import countyData from "../Data/county_data.json";
 import { Link, useParams } from "react-router-dom";
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 
@@ -17,20 +16,16 @@ const CountyInstances = () => {
     'area': "",
     'map': "",
   })
+  const index = parseInt(name?.toString() ?? "1")
 
-  const [index, setIndex] = useState(parseInt(name?.toString() ?? "1"))
-
-  const getCounty = async (index: number) => {
-
-    let res = await fetch(`http://localhost:4000/api/counties/${index}`, {method: "GET"})
-
-    let resArray = await res.json()
-    
-    setCounty(resArray)
-
-  } 
+   
 
   useEffect(() => {
+    const getCounty = async (index: number) => {
+      let res = await fetch(`http://localhost:4000/api/counties/${index}`, {method: "GET"})
+      let resArray = await res.json()
+      setCounty(resArray)
+    }
     getCounty(index)
   }, [index]);
 

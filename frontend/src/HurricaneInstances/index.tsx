@@ -29,8 +29,7 @@ const HurricaneInstances = () => {
     'areas_affected': "",
     'counties_mentioned': ""
   })
-
-  const [index, setIndex] = useState(parseInt(name?.toString() ?? "1"))
+  const index = parseInt(name?.toString() ?? "1")
 
 
   const getHurricane = async (index: number) => {

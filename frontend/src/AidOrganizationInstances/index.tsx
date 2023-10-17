@@ -29,28 +29,15 @@ const AidOrganizationInstances = () => {
         'longitude': 0.0,
         'latitude': 0.0
     })
-
-    const [index, setIndex] = useState(parseInt(name?.toString() ?? "1"))
-
-    const getOrg = async (index: number) => {
-
-        let res = await fetch(`http://localhost:4000/api/aidorganizations/${index}`, {method: "GET"})
-    
-        let resArray = await res.json()
-        
-        setOrg(resArray)
-    
-      } 
-
-
+    const index = parseInt(name?.toString() ?? "1")
     const countyLink = "county"
-        // ourOrg.county_parish
-        //     .substring(0, 1)
-        //     .concat(
-        //         ourOrg.county_parish.toLowerCase().substring(1)
-        //     ) + " County";
     
     useEffect(() => {
+        const getOrg = async (index: number) => {
+            let res = await fetch(`http://localhost:4000/api/aidorganizations/${index}`, {method: "GET"})
+            let resArray = await res.json()
+            setOrg(resArray)
+          } 
         getOrg(index)
         }, [index]);
 

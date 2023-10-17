@@ -12,43 +12,33 @@ const AidOrganizations = () => {
     const numOrganizations = 365;
     const numPages = Math.ceil(numOrganizations / pagesize)
 
-
-    const getOrganizations = async () => {
-        let organizationsData = []
-
-        //hurricane numbers start at 1, page numbers also start at 1
-        let startIndex = (pageNum - 1) * pagesize + 1
-        let endIndex = startIndex + pagesize
-
-        if(endIndex > numOrganizations + 1) {
-            endIndex = numOrganizations + 1
-        }
-
-        for(let i = startIndex; i < endIndex; i++) {
-
-            let res = await fetch(`http://localhost:4000/api/aidorganizations/${i}`, {method: "GET"})
-
-            let resArray = await res.json()
-
-            resArray["number"] = i;
-
-            organizationsData.push(resArray)
-        }
-
-        
-        setOrganizations(organizationsData)
-    
-    }
-
     const handlePageChange = (
         _event: React.ChangeEvent<unknown> | null,
         newPage: number) => {
         console.log(`Set page to ${newPage}`)
         setPageNum(newPage)
-        // getHurricanes()
     }
 
     useEffect(() => {
+        const getOrganizations = async () => {
+            let organizationsData = []
+    
+            //hurricane numbers start at 1, page numbers also start at 1
+            let startIndex = (pageNum - 1) * pagesize + 1
+            let endIndex = startIndex + pagesize
+    
+            if(endIndex > numOrganizations + 1) {
+                endIndex = numOrganizations + 1
+            }
+    
+            for(let i = startIndex; i < endIndex; i++) {
+                let res = await fetch(`http://localhost:4000/api/aidorganizations/${i}`, {method: "GET"})
+                let resArray = await res.json()
+                resArray["number"] = i;
+                organizationsData.push(resArray)
+            }
+            setOrganizations(organizationsData)
+        }
         getOrganizations()
       }, [pageNum]);
 
