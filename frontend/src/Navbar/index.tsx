@@ -11,7 +11,6 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
-import hurricaneIcon from "./hurricane.png";
 
 const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations"];
 const pageRoutes = ["About", "Hurricanes/1", "Counties/1", "Aid Organizations/1"]
@@ -35,7 +34,7 @@ function Navbar() {
                 <Toolbar disableGutters>
                     {/* img element replacing AdbIcon */}
                     <img
-                        src={hurricaneIcon}
+                        src={"img/hurricane.png"}
                         alt="Hurricane Icon"
                         style={{
                             width: "30px", // Set the width as needed
