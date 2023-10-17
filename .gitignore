@@ -8,6 +8,7 @@
 /backend/scripts/hurricane_data.json
 /backend/scripts/__pycache__
 /backend/models/__pycache__
+/backend/__pycache__
 
 # testing
 /coverage
