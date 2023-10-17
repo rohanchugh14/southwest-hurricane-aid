@@ -36,10 +36,9 @@ const Hurricanes = () => {
             }
 
             for (let i = startIndex; i < endIndex; i++) {
-                let res = await fetch(
-                    `${Routes.hurricanes}/${i}`,
-                    { method: "GET" }
-                );
+                let res = await fetch(`${Routes.hurricanes}/${i}`, {
+                    method: "GET",
+                });
                 let resArray = await res.json();
                 resArray["number"] = i;
                 hurricanesData.push(resArray);

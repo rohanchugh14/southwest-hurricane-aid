@@ -43,7 +43,7 @@ const MemberCard = (props:
 
 MemberCard.defaultProps = {
   name: "Firstname Lastname",
-  imgurl: "logo192.png",
+  imgurl: "img/logo192.png",
   bio: "bio goes here",
   responsibilities: "responsibilities go here",
   commits: 0,
