@@ -11,31 +11,7 @@ const Counties = () => {
     const numCounties = 254;
     const numPages = Math.ceil(numCounties / pagesize)
 
-    const getCounties = async () => {
-        let countiesData = []
-
-        //county numbers start at 1, page numbers also start at 1
-        let startIndex = (pageNum - 1) * pagesize + 1
-        let endIndex = startIndex + pagesize
-
-        if(endIndex > numCounties + 1) {
-            endIndex = numCounties + 1
-        }
-
-        for(let i = startIndex; i < endIndex; i++) {
-
-            let res = await fetch(`http://localhost:4000/api/counties/${i}`, {method: "GET"})
-
-            let resArray = await res.json()
-
-            resArray["number"] = i;
-
-            countiesData.push(resArray)
-        }
-        
-        setCounties(countiesData)
     
-    }
 
     const handlePageChange = (
         _event: React.ChangeEvent<unknown> | null,
@@ -46,6 +22,27 @@ const Counties = () => {
     }
 
     useEffect(() => {
+        const getCounties = async () => {
+            let countiesData = []
+    
+            //county numbers start at 1, page numbers also start at 1
+            let startIndex = (pageNum - 1) * pagesize + 1
+            let endIndex = startIndex + pagesize
+    
+            if(endIndex > numCounties + 1) {
+                endIndex = numCounties + 1
+            }
+    
+            for(let i = startIndex; i < endIndex; i++) {
+    
+                let res = await fetch(`http://localhost:4000/api/counties/${i}`, {method: "GET"})
+                let resArray = await res.json()
+                resArray["number"] = i;
+                countiesData.push(resArray)
+            }
+            setCounties(countiesData)
+        
+        }
         getCounties()
       }, [pageNum]);
 
