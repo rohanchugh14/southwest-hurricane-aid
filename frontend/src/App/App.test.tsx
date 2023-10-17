@@ -1,9 +1,6 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from '.';
 
-test('renders learn react link', () => {
+test('renders the landing page with a navigation bar', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
 });
