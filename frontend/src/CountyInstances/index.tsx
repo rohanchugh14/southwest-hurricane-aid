@@ -1,6 +1,7 @@
 import React, {useState, useEffect}  from "react";
 import { Link, useParams } from "react-router-dom";
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
+import Routes from "../Routes";
 
 
 
@@ -22,7 +23,7 @@ const CountyInstances = () => {
 
   useEffect(() => {
     const getCounty = async (index: number) => {
-      let res = await fetch(`http://localhost:4000/api/counties/${index}`, {method: "GET"})
+      let res = await fetch(`${Routes.counties}/${index}`, {method: "GET"})
       let resArray = await res.json()
       setCounty(resArray)
     }

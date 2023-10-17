@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import Routes from "../Routes";
 
 const AidOrganizationInstances = () => {
     const name = useParams().instance;
@@ -34,7 +35,7 @@ const AidOrganizationInstances = () => {
     
     useEffect(() => {
         const getOrg = async (index: number) => {
-            let res = await fetch(`http://localhost:4000/api/aidorganizations/${index}`, {method: "GET"})
+            let res = await fetch(`${Routes.aidOrganizations}/${index}`, {method: "GET"})
             let resArray = await res.json()
             setOrg(resArray)
           } 
