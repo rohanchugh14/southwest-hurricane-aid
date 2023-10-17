@@ -26,11 +26,10 @@ def get_orgs():
     incorrect = 0
     for feature in final_data:
         
-        response = requests.post("http://localhost:4000/api/aidorganizations", json=feature)
+        response = requests.post("http://localhost:4000/api/aid_organizations", json=feature)
         if(response.status_code != 201):
             incorrect += 1
             print(feature)
-            # i += 1
             
     print("incorrect: " + str(incorrect))
 

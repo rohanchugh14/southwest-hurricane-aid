@@ -22,9 +22,9 @@ def get_all_counties_in_texas() -> List[str]:
         # get all columns for this row
         cols = row.findAll('td')
         if(len(cols) >= 8):
-            est = cols[2].text
-            population = cols[5].find('span').text
-            area = cols[6].find('span').text
+            est = int(cols[2].text)
+            population = int(cols[5].find('span').text.replace(",", ""))
+            area = int(cols[6].find('span').text.replace(",", ""))
             map = "https:" + cols[7].find('span').find('a').find('img')['src']
             county_names.append({
                 "name": name, "est": est, "population": population, "area": area, "map": map

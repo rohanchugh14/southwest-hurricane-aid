@@ -1,13 +1,13 @@
 from . import db
 class AidOrganization(db.Model):
-    __tablename__ = 'aidorganizations'
+    __tablename__ = 'aid_organizations'
     id = db.Column(db.Integer, primary_key=True)
     shelter_name = db.Column(db.String(200), nullable=True)
     address_1 = db.Column(db.String(700), nullable=True)
     city = db.Column(db.String(100), nullable=True)
     state = db.Column(db.String(500), nullable=True)
     county_parish = db.Column(db.String(500), nullable=True)
-    zipcode = db.Column(db.String(500), nullable=True)
+    zipcode = db.Column(db.String(5), nullable=True)
     ada_compliant = db.Column(db.String(100), nullable=True)
     wheelchair_accessible = db.Column(db.String(100), nullable=True)
     generator_onsite = db.Column(db.String(50), nullable=True)
