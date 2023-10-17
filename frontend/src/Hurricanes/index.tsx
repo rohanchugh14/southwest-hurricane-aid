@@ -3,12 +3,12 @@ import HurricaneCard from "../components/HurricaneCard";
 import Grid from "@mui/material/Grid";
 import { Pagination, PaginationItem, Typography } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-
+import { Hurricane } from "../types";
 
 
 const Hurricanes = () => {
-
-    const [hurricanes, setHurricanes] = useState<any[]>([]);
+    
+    const [hurricanes, setHurricanes] = useState<Hurricane[]>([]);
     const [pageNum, setPageNum] = useState(parseInt(useParams().instance?.toString() ?? "1"));
     const pagesize = 20;
     const numHurricanes = 91;
@@ -92,19 +92,7 @@ const Hurricanes = () => {
                         >
                             <HurricaneCard
                                 index={((pageNum - 1) * pagesize) + index + 1}
-                                name={hurricane.name}
-                                url={hurricane.url}
-                                formed={hurricane.formed}
-                                image={hurricane.image}
-                                caption={hurricane.caption}
-                                dissipated={hurricane.dissipated}
-                                category={hurricane.category}
-                                highest_winds={hurricane.highest_winds}
-                                lowest_pressure={hurricane.lowest_pressure}
-                                deaths={hurricane.deaths}
-                                damage={hurricane.damage}
-                                areas_affected={hurricane.areas_affected}
-                                counties_mentioned={hurricane.counties_mentioned}
+                                hurricane={hurricane}
                             />
                         </Grid>
 
