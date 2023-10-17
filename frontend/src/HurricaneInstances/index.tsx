@@ -8,6 +8,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import Routes from "../Routes";
 
 const HurricaneInstances = () => {
   const name = useParams().instance;
@@ -34,7 +35,7 @@ const HurricaneInstances = () => {
 
   const getHurricane = async (index: number) => {
 
-    let res = await fetch(`http://localhost:4000/api/hurricanes/${index}`, {method: "GET"})
+    let res = await fetch(`${Routes.hurricanes}/${index}`, {method: "GET"})
 
     let resArray = await res.json()
     

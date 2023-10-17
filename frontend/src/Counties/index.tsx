@@ -2,6 +2,7 @@ import { Grid, Pagination, PaginationItem, Typography } from "@mui/material";
 import React, {useState, useEffect} from "react";
 import CountyCard from "./CountyCard";
 import { Link, useParams } from "react-router-dom";
+import Routes from "../Routes";
 
 const Counties = () => {
 
@@ -35,7 +36,7 @@ const Counties = () => {
     
             for(let i = startIndex; i < endIndex; i++) {
     
-                let res = await fetch(`http://localhost:4000/api/counties/${i}`, {method: "GET"})
+                let res = await fetch(`${Routes.counties}/${i}`, {method: "GET"})
                 let resArray = await res.json()
                 resArray["number"] = i;
                 countiesData.push(resArray)

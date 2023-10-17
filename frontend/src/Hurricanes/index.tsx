@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import { Pagination, PaginationItem, Typography } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 import { Hurricane } from "../types";
+import Routes from "../Routes";
 
 const Hurricanes = () => {
     const [hurricanes, setHurricanes] = useState<Hurricane[]>([]);
@@ -36,7 +37,7 @@ const Hurricanes = () => {
 
             for (let i = startIndex; i < endIndex; i++) {
                 let res = await fetch(
-                    `http://localhost:4000/api/hurricanes/${i}`,
+                    `${Routes.hurricanes}/${i}`,
                     { method: "GET" }
                 );
                 let resArray = await res.json();

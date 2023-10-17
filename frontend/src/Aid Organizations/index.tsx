@@ -2,6 +2,7 @@ import AidOrganizationCard from "./AidOrganizationCard";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Pagination, PaginationItem, Typography, Grid } from "@mui/material";
+import Routes from "../Routes";
 
 
 const AidOrganizations = () => {
@@ -32,7 +33,7 @@ const AidOrganizations = () => {
             }
     
             for(let i = startIndex; i < endIndex; i++) {
-                let res = await fetch(`http://localhost:4000/api/aidorganizations/${i}`, {method: "GET"})
+                let res = await fetch(`${Routes.aidOrganizations}/${i}`, {method: "GET"})
                 let resArray = await res.json()
                 resArray["number"] = i;
                 organizationsData.push(resArray)
