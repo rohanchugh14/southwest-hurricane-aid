@@ -25,25 +25,11 @@ const Hurricanes = () => {
 
     useEffect(() => {
         const getHurricanes = async () => {
-            let hurricanesData = [];
-
-            //hurricane numbers start at 1, page numbers also start at 1
-            let startIndex = (pageNum - 1) * pagesize + 1;
-            let endIndex = startIndex + pagesize;
-
-            if (endIndex > numHurricanes + 1) {
-                endIndex = numHurricanes + 1;
-            }
-
-            for (let i = startIndex; i < endIndex; i++) {
-                let res = await fetch(`${Routes.hurricanes}/${i}`, {
-                    method: "GET",
-                });
-                let resArray = await res.json();
-                resArray["number"] = i;
-                hurricanesData.push(resArray);
-            }
-            setHurricanes(hurricanesData);
+            let res = await fetch(`${Routes.hurricanes}?page=${pageNum}&per_page=20`, {
+                method: "GET",
+            });
+            let resArray = await res.json();
+            setHurricanes(resArray["hurricanes"])
         };
         getHurricanes();
     }, [pageNum]);
@@ -82,7 +68,7 @@ const Hurricanes = () => {
                         {hurricanes.map((hurricane, index) => (
                             <Grid item xs={12} sm={3}>
                                 <HurricaneCard
-                                    index={(pageNum - 1) * pagesize + index + 1}
+                                    // index={(pageNum - 1) * pagesize + index + 1}
                                     hurricane={hurricane}
                                 />
                             </Grid>

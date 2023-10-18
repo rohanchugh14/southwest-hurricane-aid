@@ -12,9 +12,8 @@ import { County } from "../types";
 
 type Props = {
     county: County;
-    index: number;
 };
-const CountyCard = ({ county, index }: Props) => {
+const CountyCard = ({ county}: Props) => {
     return (
         <Card
             sx={{
@@ -25,7 +24,7 @@ const CountyCard = ({ county, index }: Props) => {
         >
             <Tooltip title="Click for More Info">
                 <Link
-                    to={`/Counties/CountyInstances/${index}`}
+                    to={`/Counties/CountyInstances/${county.id}`}
                     style={{ textDecoration: "none" }}
                 >
                     <CardActionArea>

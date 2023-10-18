@@ -25,25 +25,11 @@ const Counties = () => {
 
     useEffect(() => {
         const getCounties = async () => {
-            let countiesData = [];
-
-            //county numbers start at 1, page numbers also start at 1
-            let startIndex = (pageNum - 1) * pagesize + 1;
-            let endIndex = startIndex + pagesize;
-
-            if (endIndex > numCounties + 1) {
-                endIndex = numCounties + 1;
-            }
-
-            for (let i = startIndex; i < endIndex; i++) {
-                let res = await fetch(`${Routes.counties}/${i}`, {
-                    method: "GET",
-                });
-                let resArray = await res.json();
-                resArray["number"] = i;
-                countiesData.push(resArray);
-            }
-            setCounties(countiesData);
+            let res = await fetch(`${Routes.counties}?page=${pageNum}&per_page=${pagesize}`, {
+                method: "GET",
+            });
+            let resArray = await res.json();
+            setCounties(resArray["counties"])
         };
         getCounties();
     }, [pageNum]);
@@ -83,7 +69,6 @@ const Counties = () => {
                         {counties.map((county, index) => (
                             <div style={{ padding: "10px" }}>
                                 <CountyCard
-                                    index={(pageNum - 1) * pagesize + index + 1}
                                     county={county}
                                 />
                             </div>

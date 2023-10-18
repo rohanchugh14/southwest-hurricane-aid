@@ -11,10 +11,9 @@ import { Link } from "react-router-dom";
 import { AidOrganization } from "../types";
 type Props = {
     aidOrganization: AidOrganization;
-    index: number;
     imgUrl?: string;
 };
-const AidOrganizationCard = ({ aidOrganization, imgUrl, index }: Props) => {
+const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
     return (
         <Card
             sx={{
@@ -26,7 +25,7 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl, index }: Props) => {
         >
             <Tooltip title="Click for More Info">
                 <Link
-                    to={`/Aid Organizations/AidOrganizationInstances/${index}`}
+                    to={`/Aid Organizations/AidOrganizationInstances/${aidOrganization.id}`}
                     style={{ textDecoration: "none" }}
                 >
                     <CardActionArea>
