@@ -31,8 +31,7 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
                 >
                     <CardActionArea>
                         <CardContent>
-                            {/* <CardMedia style={{ height: 200 }} image={imgUrl} /> */}
-                            <MapsComponent />
+                            <MapsComponent center={{ lat: 30.2672, lng: -97.7431 }} zoom={10} />
                             <Typography gutterBottom variant="h5">
                                 {aidOrganization.shelter_name}
                             </Typography>

@@ -29,7 +29,7 @@ const MapsComponent: React.FC<GoogleMapProps> = ({ center, zoom }) => {
   };
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: "30vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyBWOc0C0DZEDWxagW9HDrnH21NDVnqSTkU" }}
         defaultCenter={defaultProps.center}
@@ -37,7 +37,6 @@ const MapsComponent: React.FC<GoogleMapProps> = ({ center, zoom }) => {
         center={center}
         zoom={zoom}
       >
-        <ReactComponent lat={59.955413} lng={30.337844} text="Location" />
       </GoogleMapReact>
     </div>
   );
