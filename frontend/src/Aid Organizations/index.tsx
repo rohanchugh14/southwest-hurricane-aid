@@ -10,7 +10,7 @@ const AidOrganizations = () => {
         parseInt(useParams().instance?.toString() ?? "1")
     );
     const pagesize = 20;
-    const numOrganizations = 365;
+    const numOrganizations = 746;
     const numPages = Math.ceil(numOrganizations / pagesize);
 
     const handlePageChange = (
