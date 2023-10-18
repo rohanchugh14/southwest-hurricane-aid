@@ -57,24 +57,16 @@ const Counties = () => {
                         population, land area, region, and precipitation.
                     </Typography>
                 </div>
+                <Grid container spacing={5} justifyContent={"center"}>
+                    {counties.map((county) => (
+                        <div style={{ padding: "10px" }}>
+                            <CountyCard
+                                county={county}
+                            />
+                        </div>
+                    ))}
+                </Grid>
 
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-                    <Grid container spacing={5}>
-                        {counties.map((county, index) => (
-                            <div style={{ padding: "10px" }}>
-                                <CountyCard
-                                    county={county}
-                                />
-                            </div>
-                        ))}
-                    </Grid>
-                </div>
                 <div>
                     <Pagination
                         page={pageNum}

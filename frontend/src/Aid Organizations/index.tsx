@@ -57,28 +57,15 @@ const AidOrganizations = () => {
                         county, organization, and phone number.
                     </Typography>
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-                    <Grid container spacing={5}>
-                        {organizations.map((organization, index) => (
-                            <Grid
-                                item
-                                xs={12}
-                                sm={3}
-                                style={{ padding: "10px" }}
-                            >
-                                <AidOrganizationCard
-                                    aidOrganization={organization}
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </div>
+                <Grid container spacing={5} justifyContent={"center"}>
+                    {organizations.map((organization) => (
+                        <Grid item style={{ padding: "10px" }}>
+                            <AidOrganizationCard
+                                aidOrganization={organization}
+                            />
+                        </Grid>
+                    ))}
+                </Grid>
 
                 <Pagination
                     page={pageNum}

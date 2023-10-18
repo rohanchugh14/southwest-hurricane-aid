@@ -57,24 +57,18 @@ const Hurricanes = () => {
                         fatalities.
                     </Typography>
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-                    <Grid container spacing={5}>
-                        {hurricanes.map((hurricane, index) => (
-                            <Grid item xs={12} sm={3}>
-                                <HurricaneCard
-                                    // index={(pageNum - 1) * pagesize + index + 1}
-                                    hurricane={hurricane}
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </div>
+
+                <Grid container spacing={5} justifyContent={"center"}>
+                    {hurricanes.map((hurricane, index) => (
+                        <Grid item>
+                            <HurricaneCard
+                                // index={(pageNum - 1) * pagesize + index + 1}
+                                hurricane={hurricane}
+                            />
+                        </Grid>
+                    ))}
+                </Grid>
+
                 <div>
                     <Pagination
                         page={pageNum}
