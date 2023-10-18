@@ -40,7 +40,6 @@ const AidOrganizationInstances = () => {
                     sx={{ height: 300, width: "100%" }}
                     image={"img/logo192.png"}
                     title="organization"
-<<<<<<< Updated upstream
                 /> */}
         <MapsComponent
           center={{
