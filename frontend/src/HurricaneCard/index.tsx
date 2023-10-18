@@ -6,19 +6,16 @@ import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import { Link } from "react-router-dom";
 import CardMedia from "@mui/material/CardMedia";
+import { Hurricane } from "../types";
 
-interface HurricaneDataProps {
-    image: string;
-    name: string;
-    category: string;
-    date: string;
-    WindSpeed: string;
-    Fatalities: string;
-}
+type Props = {
+    hurricane: Hurricane;
+    // index: number;
+};
 
-export default function HurricaneCard(props: HurricaneDataProps) {
+export default function HurricaneCard({ hurricane }: Props) {
     return (
-        <div style={{ maxWidth: "100%", height: "100%" }}>
+        <div style={{ width: "350px", height: "100%" }}>
             <Card
                 style={{
                     maxWidth: "100%",
@@ -30,17 +27,17 @@ export default function HurricaneCard(props: HurricaneDataProps) {
             >
                 <Tooltip title="Click for More Info">
                     <Link
-                        to={`HurricaneInstances/${props.name}`}
+                        to={`/Hurricanes/HurricaneInstances/${hurricane.id}`}
                         style={{ textDecoration: "none" }}
                     >
                         <CardActionArea>
                             <CardMedia
                                 style={{ height: 220 }}
-                                image={props.image}
+                                image={hurricane.image}
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5">
-                                    {props.name}
+                                    {hurricane.name}
                                 </Typography>
                                 <Typography
                                     variant="body2"
@@ -55,7 +52,11 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                                         }}
                                     >
                                         <b>Category: </b>
-                                        {props.category}
+                                        {hurricane.category === -1
+                                            ? "Tropical Depression"
+                                            : hurricane.category === 0
+                                            ? " Tropical Storm"
+                                            : hurricane.category}
                                     </Typography>
                                     <Typography
                                         variant="body1"
@@ -65,8 +66,8 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                                         }}
                                     >
                                         <b>Date: </b>
-                                        {props.date}
-                                        </Typography>
+                                        {hurricane.formed}
+                                    </Typography>
                                     <Typography
                                         variant="body1"
                                         color="text.secondary"
@@ -75,8 +76,8 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                                         }}
                                     >
                                         <b>Wind Speed: </b>
-                                        {props.WindSpeed}MPH
-                                        </Typography>
+                                        {hurricane.highest_winds}
+                                    </Typography>
                                     <Typography
                                         variant="body1"
                                         color="text.secondary"
@@ -85,8 +86,8 @@ export default function HurricaneCard(props: HurricaneDataProps) {
                                         }}
                                     >
                                         <b>Fatalities: </b>
-                                        {props.Fatalities}
-                                        </Typography>
+                                        {hurricane.deaths}
+                                    </Typography>
                                 </Typography>
                             </CardContent>
                         </CardActionArea>

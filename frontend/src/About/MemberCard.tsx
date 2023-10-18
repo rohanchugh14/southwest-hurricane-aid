@@ -16,7 +16,7 @@ const MemberCard = (props:
       <CardContent>
         <CardMedia
           component="img"
-          image={props.imgurl}
+          image={`img/${props.imgurl}`}
           alt="member image" />
         <Typography variant="h5" component="div" style={{ textAlign: "center" }}>
           {props.name}
@@ -43,7 +43,7 @@ const MemberCard = (props:
 
 MemberCard.defaultProps = {
   name: "Firstname Lastname",
-  imgurl: "logo192.png",
+  imgurl: "img/logo192.png",
   bio: "bio goes here",
   responsibilities: "responsibilities go here",
   commits: 0,

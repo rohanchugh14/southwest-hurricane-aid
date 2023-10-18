@@ -11,9 +11,14 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
-import hurricaneIcon from "./hurricane.png";
 
-const pages = ["About", "Hurricanes", "Counties", "Aid Organizations"];
+const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations"];
+const pageRoutes = [
+    "About",
+    "Hurricanes/1",
+    "Counties/1",
+    "Aid Organizations/1",
+];
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -29,12 +34,12 @@ function Navbar() {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: '#292929' }}>
+        <AppBar position="static" sx={{ backgroundColor: "#292929" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* img element replacing AdbIcon */}
                     <img
-                        src={hurricaneIcon}
+                        src={"img/hurricane.png"}
                         alt="Hurricane Icon"
                         style={{
                             width: "30px", // Set the width as needed
@@ -91,23 +96,25 @@ function Navbar() {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: "block", md: "none"},
+                                display: { xs: "block", md: "none" },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
+                            {pageNames.map((page, index) => (
+                                <Link
+                                    to={`/${pageRoutes[index]}`}
+                                    style={{ textDecoration: "none" }}
                                 >
-                                    <Link
-                                        to={`/${page}`}
-                                        style={{ textDecoration: "none" }}
+                                    <MenuItem
+                                        key={page}
+                                        onClick={handleCloseNavMenu}
                                     >
+
                                         <Typography textAlign="center">
                                             {page}
                                         </Typography>
-                                    </Link>
-                                </MenuItem>
+                                    </MenuItem>
+                                </Link>
+
                             ))}
                         </Menu>
                     </Box>
@@ -138,13 +145,13 @@ function Navbar() {
                             display: { xs: "none", md: "flex" },
                         }}
                     >
-                        {pages.map((page) => (
+                        {pageNames.map((pageName, index) => (
                             <Link
-                                to={`/${page}`}
+                                to={`/${pageRoutes[index]}`}
                                 style={{ textDecoration: "none" }}
                             >
                                 <Button
-                                    key={page}
+                                    key={pageName}
                                     onClick={handleCloseNavMenu}
                                     sx={{
                                         my: 2,
@@ -153,7 +160,7 @@ function Navbar() {
                                         display: "block",
                                     }}
                                 >
-                                    {page}
+                                    {pageName}
                                 </Button>
                             </Link>
                         ))}

@@ -1,9 +1,40 @@
-import React from "react";
 import AidOrganizationCard from "./AidOrganizationCard";
-import aidOrganizationData from "../Data/aidorganizations_small.json";
-import { Grid, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Pagination, PaginationItem, Typography, Grid } from "@mui/material";
+import Routes from "../Routes";
 
 const AidOrganizations = () => {
+    const [organizations, setOrganizations] = useState<any[]>([]);
+    const [pageNum, setPageNum] = useState(
+        parseInt(useParams().instance?.toString() ?? "1")
+    );
+    const pagesize = 20;
+    const numOrganizations = 746;
+    const numPages = Math.ceil(numOrganizations / pagesize);
+
+    const handlePageChange = (
+        _event: React.ChangeEvent<unknown> | null,
+        newPage: number
+    ) => {
+        console.log(`Set page to ${newPage}`);
+        setPageNum(newPage);
+    };
+
+    useEffect(() => {
+        const getOrganizations = async () => {
+        
+            let res = await fetch(`${Routes.aidOrganizations}?page=${pageNum}&per_page=${pagesize}`, {
+                method: "GET",
+            });
+            let resArray = await res.json();
+            setOrganizations(resArray["aid_organizations"])
+            
+            
+        };
+        getOrganizations();
+    }, [pageNum]);
+
     return (
         <div style={{ margin: "10px" }}>
             <div
@@ -26,29 +57,29 @@ const AidOrganizations = () => {
                         county, organization, and phone number.
                     </Typography>
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-                    {aidOrganizationData.features.map((organization) => (
-                        <Grid item xs={12} sm={3} style={{padding: "10px"}}>
+                <Grid container spacing={5} justifyContent={"center"}>
+                    {organizations.map((organization) => (
+                        <Grid item style={{ padding: "10px" }}>
                             <AidOrganizationCard
-                                imgurl={organization.attributes.imgurl}
-                                name={organization.attributes.shelter_name}
-                                city={organization.attributes.city}
-                                address={organization.attributes.address_1}
-                                county={organization.attributes.county_parish}
-                                organization_name={
-                                    organization.attributes
-                                        .org_organization_name
-                                }
+                                aidOrganization={organization}
                             />
                         </Grid>
                     ))}
-                </div>
+                </Grid>
+
+                <Pagination
+                    page={pageNum}
+                    count={numPages}
+                    style={{ padding: "50px" }}
+                    renderItem={(item) => (
+                        <PaginationItem
+                            component={Link}
+                            to={`/Aid Organizations/${item.page}`}
+                            {...item}
+                        />
+                    )}
+                    onChange={handlePageChange}
+                />
             </div>
         </div>
     );

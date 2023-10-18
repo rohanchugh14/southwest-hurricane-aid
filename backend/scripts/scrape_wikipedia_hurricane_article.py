@@ -4,6 +4,7 @@ from typing import List
 from typing import Dict
 from scrape_wikipedia_hurricane_links import get_valid_links
 import json
+import urllib.parse
 
 
 def towns_in_text(towns: List[str], text: str) -> List[str]:
@@ -168,6 +169,20 @@ def scrape_all(urls: List[str]):
     print(f"Data size: {len(data)}")
     for hurricane in data:
         # make a POST request to http://localhost:4000/api/hurricanes
+        # remove newlines from counties_mentioned
+        hurricane["counties_mentioned"] = hurricane["counties_mentioned"].replace("\n", "")
+        county_ids = []
+        for county in hurricane["counties_mentioned"].split(","):
+            encoded_county_name = urllib.parse.quote(county)
+            county_id = requests.get(f"http://localhost:4000/api/counties/search/{encoded_county_name}").json()
+            if("county_id" not in county_id):
+                print("county not found: " + county)
+                print(hurricane["name"])
+                print(hurricane["url"])
+            else:
+                county_ids.append(county_id["county_id"])
+        # print(county_ids, hurricane["counties_mentioned"])
+
         json_data = {
             "name": hurricane["name"],
             "url": hurricane["url"],
@@ -181,7 +196,8 @@ def scrape_all(urls: List[str]):
             "deaths": hurricane.get("Fatalities"),
             "damage": hurricane.get("Damage"),
             "areas_affected": hurricane["Areas affected"],
-            "counties_mentioned": hurricane["counties_mentioned"]
+            "counties_mentioned": hurricane["counties_mentioned"],
+            "county_ids": county_ids
         }
         response = requests.post("http://localhost:4000/api/hurricanes", json=json_data)
         if(response.status_code != 201):
@@ -189,6 +205,10 @@ def scrape_all(urls: List[str]):
             print(response.text)
 
 
-if __name__=="__main__": 
+def get_all_hurricanes():
     scrape_all(get_valid_links())
+
+
+if __name__=="__main__": 
+    get_all_hurricanes()
 

@@ -1,10 +1,39 @@
-import React from "react";
-import HurricaneCard from "../components/HurricaneCard";
-import hurricaneData from "../Data/hurricane_data.json";
+import React, { useState, useEffect } from "react";
+import HurricaneCard from "../HurricaneCard";
 import Grid from "@mui/material/Grid";
-import { Typography } from "@mui/material";
+import { Pagination, PaginationItem, Typography } from "@mui/material";
+import { Link, useParams } from "react-router-dom";
+import { Hurricane } from "../types";
+import Routes from "../Routes";
 
 const Hurricanes = () => {
+    const [hurricanes, setHurricanes] = useState<Hurricane[]>([]);
+    const [pageNum, setPageNum] = useState(
+        parseInt(useParams().instance?.toString() ?? "1")
+    );
+    const pagesize = 20;
+    const numHurricanes = 91;
+    const numPages = Math.ceil(numHurricanes / pagesize);
+
+    const handlePageChange = (
+        _event: React.ChangeEvent<unknown> | null,
+        newPage: number
+    ) => {
+        console.log(`Set page to ${newPage}`);
+        setPageNum(newPage);
+    };
+
+    useEffect(() => {
+        const getHurricanes = async () => {
+            let res = await fetch(`${Routes.hurricanes}?page=${pageNum}&per_page=20`, {
+                method: "GET",
+            });
+            let resArray = await res.json();
+            setHurricanes(resArray["hurricanes"])
+        };
+        getHurricanes();
+    }, [pageNum]);
+
     return (
         <div style={{ margin: "10px" }}>
             <div
@@ -28,30 +57,32 @@ const Hurricanes = () => {
                         fatalities.
                     </Typography>
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-                    {hurricaneData.map((hurricane) => (
-                        <Grid
-                            item
-                            xs={12}
-                            sm={3}
-                            style={{ padding: "10px", width: 300 }}
-                        >
+
+                <Grid container spacing={5} justifyContent={"center"}>
+                    {hurricanes.map((hurricane, index) => (
+                        <Grid item>
                             <HurricaneCard
-                                image={hurricane.Image}
-                                name={hurricane.Name}
-                                category={hurricane.Category}
-                                date={hurricane.Date}
-                                WindSpeed={hurricane.WindSpeed}
-                                Fatalities={hurricane.Fatalities}
+                                // index={(pageNum - 1) * pagesize + index + 1}
+                                hurricane={hurricane}
                             />
                         </Grid>
                     ))}
+                </Grid>
+
+                <div>
+                    <Pagination
+                        page={pageNum}
+                        count={numPages}
+                        style={{ padding: "50px" }}
+                        renderItem={(item) => (
+                            <PaginationItem
+                                component={Link}
+                                to={`/Hurricanes/${item.page}`}
+                                {...item}
+                            />
+                        )}
+                        onChange={handlePageChange}
+                    />
                 </div>
             </div>
         </div>

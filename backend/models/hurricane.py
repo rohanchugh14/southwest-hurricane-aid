@@ -1,4 +1,5 @@
 from . import db
+from .associations import hurricane_county_associations
 class Hurricane(db.Model):
     __tablename__ = 'hurricanes'
     id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +15,7 @@ class Hurricane(db.Model):
     deaths = db.Column(db.String(200), nullable=True)
     damage = db.Column(db.String(100), nullable=True)
     areas_affected = db.Column(db.String(500), nullable=False)
-    counties_mentioned = db.Column(db.String(500), nullable=False)
+    counties = db.relationship('County', secondary=hurricane_county_associations, back_populates='hurricanes')
     def __repr__(self):
         return '<Hurricane %r>' % self.name
     def serialize(self):
@@ -32,5 +33,5 @@ class Hurricane(db.Model):
             'deaths': self.deaths,
             'damage': self.damage,
             'areas_affected': self.areas_affected,
-            'counties_mentioned': self.counties_mentioned
+            'counties': [county.serialize() for county in self.counties]
         }
