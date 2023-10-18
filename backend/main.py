@@ -34,6 +34,8 @@ def get_hurricane_by_id(id):
     hurricane = Hurricane.query.get(id)
     if not hurricane:
         return jsonify({"error": "Hurricane not found"}), 404
+    hurricane = hurricane.serialize()
+    hurricane['counties'] = [c.serialize() for c in hurricane['counties']]
     return jsonify(hurricane.serialize())
 
 
@@ -43,8 +45,11 @@ def get_hurricanes():
     per_page = int(request.args.get('per_page', 10))
     paginated_hurricanes = Hurricane.query.paginate(
         page=page, per_page=per_page, error_out=False)
-
-    hurricanes = [h.serialize() for h in paginated_hurricanes.items]
+    hurricanes = []
+    for h in paginated_hurricanes.items:
+        curr_hurricane = h.serialize()
+        curr_hurricane.counties = [c.serialize() for c in h.counties]
+        hurricanes.append(curr_hurricane)
     return jsonify({
         'hurricanes': hurricanes,
         'total_pages': paginated_hurricanes.pages,
@@ -88,7 +93,10 @@ def get_organization_by_id(id):
     org = AidOrganization.query.get(id)
     if not org:
         return jsonify({"error": "Hurricane not found"}), 404
-    return jsonify(org.serialize())
+    res = org.serialize()
+    # add all hurricanes that ocurred in the county
+    res['hurricanes'] = [{'name': h.name, 'id': h.id} for h in org.county.hurricanes]
+    return jsonify(res)
 
 
 @api_bp.route('/aid_organizations', methods=['GET'])
@@ -113,8 +121,6 @@ def add_organization():
     data = request.get_json()
     if not data:
         return jsonify({"error": "No input data provided"}), 400
-    # Validate data here (e.g., check if all required fields are present)
-    # print(data)
 
     new_org = AidOrganization(
         shelter_name=data['shelter_name'],
@@ -149,7 +155,10 @@ def get_county_by_id(id):
     county = County.query.get(id)
     if not county:
         return jsonify({"error": "County not found"}), 404
-    return jsonify(county.serialize())
+    res = county.serialize()
+    res['hurricanes'] = [{'name': h.name, 'id': h.id} for h in county.hurricanes]
+    res['aid_organizations'] = [{'name': a.shelter_name, 'id': a.id} for a in county.aid_organizations]
+    return jsonify(res)
 
 
 @api_bp.route('/counties', methods=['GET'])
