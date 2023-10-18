@@ -74,7 +74,6 @@ def add_hurricane():
         deaths=data['deaths'],
         damage=data['damage'],
         areas_affected=data['areas_affected'],
-        counties_mentioned=data['counties_mentioned'],
         counties=counties
     )
 
@@ -122,7 +121,6 @@ def add_organization():
         address_1=data['address_1'],
         city=data['city'],
         state=data['state'],
-        county_parish=data['county_parish'],
         zipcode=data['zip'],
         ada_compliant=data['ada_compliant'],
         wheelchair_accessible=data['wheelchair_accessible'],
