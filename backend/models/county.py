@@ -1,4 +1,6 @@
 from . import db
+from .associations import hurricane_county_associations
+from sqlalchemy.orm import relationship
 class County(db.Model):
     __tablename__ = 'counties'
     id = db.Column(db.Integer, primary_key=True)
@@ -8,6 +10,8 @@ class County(db.Model):
     population = db.Column(db.Integer, nullable=False)
     area = db.Column(db.Integer, nullable=False)
     map = db.Column(db.String(500), nullable=False)
+    aid_organizations = relationship('AidOrganization', backref='county')
+    hurricanes = relationship('Hurricane', secondary=hurricane_county_associations, back_populates='counties')
     def __repr__(self):
         return '<County %r>' % self.name
     def serialize(self):
