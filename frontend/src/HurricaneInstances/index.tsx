@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
+    Button,
     Card,
     Fab,
+    Grid,
     List,
     ListItem,
     ListItemText,
@@ -89,17 +91,13 @@ const HurricaneInstances = () => {
                         <ListItemText
                             primary={"Counties"}
                             secondary={
-                                <ul>
+                                <Grid spacing={2}>
                                     {hurricane?.counties.map((county) => (
-                                        <li key={county.id}>
-                                            <Link
-                                                to={`/Counties/CountyInstances/${county.id}`}
-                                            >
+                                        <Button color="primary" href={`/Counties/CountyInstances/${county.id}`} variant="text">
                                                 {county.name}
-                                            </Link>
-                                        </li>
+                                        </Button>
                                     ))}
-                                </ul>
+                                </Grid>
                             }
                         />
                     </ListItem>
