@@ -166,6 +166,7 @@ def add_county():
     print(data)
     new_county = County(
         name=data['name'],
+        county_seat=data['county_seat'],
         est=data['est'],
         population=data['population'],
         area=data['area'],
