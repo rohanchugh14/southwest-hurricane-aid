@@ -78,10 +78,8 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
                                         marginTop: "5px",
                                     }}
                                 >
-                                    <b>Phone: </b>{" "}
-                                    {aidOrganization.org_main_phone !== " "
-                                        ? aidOrganization.org_main_phone
-                                        : "Not listed"}
+                                    <b>Score: </b>{" "}
+                                    {aidOrganization.score ?? "Not rated"}
                                 </Typography>
                             </Typography>
                         </CardContent>

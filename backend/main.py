@@ -34,9 +34,9 @@ def get_hurricane_by_id(id):
     hurricane = Hurricane.query.get(id)
     if not hurricane:
         return jsonify({"error": "Hurricane not found"}), 404
-    hurricane = hurricane.serialize()
-    hurricane['counties'] = [c.serialize() for c in hurricane['counties']]
-    return jsonify(hurricane.serialize())
+    res = hurricane.serialize()
+    res['counties'] = [c.serialize() for c in hurricane.counties]
+    return jsonify(res)
 
 
 @api_bp.route('/hurricanes', methods=['GET'])
@@ -48,7 +48,9 @@ def get_hurricanes():
     hurricanes = []
     for h in paginated_hurricanes.items:
         curr_hurricane = h.serialize()
-        curr_hurricane.counties = [c.serialize() for c in h.counties]
+        print(h)
+        print(type(h))
+        curr_hurricane["counties"] = [c.serialize() for c in h.counties]
         hurricanes.append(curr_hurricane)
     return jsonify({
         'hurricanes': hurricanes,
@@ -157,7 +159,7 @@ def get_county_by_id(id):
         return jsonify({"error": "County not found"}), 404
     res = county.serialize()
     res['hurricanes'] = [{'name': h.name, 'id': h.id} for h in county.hurricanes]
-    res['aid_organizations'] = [{'name': a.shelter_name, 'id': a.id} for a in county.aid_organizations]
+    res['aid_organizations'] = [{'shelter_name': a.shelter_name, 'id': a.id} for a in county.aid_organizations]
     return jsonify(res)
 
 
