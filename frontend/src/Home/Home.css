@@ -3,15 +3,24 @@
     align-items: center;
     justify-content: center;
     background-size: cover;
-    height: 854px;
+    height: calc(100vh - 69px);
 }
 
 .each-slide-effect span {
-    padding: 20px;
+    padding: 50px;
     font-size: 50px;
     color: rgb(255, 255, 255);
     background: rgba(0, 0, 0, 0.7);
     text-align: center;
     width: 100%;
     display: block;
+}
+
+.each-slide-effect p {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 310px;
 }
