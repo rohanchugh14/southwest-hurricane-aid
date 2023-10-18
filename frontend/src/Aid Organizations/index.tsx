@@ -23,25 +23,14 @@ const AidOrganizations = () => {
 
     useEffect(() => {
         const getOrganizations = async () => {
-            let organizationsData = [];
-
-            //hurricane numbers start at 1, page numbers also start at 1
-            let startIndex = (pageNum - 1) * pagesize + 1;
-            let endIndex = startIndex + pagesize;
-
-            if (endIndex > numOrganizations + 1) {
-                endIndex = numOrganizations + 1;
-            }
-
-            for (let i = startIndex; i < endIndex; i++) {
-                let res = await fetch(`${Routes.aidOrganizations}/${i}`, {
-                    method: "GET",
-                });
-                let resArray = await res.json();
-                resArray["number"] = i;
-                organizationsData.push(resArray);
-            }
-            setOrganizations(organizationsData);
+        
+            let res = await fetch(`${Routes.aidOrganizations}?page=${pageNum}&per_page=${pagesize}`, {
+                method: "GET",
+            });
+            let resArray = await res.json();
+            setOrganizations(resArray["aid_organizations"])
+            
+            
         };
         getOrganizations();
     }, [pageNum]);
@@ -84,9 +73,7 @@ const AidOrganizations = () => {
                                 style={{ padding: "10px" }}
                             >
                                 <AidOrganizationCard
-                                    // imgUrl={organization.attributes.imgurl}
                                     aidOrganization={organization}
-                                    index={(pageNum - 1) * pagesize + index + 1}
                                 />
                             </Grid>
                         ))}

@@ -10,10 +10,10 @@ import { Hurricane } from "../types";
 
 type Props = {
     hurricane: Hurricane;
-    index: number;
+    // index: number;
 };
 
-export default function HurricaneCard({ hurricane, index }: Props) {
+export default function HurricaneCard({ hurricane }: Props) {
     return (
         <div style={{ maxWidth: "100%", height: "100%" }}>
             <Card
@@ -27,7 +27,7 @@ export default function HurricaneCard({ hurricane, index }: Props) {
             >
                 <Tooltip title="Click for More Info">
                     <Link
-                        to={`/Hurricanes/HurricaneInstances/${index}`}
+                        to={`/Hurricanes/HurricaneInstances/${hurricane.id}`}
                         style={{ textDecoration: "none" }}
                     >
                         <CardActionArea>
