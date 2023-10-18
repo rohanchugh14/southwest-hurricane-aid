@@ -9,15 +9,15 @@ type GoogleMapProps = {
   zoom?: number;
 };
 
-type ReactComponentProps = {
-  lat: number;
-  lng: number;
-  text: string;
-};
+// type ReactComponentProps = {
+//   lat: number;
+//   lng: number;
+//   text: string;
+// };
 
-const ReactComponent: React.FC<ReactComponentProps> = ({ text }) => (
-  <div>{text}</div>
-);
+// const ReactComponent: React.FC<ReactComponentProps> = ({ text }) => (
+//   <div>{text}</div>
+// );
 
 const MapsComponent: React.FC<GoogleMapProps> = ({ center, zoom }) => {
   const defaultProps = {
