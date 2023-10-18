@@ -24,20 +24,24 @@ const About = () => {
    
   }
 
-  function getIssues() {
+  const getIssues = async () => {
     var requestOptions = {
       method: "GET",
     };
-
-    fetch(
-      "https://gitlab.com/api/v4/projects/50653866/issues?per_page=9999&private_token=glpat-77ZZEz4Fy1piNyhkwMqk",
+    let page = 1
+    let res = await fetch(
+      `https://gitlab.com/api/v4/projects/50653866/issues?per_page=100&page=${page}&private_token=glpat-77ZZEz4Fy1piNyhkwMqk`,
       requestOptions
     )
-      .then((response) => response.json())
-      .then((result) => {
-        console.log({ issues: result });
-        setIssues(result);
-      });
+    let resArray = await res.json()
+    let allIssues = []
+    while(resArray.length > 0) {
+      allIssues.push(...resArray)
+      page++
+      res = await fetch(`https://gitlab.com/api/v4/projects/50653866/issues?per_page=100&page=${page}&private_token=glpat-77ZZEz4Fy1piNyhkwMqk`, requestOptions)
+      resArray = await res.json()
+    }
+    setIssues(allIssues)
   }
 
   function personIsAssignedToIssue(name: string, assignees: any[]) {
