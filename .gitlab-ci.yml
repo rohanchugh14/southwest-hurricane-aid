@@ -1,7 +1,4 @@
 image: node:latest
-before_script:
-  - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-  - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 stages:
   - build
   - deploy
@@ -27,8 +24,6 @@ deploy_to_s3:
   image: python:latest
   script:
     - pip install awscli
-    - echo $AWS_ACCESS_KEY_ID
-    - echo $AWS_SECRET_ACCESS_KEY
     - aws s3 sync ./frontend/build/ s3://www.southwesthurricaneaid.me/ --delete
   only:
     - prod
