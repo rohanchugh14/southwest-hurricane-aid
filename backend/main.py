@@ -1,5 +1,6 @@
 import os
-from flask import Flask, Blueprint, jsonify, request
+import logging
+from flask import Flask, Blueprint, jsonify, request, url_for, current_app
 from flask_sqlalchemy import SQLAlchemy
 from models import db
 from models.hurricane import Hurricane
@@ -9,7 +10,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URI']
-
+app.logger.setLevel(logging.INFO)
 # Initialize the database
 db.init_app(app)
 
@@ -31,6 +32,21 @@ def get_hurricane_by_id(id):
     if not hurricane:
         return jsonify({"error": "Hurricane not found"}), 404
     return jsonify(hurricane.serialize())
+
+@api_bp.route('/hurricanes', methods=['GET'])
+def get_hurricanes():
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 10))
+    paginated_hurricanes = Hurricane.query.paginate(page=page, per_page=per_page, error_out=False)
+    
+    hurricanes = [h.serialize() for h in paginated_hurricanes.items]
+    return jsonify({
+        'hurricanes': hurricanes,
+        'total_pages': paginated_hurricanes.pages,
+        'current_page': paginated_hurricanes.page,
+        'next_page_url': paginated_hurricanes.next_num and url_for('api.get_hurricanes', page=paginated_hurricanes.next_num, _external=True) or None,
+        'prev_page_url': paginated_hurricanes.prev_num and url_for('api.get_hurricanes', page=paginated_hurricanes.prev_num, _external=True) or None,
+    })
 
 @api_bp.route('/hurricanes', methods=['POST'])
 def add_hurricane():
@@ -69,7 +85,20 @@ def get_organization_by_id(id):
         return jsonify({"error": "Hurricane not found"}), 404
     return jsonify(org.serialize())
 
-
+@api_bp.route('/aid_organizations', methods=['GET'])
+def get_aid_organizations():
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 10))
+    paginated_organizations = AidOrganization.query.paginate(page=page, per_page=per_page, error_out=False)
+    
+    organizations = [a.serialize() for a in paginated_organizations.items]
+    return jsonify({
+        'aid_organizations': organizations,
+        'total_pages': paginated_organizations.pages,
+        'current_page': paginated_organizations.page,
+        'next_page_url': paginated_organizations.next_num and url_for('api.get_aid_organizations', page=paginated_organizations.next_num, _external=True) or None,
+        'prev_page_url': paginated_organizations.prev_num and url_for('api.get_aid_organizations', page=paginated_organizations.prev_num, _external=True) or None,
+    })
 
 @api_bp.route('/aid_organizations', methods=['POST'])
 def add_organization():
@@ -112,6 +141,21 @@ def get_county_by_id(id):
     if not county:
         return jsonify({"error": "County not found"}), 404
     return jsonify(county.serialize())
+
+@api_bp.route('/counties', methods=['GET'])
+def get_counties():
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 10))
+    paginated_counties = County.query.paginate(page=page, per_page=per_page, error_out=False)
+    
+    counties = [c.serialize() for c in paginated_counties.items]
+    return jsonify({
+        'counties': counties,
+        'total_pages': paginated_counties.pages,
+        'current_page': paginated_counties.page,
+        'next_page_url': paginated_counties.next_num and url_for('api.get_counties', page=paginated_counties.next_num, _external=True) or None,
+        'prev_page_url': paginated_counties.prev_num and url_for('api.get_counties', page=paginated_counties.prev_num, _external=True) or None,
+    })
 
 @api_bp.route('/counties', methods=['POST'])
 def add_county():
