@@ -8,37 +8,31 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-
-const AidOrganizationCard = (props: {
-    name: string;
-    imgurl: string;
-    city: string;
-    address: string;
-    county: string;
-    organization_name: string;
-    phone: string;
-}) => {
+import { AidOrganization } from "../types";
+type Props = {
+    aidOrganization: AidOrganization;
+    imgUrl?: string;
+};
+const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
     return (
         <Card
             sx={{
                 width: 350,
+                height: 500,
                 boxShadow:
                     "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             }}
         >
             <Tooltip title="Click for More Info">
                 <Link
-                    to={`AidOrganizationInstances/${props.name}`}
+                    to={`/Aid Organizations/AidOrganizationInstances/${aidOrganization.id}`}
                     style={{ textDecoration: "none" }}
                 >
                     <CardActionArea>
                         <CardContent>
-                            <CardMedia
-                                style={{height: 200 }}
-                                image={props.imgurl}
-                            />
+                            <CardMedia style={{ height: 200 }} image={imgUrl} />
                             <Typography gutterBottom variant="h5">
-                                {props.name}
+                                {aidOrganization.shelter_name}
                             </Typography>
                             <Typography
                                 variant="body2"
@@ -53,7 +47,8 @@ const AidOrganizationCard = (props: {
                                     }}
                                 >
                                     <b>Address: </b>
-                                    {props.address}, {props.city} TX
+                                    {aidOrganization.address_1},{" "}
+                                    {aidOrganization.city} TX
                                 </Typography>
                                 <Typography
                                     variant="body1"
@@ -63,7 +58,7 @@ const AidOrganizationCard = (props: {
                                     }}
                                 >
                                     <b>County: </b>
-                                    {props.county}
+                                    {aidOrganization.county.name}
                                 </Typography>
                                 <Typography
                                     variant="body1"
@@ -73,7 +68,7 @@ const AidOrganizationCard = (props: {
                                     }}
                                 >
                                     <b>Organization name: </b>{" "}
-                                    {props.organization_name}
+                                    {aidOrganization.org_organization_name}
                                 </Typography>
                                 <Typography
                                     variant="body1"
@@ -83,8 +78,8 @@ const AidOrganizationCard = (props: {
                                     }}
                                 >
                                     <b>Phone: </b>{" "}
-                                    {props.phone !== " "
-                                        ? props.phone
+                                    {aidOrganization.org_main_phone !== " "
+                                        ? aidOrganization.org_main_phone
                                         : "Not listed"}
                                 </Typography>
                             </Typography>
@@ -98,7 +93,7 @@ const AidOrganizationCard = (props: {
 
 AidOrganizationCard.defaultProps = {
     name: "Name goes here",
-    imgurl: "logo192.png",
+    imgurl: "img/logo192.png",
     city: "City goes here",
     address: "Address goes here",
     county: "County goes here",

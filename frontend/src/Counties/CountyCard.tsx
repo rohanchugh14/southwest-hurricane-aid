@@ -1,16 +1,19 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+    Card,
+    CardActionArea,
+    CardContent,
+    CardMedia,
+    Typography,
+} from "@mui/material";
 import React from "react";
 import Tooltip from "@mui/material/Tooltip";
 import { Link } from "react-router-dom";
+import { County } from "../types";
 
-const CountyCard = (props: {
-    name: string;
-    imgurl: string;
-    population: string;
-    landarea: string;
-    region: string;
-    precipitation: string;
-}) => {
+type Props = {
+    county: County;
+};
+const CountyCard = ({ county}: Props) => {
     return (
         <Card
             sx={{
@@ -21,53 +24,58 @@ const CountyCard = (props: {
         >
             <Tooltip title="Click for More Info">
                 <Link
-                    to={`CountyInstances/${props.name}`}
+                    to={`/Counties/CountyInstances/${county.id}`}
                     style={{ textDecoration: "none" }}
                 >
-                  <CardActionArea>
-                    <CardContent>
-                        <CardMedia
-                            component="img"
-                            image={props.imgurl}
-                            width="10%"
-                            height="10%"
-                            alt="member image"
-                        />
+                    <CardActionArea>
+                        <CardContent>
+                            <CardMedia
+                                component="img"
+                                image={county.map}
+                                width="10%"
+                                height="10%"
+                                alt="member image"
+                            />
 
-                        <Typography
-                            variant="h5"
-                            style={{
-                              marginTop: "5px"
-                            }}
-                        >
-                            {props.name}
-                        </Typography>
+                            <Typography
+                                variant="h5"
+                                style={{
+                                    marginTop: "5px",
+                                }}
+                            >
+                                {county.name}
+                            </Typography>
 
-                        <Typography variant="body1" color="text.secondary" style={{
-                          marginTop: "5px"
-                        }}>
-                            <b>Population: </b> {props.population}
-                        </Typography>
+                            <Typography
+                                variant="body1"
+                                color="text.secondary"
+                                style={{
+                                    marginTop: "5px",
+                                }}
+                            >
+                                <b>Population: </b> {county.population}
+                            </Typography>
 
-                        <Typography variant="body1" color="text.secondary" style={{
-                          marginTop: "5px"
-                        }}>
-                            <b>Land Area: </b> {props.landarea}
-                        </Typography>
+                            <Typography
+                                variant="body1"
+                                color="text.secondary"
+                                style={{
+                                    marginTop: "5px",
+                                }}
+                            >
+                                <b>Land Area: </b> {county.area}
+                            </Typography>
 
-                        <Typography variant="body1" color="text.secondary" style={{
-                          marginTop: "5px"
-                        }}>
-                            <b>Region: </b> {props.region}
-                        </Typography>
-
-                        <Typography variant="body1" color="text.secondary" style={{
-                          marginTop: "5px"
-                        }}>
-                            <b>Avg Mean Precipitation: </b>{" "}
-                            {props.precipitation} in.
-                        </Typography>
-                    </CardContent>
+                            <Typography
+                                variant="body1"
+                                color="text.secondary"
+                                style={{
+                                    marginTop: "5px",
+                                }}
+                            >
+                                <b>Est: </b> {county.est}
+                            </Typography>
+                        </CardContent>
                     </CardActionArea>
                 </Link>
             </Tooltip>
@@ -77,7 +85,7 @@ const CountyCard = (props: {
 
 CountyCard.defaultProps = {
     name: "Firstname Lastname",
-    imgurl: "logo192.png",
+    imgurl: "img/logo192.png",
     population: "0",
     region: "None",
     precipitation: "0",

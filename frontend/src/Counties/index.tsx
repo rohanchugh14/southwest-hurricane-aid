@@ -1,9 +1,39 @@
-import { Typography } from "@mui/material";
-import React from "react";
+import { Grid, Pagination, PaginationItem, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
 import CountyCard from "./CountyCard";
-import countyData from "../Data/county_data.json";
+import { Link, useParams } from "react-router-dom";
+import Routes from "../Routes";
+import { County } from "../types";
 
-const About = () => {
+const Counties = () => {
+    const [counties, setCounties] = useState<County[]>([]);
+    const [pageNum, setPageNum] = useState(
+        parseInt(useParams().instance?.toString() ?? "1")
+    );
+    const pagesize = 20;
+    const numCounties = 254;
+    const numPages = Math.ceil(numCounties / pagesize);
+
+    const handlePageChange = (
+        _event: React.ChangeEvent<unknown> | null,
+        newPage: number
+    ) => {
+        console.log(`Set page to ${newPage}`);
+        setPageNum(newPage);
+        // getCounties()
+    };
+
+    useEffect(() => {
+        const getCounties = async () => {
+            let res = await fetch(`${Routes.counties}?page=${pageNum}&per_page=${pagesize}`, {
+                method: "GET",
+            });
+            let resArray = await res.json();
+            setCounties(resArray["counties"])
+        };
+        getCounties();
+    }, [pageNum]);
+
     return (
         <div style={{ margin: "10px" }}>
             <div
@@ -27,26 +57,30 @@ const About = () => {
                         population, land area, region, and precipitation.
                     </Typography>
                 </div>
-
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-                    {countyData.map((county) => (
+                <Grid container spacing={5} justifyContent={"center"}>
+                    {counties.map((county) => (
                         <div style={{ padding: "10px" }}>
                             <CountyCard
-                                name={county.Name}
-                                population={county.Population}
-                                landarea={county.Land_Area}
-                                region={county.region}
-                                precipitation={county.precipitation}
-                                imgurl={county.Image}
+                                county={county}
                             />
                         </div>
                     ))}
+                </Grid>
+
+                <div>
+                    <Pagination
+                        page={pageNum}
+                        count={numPages}
+                        style={{ padding: "50px" }}
+                        renderItem={(item) => (
+                            <PaginationItem
+                                component={Link}
+                                to={`/Counties/${item.page}`}
+                                {...item}
+                            />
+                        )}
+                        onChange={handlePageChange}
+                    />
                 </div>
             </div>
 
@@ -55,4 +89,4 @@ const About = () => {
     );
 };
 
-export default About;
+export default Counties;
