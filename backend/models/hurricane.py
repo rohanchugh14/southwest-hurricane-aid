@@ -33,4 +33,5 @@ class Hurricane(db.Model):
             'deaths': self.deaths,
             'damage': self.damage,
             'areas_affected': self.areas_affected,
+            'counties': [county.serialize() for county in self.counties]
         }

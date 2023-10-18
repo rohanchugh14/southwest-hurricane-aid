@@ -30,10 +30,7 @@ class AidOrganization(db.Model):
             'address_1': self.address_1,
             'city': self.city,
             'state': self.state,
-            'county': {
-                'id': self.county.id,
-                'name': self.county.name,
-            },
+            'county': self.county.serialize(),
             'zip': self.zipcode,
             'ada_compliant': self.ada_compliant,
             'wheelchair_accessible': self.wheelchair_accessible,

@@ -48,8 +48,8 @@ const AidOrganizationInstances = () => {
                         {org?.address_1}, {org?.city} TX
                         <br />
                         <strong>County: </strong>
-                        <Link to={`/Counties/CountyInstances/${countyLink}`}>
-                            {org?.county_parish}{" "}
+                        <Link to={`/Counties/CountyInstances/${org?.county.id}`}>
+                            {org?.county.name}{" "}
                         </Link>
                         <br />
                         <b>Organization name: </b> {org?.org_organization_name}

@@ -1,9 +1,18 @@
+export type County = {
+  id: integer;
+  name: string;
+  est: number;
+  population: number;
+  area: number;
+  map: string;
+  county_seat: string;
+}
+
 export type Hurricane = {
   id: number;
   areas_affected: string;
   caption: string;
   category: number;
-  counties_mentioned: string;
   damage: string;
   deaths: string;
   dissipated: string;
@@ -13,6 +22,7 @@ export type Hurricane = {
   lowest_pressure: string;
   name: string;
   url: string;
+  counties: County[];
 }
 
 export type AidOrganization = {
@@ -21,7 +31,7 @@ export type AidOrganization = {
     address_1: string;
     city: string;
     state: string;
-    county_parish: string;
+    county: County;
     zipcode: string;
     ada_compliant: string | null;
     wheelchair_accessible: string | null;
@@ -36,13 +46,4 @@ export type AidOrganization = {
     status: string | null;
     longitude: number;
     latitude: number;
-}
-
-export type County = {
-  id: integer;
-  name: string;
-  est: number;
-  population: number;
-  area: number;
-  map: string;
 }
