@@ -32,7 +32,7 @@ const mapsComponent: React.FC<GoogleMapProps> = ({ center, zoom }) => {
     // Important! Always set the container height explicitly
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "YOUR_GOOGLE_MAPS_API_KEY" }}
+        bootstrapURLKeys={{ key: "AIzaSyBWOc0C0DZEDWxagW9HDrnH21NDVnqSTkU" }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         center={center}
