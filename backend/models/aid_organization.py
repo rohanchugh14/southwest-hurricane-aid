@@ -21,7 +21,7 @@ class AidOrganization(db.Model):
     status = db.Column(db.String(500), nullable=True)
     longitude = db.Column(db.Float, nullable=True)
     latitude = db.Column(db.Float, nullable=True)
-    
+    county_id = db.Column(db.Integer, db.ForeignKey('counties.id'))
     def __repr__(self):
         return '<AidOrganization %r>' % self.name
     def serialize(self):
