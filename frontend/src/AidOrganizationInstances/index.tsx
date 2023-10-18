@@ -11,7 +11,6 @@ const AidOrganizationInstances = () => {
 
     const [org, setOrg] = useState<AidOrganization | null>(null);
     const index = parseInt(name ?? "1");
-    const countyLink = "county";
 
     useEffect(() => {
         const getOrg = async (index: number) => {
