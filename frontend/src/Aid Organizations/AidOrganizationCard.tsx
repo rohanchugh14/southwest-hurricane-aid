@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import { AidOrganization } from "../types";
+import MapsComponent from "./MapsComponent";
 type Props = {
     aidOrganization: AidOrganization;
     imgUrl?: string;
@@ -30,7 +31,7 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
                 >
                     <CardActionArea>
                         <CardContent>
-                            <CardMedia style={{ height: 200 }} image={imgUrl} />
+                            <MapsComponent center={{ lat: aidOrganization.latitude, lng: aidOrganization.longitude }} zoom={10} />
                             <Typography gutterBottom variant="h5">
                                 {aidOrganization.shelter_name}
                             </Typography>
