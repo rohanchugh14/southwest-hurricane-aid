@@ -65,11 +65,11 @@ const About = () => {
           paddingBottom: "0px",
         }}
       >
-        <Typography variant="h3">About our project</Typography>
+        <Typography variant="h3" textAlign={"center"}>About our project</Typography>
       </div>
 
       <div style={{ padding: "100px" }}>
-        <Typography variant="subtitle1">
+        <Typography variant="subtitle1" textAlign={"center"}>
           <b>Southwest Hurricane Aid</b> is a site designed for those who live
           in areas at risk of hurricanes to find resources that can help them
           prepare and find relief. Its purpose is to help those living in
@@ -93,14 +93,12 @@ const About = () => {
         <Grid
           container
           spacing={10}
-          padding={30}
           paddingTop={5}
           paddingBottom={5}
+          justifyContent={"center"}
         >
           <Grid
-            item
-            xs={4}
-            style={{ display: "flex", justifyContent: "center" }}
+            item style={{ display: "flex", justifyContent: "center" }}
           >
             <MemberCard
               name='Carolyn Stripling'
@@ -122,7 +120,6 @@ const About = () => {
 
           <Grid
             item
-            xs={4}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <MemberCard
@@ -147,7 +144,6 @@ const About = () => {
 
           <Grid
             item
-            xs={4}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <MemberCard
@@ -175,7 +171,6 @@ const About = () => {
 
           <Grid
             item
-            xs={4}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <MemberCard
@@ -201,7 +196,6 @@ const About = () => {
 
           <Grid
             item
-            xs={4}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <MemberCard

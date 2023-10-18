@@ -15,7 +15,7 @@ type Props = {
 
 export default function HurricaneCard({ hurricane }: Props) {
     return (
-        <div style={{ maxWidth: "100%", height: "100%" }}>
+        <div style={{ width: "350px", height: "100%" }}>
             <Card
                 style={{
                     maxWidth: "100%",

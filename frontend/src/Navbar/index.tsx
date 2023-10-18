@@ -99,20 +99,22 @@ function Navbar() {
                                 display: { xs: "block", md: "none" },
                             }}
                         >
-                            {pageNames.map((page) => (
-                                <MenuItem
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
+                            {pageNames.map((page, index) => (
+                                <Link
+                                    to={`/${pageRoutes[index]}`}
+                                    style={{ textDecoration: "none" }}
                                 >
-                                    <Link
-                                        to={`/${page}`}
-                                        style={{ textDecoration: "none" }}
+                                    <MenuItem
+                                        key={page}
+                                        onClick={handleCloseNavMenu}
                                     >
+
                                         <Typography textAlign="center">
                                             {page}
                                         </Typography>
-                                    </Link>
-                                </MenuItem>
+                                    </MenuItem>
+                                </Link>
+
                             ))}
                         </Menu>
                     </Box>
