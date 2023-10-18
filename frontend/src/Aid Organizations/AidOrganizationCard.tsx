@@ -58,7 +58,7 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
                                     }}
                                 >
                                     <b>County: </b>
-                                    {aidOrganization.county_parish}
+                                    {aidOrganization.county.name}
                                 </Typography>
                                 <Typography
                                     variant="body1"

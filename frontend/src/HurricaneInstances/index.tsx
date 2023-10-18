@@ -79,23 +79,29 @@ const HurricaneInstances = () => {
                             secondary={hurricane?.highest_winds + " MPH"}
                         />
                     </ListItem>
-                    <ListItem>
+                    <ListItem divider>
                         <ListItemText
-                            primary={"Fatalities "}
+                            primary={"Fatalities"}
                             secondary={hurricane?.deaths}
                         />
                     </ListItem>
                     <ListItem>
-                        <Link
-                            style={{ textDecoration: "none" }}
-                            to={
-                                "/Counties/CountyInstances/" +
-                                hurricane?.counties_mentioned.split(",")[0]
+                        <ListItemText
+                            primary={"Counties"}
+                            secondary={
+                                <ul>
+                                    {hurricane?.counties.map((county) => (
+                                        <li key={county.id}>
+                                            <Link
+                                                to={`/Counties/CountyInstances/${county.id}`}
+                                            >
+                                                {county.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
                             }
-                        >
-                            {/* TODO change this to have multiple links */}{" "}
-                            {hurricane?.counties_mentioned.split(",")[0]}{" "}
-                        </Link>
+                        />
                     </ListItem>
                     {/* <ListItem>
             <Link

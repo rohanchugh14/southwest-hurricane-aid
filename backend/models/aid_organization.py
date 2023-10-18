@@ -6,7 +6,6 @@ class AidOrganization(db.Model):
     address_1 = db.Column(db.String(700), nullable=True)
     city = db.Column(db.String(100), nullable=True)
     state = db.Column(db.String(500), nullable=True)
-    county_parish = db.Column(db.String(500), nullable=True)
     zipcode = db.Column(db.String(5), nullable=True)
     ada_compliant = db.Column(db.String(100), nullable=True)
     wheelchair_accessible = db.Column(db.String(100), nullable=True)
@@ -31,7 +30,7 @@ class AidOrganization(db.Model):
             'address_1': self.address_1,
             'city': self.city,
             'state': self.state,
-            'county_parish': self.county_parish,
+            'county': self.county.serialize(),
             'zip': self.zipcode,
             'ada_compliant': self.ada_compliant,
             'wheelchair_accessible': self.wheelchair_accessible,
