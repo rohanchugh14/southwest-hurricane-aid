@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Grid, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import Routes from "../Routes";
 import { AidOrganization } from "../types";
@@ -60,32 +60,31 @@ const AidOrganizationInstances = () => {
               {org?.county.name}{" "}
             </Link>
             <br />
-            <b>Organization name: </b> {org?.org_organization_name}
-            <br />
-            <b>Phone: </b>{" "}
-            {org?.org_main_phone !== " " ? org?.org_main_phone : "Not listed"}
-          </Typography>
-          <Typography>
-            {" "}
-            <b> </b>{" "}
-          </Typography>
-          {/* <Link to = {"/Hurricanes/HurricaneInstances/" + ourOrg?.attributes.hurricane[0]}> 
-                        {ourOrg?.hurricane[0]} 
-                    </Link>
-                    <Typography> <b> </b> </Typography>
-                    <Link to = {"/Hurricanes/HurricaneInstances/" + ourOrg?.attributes.hurricane[1]}> 
-                        {ourOrg?.hurricane[1]} <b> </b>
-                    </Link> */}
-          <Typography>
-            {" "}
-            <b> </b>{" "}
-          </Typography>
-          <Link
-            to={`/Aid Organizations/${Math.ceil(index / pagesize)}`}
-            className="back-button"
-          >
-            Back{" "}
-          </Link>
+                        <b>Organization name: </b> {org?.org_organization_name ?? org?.shelter_name}
+                        <br />
+                        <b>Score: </b> {org?.score ?? "Not rated"}
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary">
+                        <b>Hurricanes: </b>{" "}
+                        <Grid>
+                            {org?.hurricanes?.map((h) => (
+                            <Link to={`/Hurricanes/HurricaneInstances/${h.id}`}>
+                                <Button color="primary">
+                                    {h.name}
+                                </Button>
+                            </Link>
+                            ))}
+                        </Grid>
+                    </Typography>
+                    <Link to={`/Aid Organizations/${Math.ceil(index / pagesize)}`}>
+                    <Button
+                        style={{ marginTop: "15px" }}
+                        className="back-button"
+                        variant="contained"
+                    >
+                        Back{" "}
+                    </Button>
+                </Link>
         </CardContent>
       </Card>
     </div>

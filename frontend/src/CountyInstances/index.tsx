@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    Grid,
+    Button,
+} from "@mui/material";
 import Routes from "../Routes";
 import { County } from "../types";
 
@@ -17,22 +24,21 @@ const CountyInstances = () => {
                 method: "GET",
             });
             let resArray = await res.json();
+            console.log(resArray);
             setCounty(resArray);
         };
         getCounty(index);
     }, [index]);
 
     return (
-        /*<>
-      <h1> {name} </h1>
-      <img src = {"/" + ourCounty?.Image} alt = "no image" />
-      <h6> {"Image Link: " + ourCounty?.Image} </h6>
-      <h1> {"Population: " + ourCounty?.Population} </h1>
-      <h1> {"Land Area: " + ourCounty?.Land_Area + " sq. miles"} </h1>
-      <Link to="/Counties" className = "back-button">Back </Link>
-    </> */
-
-        <Card sx={{ margin: "auto", width: "50%" }}>
+        <Card
+            sx={{
+                margin: "auto",
+                width: "50%",
+                marginTop: "40px",
+                marginBottom: "40px",
+            }}
+        >
             <CardContent>
                 <Typography
                     variant="h1"
@@ -53,32 +59,45 @@ const CountyInstances = () => {
                 <Typography variant="body1" color="text.secondary">
                     <b>Land area: </b> {ourCounty?.area} <b> sq. miles</b>
                 </Typography>
-                {/* <Link to={`/Aid Organizations/AidOrganizationInstances/${ourCounty?.aid}`}>
-          {ourCounty?.aid}{" "}
-        </Link> */}
-                <Typography>
-                    {" "}
-                    <b> </b>{" "}
+                <Typography variant="body1" color="text.secondary">
+                    <b>Est: </b> {ourCounty?.est}
                 </Typography>
-                {/* <Link to = {"/Hurricanes/HurricaneInstances/" + ourCounty?.Hurricane[0]}> 
-          {ourCounty?.Hurricane[0]} 
-        </Link> */}
-                <Typography>
-                    {" "}
-                    <b> </b>{" "}
+                <Typography variant="body1" color="text.secondary">
+                    <b>County Seat: </b> {ourCounty?.county_seat}
                 </Typography>
-                {/* <Link to = {"/Hurricanes/HurricaneInstances/" + ourCounty?.Hurricane[1]}> 
-          {ourCounty?.Hurricane[1]} <b> </b>
-        </Link> */}
-                <Typography>
-                    {" "}
-                    <b> </b>{" "}
+                <Typography variant="body1" color="text.secondary">
+                    <b>Hurricanes: </b>{" "}
+                    <Grid>
+                        {ourCounty?.hurricanes?.map((h) => (
+                            <Link to={`/Hurricanes/HurricaneInstances/${h.id}`}>
+                                <Button color="primary">{h.name}</Button>
+                            </Link>
+                        ))}
+                    </Grid>
                 </Typography>
-                <Link
-                    to={`/Counties/${Math.ceil(index / pagesize)}`}
-                    className="back-button"
-                >
-                    Back{" "}
+
+                <Typography variant="body1" color="text.secondary">
+                    <b>Aid Organizations: </b>{" "}
+                    <Grid>
+                        {ourCounty?.aid_organizations?.map((a) => (
+                            <Link
+                                to={`/Aid Organizations/AidOrganizationInstances/${a.id}`}
+                            >
+                                <Button color="primary">
+                                    {a.shelter_name}
+                                </Button>
+                            </Link>
+                        ))}
+                    </Grid>
+                </Typography>
+                <Link to={`/Counties/${Math.ceil(index / pagesize)}`}>
+                    <Button
+                        style={{ marginTop: "15px" }}
+                        className="back-button"
+                        variant="contained"
+                    >
+                        Back{" "}
+                    </Button>
                 </Link>
             </CardContent>
         </Card>

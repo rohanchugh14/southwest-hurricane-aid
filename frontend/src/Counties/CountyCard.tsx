@@ -75,6 +75,15 @@ const CountyCard = ({ county}: Props) => {
                             >
                                 <b>Est: </b> {county.est}
                             </Typography>
+                            <Typography
+                                variant="body1"
+                                color="text.secondary"
+                                style={{
+                                    marginTop: "5px",
+                                }}
+                            >
+                                <b>County Seat: </b> {county.county_seat}
+                            </Typography>
                         </CardContent>
                     </CardActionArea>
                 </Link>
