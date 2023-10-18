@@ -19,7 +19,7 @@ const AnyReactComponent: React.FC<AnyReactComponentProps> = ({ text }) => (
   <div>{text}</div>
 );
 
-const mapsComponent: React.FC<GoogleMapProps> = ({ center, zoom }) => {
+const MapsComponent: React.FC<GoogleMapProps> = ({ center, zoom }) => {
   const defaultProps = {
     center: {
       lat: 59.95,
@@ -44,5 +44,5 @@ const mapsComponent: React.FC<GoogleMapProps> = ({ center, zoom }) => {
   );
 };
 
-export default mapsComponent;
+export default MapsComponent;
 
