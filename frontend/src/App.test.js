@@ -75,6 +75,23 @@ test("renders 'Carolyn Stripling' on the About page", () => {
     expect(carolynElement).toBeInTheDocument();
 });
 
+test("renders 'Data Sources' section", () => {
+    render(<About />);
+    const dataSource = screen.getByText("Data Sources");
+    expect(dataSource).toBeInTheDocument();
+});
+
+test("renders 'Southwest Hurricane Aid' text", () => {
+    render(<Home />);
+    const slideTexts = screen.getAllByText(/Southwest Hurricane Aid/i);
+    expect(slideTexts.length).toBeGreaterThan(0);
+});
+
+test("renders 'Wikipedia API' button on the About page", () => {
+    render(<About />);``
+    const wikipediaAPIButton = screen.getByText(/Wikipedia API/i);
+    expect(wikipediaAPIButton).toBeInTheDocument();
+});
 
 // test('renders the Hurricanes page', () => {
 //     render(<Hurricanes />);
