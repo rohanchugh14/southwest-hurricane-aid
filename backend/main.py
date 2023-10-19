@@ -18,6 +18,9 @@ db.init_app(app)
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
+@app.route('/')
+def index():
+    return "Hello world!"
 
 
 @api_bp.route('/hurricanes/<int:id>', methods=['GET'])
