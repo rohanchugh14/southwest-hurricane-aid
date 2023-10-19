@@ -254,8 +254,8 @@ const About = () => {
         <b>Data Sources</b>
         <br />
         <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
-        href="https://www.weather.gov/documentation/services-web-api">
-          Weather API
+        href="https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-shelter-system-facilities/about">
+          Aid Organizations API
         </Button>
         <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
         href="https://en.wikipedia.org/api/rest_v1/">
