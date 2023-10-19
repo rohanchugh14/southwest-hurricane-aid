@@ -19,15 +19,6 @@ db.init_app(app)
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
 
-@app.route('/')
-def index():
-    return "Hello world!"
-
-
-@api_bp.route('/endpoint')
-def endpoint_function():
-    return "Response from /api/endpoint"
-
 
 @api_bp.route('/hurricanes/<int:id>', methods=['GET'])
 def get_hurricane_by_id(id):
