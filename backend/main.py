@@ -99,10 +99,6 @@ def get_organization_by_id(id):
     # add all hurricanes that ocurred in the county
     res['hurricanes'] = [{'name': h.name, 'id': h.id} for h in org.county.hurricanes]
     return jsonify(res)
-    res = org.serialize()
-    # add all hurricanes that ocurred in the county
-    res['hurricanes'] = [{'name': h.name, 'id': h.id} for h in org.county.hurricanes]
-    return jsonify(res)
 
 
 @api_bp.route('/aid_organizations', methods=['GET'])

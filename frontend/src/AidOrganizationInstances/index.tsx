@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Card, CardContent, CardMedia, Typography, Grid, Button } from "@mui/material";
+import { Card, CardContent, Typography, Grid, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import Routes from "../Routes";
 import { AidOrganization } from "../types";

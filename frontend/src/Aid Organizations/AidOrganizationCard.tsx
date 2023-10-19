@@ -2,7 +2,6 @@ import {
     Card,
     CardActionArea,
     CardContent,
-    CardMedia,
     Tooltip,
     Typography,
 } from "@mui/material";
