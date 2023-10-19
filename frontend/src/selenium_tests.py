@@ -9,7 +9,7 @@ import time
 
 # inherit TestCase Class and create a new test class
 
-base_url = "http://localhost:3000"
+base_url = "https://www.southwesthurricaneaid.me"
 
 class SeleniumTests(unittest.TestCase):
 
