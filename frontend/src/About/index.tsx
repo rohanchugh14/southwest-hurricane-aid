@@ -119,6 +119,7 @@ const About = () => {
                   personIsAssignedToIssue("Carolyn Stripling", issue.assignees)
                 ).length
               }
+              unittests={10}
             />
           </Grid>
 
@@ -143,6 +144,7 @@ const About = () => {
                   personIsAssignedToIssue("eshub1", issue.assignees)
                 ).length
               }
+              unittests={12}
             />
           </Grid>
 
@@ -170,6 +172,7 @@ const About = () => {
                   )
                 ).length
               }
+              unittests={10}
             />
           </Grid>
 
@@ -195,6 +198,7 @@ const About = () => {
                   personIsAssignedToIssue("Nitish Bansal", issue.assignees)
                 ).length
               }
+              unittests={10}
             />
           </Grid>
 
@@ -219,6 +223,7 @@ const About = () => {
                   personIsAssignedToIssue("rohanchugh14", issue.assignees)
                 ).length
               }
+              unittests={10}
             />
           </Grid>
         </Grid>
@@ -235,7 +240,14 @@ const About = () => {
           <br />
         </Typography>
         
-
+        <Typography variant="body1">
+          <b>Explanation of the interesting result of integrating disparate data: </b>  Some interesting things we found while integrating this data was 
+          that a lot of the counties that are in Northern Texas, and therefore away from the coast, had very few, if any, aid organizations 
+          and hurricanes that affected it. Another interesting way that we were able to integrate the data was by connecting hurricanes 
+          to aid organization via the Counties tables as there was no direct connection between them otherwise. This was essentially the
+          same as doing a search for nearby aid organizations, but without having to perform that search for every single county that the hurricane was in, 
+          and instead we used the data we already had.
+        </Typography>
     
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
