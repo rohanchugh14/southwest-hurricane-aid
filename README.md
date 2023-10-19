@@ -2,6 +2,10 @@
 
 https://southwesthurricaneaid.me/
 
+**Link to API**
+
+https://api.southwesthurricaneaid.me/api 
+
 **Canvas / Ed Discussion group number:**
 - Group 21
 
@@ -21,15 +25,27 @@ https://southwesthurricaneaid.me/
 
 **Phase Leaders**
 
-Phase 1: Rohan Chugh
+Phase 1: Rohan Chugh \
+Phase 2: Carolyn Stripling
+
+Phase leader responsibilities: Setting up and leading meetings
 
 **Estimated vs Actual Time**
 
+Phase 1: \
 Estimated time: 10 hours \
 Actual time: 15 hours
 
+Phase 2: \
+Estimated time: 15 hours \
+Actual time: 20 hours
+
+User Stories for Phase 2 \
+Estimated time: 1 hour \
+Actual time: 1 hour
+
 **Git SHA**
-da4e55ba6e071b6313ff76b08b3157331cd8aad8
+de6259ffecc071869fcd281a99284b468256db71
 
 **URLs of at least three data sources that you will programmatically scrape using a RESTful API (be very sure about this)**
 - https://www.weather.gov/documentation/services-web-api 
@@ -45,46 +61,53 @@ da4e55ba6e071b6313ff76b08b3157331cd8aad8
 
 
 **An estimate of the number of instances of each model**
-- Hurricane data: 80
-- Texas counties: 100
-- Aid Organizations: 300
+- Hurricane data: 91
+- Texas counties: 254
+- Aid Organizations: 746
 
 
 **Each model must have many attributes**
 
 - Historic Hurricane data
     - Category
+    - Name
+    - Date
+    - Counties affected
+    - Image
     - Wind speeds
     - Fatalities
-    - Locations affected
-    - Description of the hurricane
 
 - Texas Counties
-    - Land Area
-    - Elevation
-    - Flood risk
+    - Name
     - Population
-    - Historic Hurricane Hits (number/names)
+    - Land Area
+    - Map Data (image)
+    - Established
+    - County Seat
+    - Historic Hurricane Hits
+    - Aid Organizations
 
 - Aid Organizations
-    - Facility Type (food, volunteer, shelter)
-    - Capacity
-    - Status
+    - Name
     - Address
-    - Phone
+    - Map Data (longitude/latitude)
+    - County
+    - Organization Name
+    - Score
+    - Hurricanes
 
 
 **Describe five of those attributes for each model that you can filter or sort
 Instances of each model must connect to instances of at least two other models**
 
-
+We can filter and sort by all of the attributes listed.
 
 **Instances of each model must be rich with different media (e.g., feeds, images, maps, text, videos, etc.) (be very sure about this)
 Describe two types of media for instances of each model**
 
-- Historic Hurricane data: Maps, Graphs/ charts
-- Texas Counties: Images, Maps
-- Aid Organizations: Maps, list of services 
+- Historic Hurricane data: Images, Text
+- Texas Counties: Images, Text
+- Aid Organizations: Maps, Text
 
 
 
@@ -98,3 +121,9 @@ https://documenter.getpostman.com/view/18568319/2s9YR9YsEf
 
 **Postman API Collection and Tests**
 https://www.postman.com/material-pilot-15383947/workspace/southwest-hurricane-aid/collection/18568319-9b3b1a6a-ba7d-439a-aed3-4ce06860e4e0?action=share&creator=18568319
+
+
+**Comments**
+
+Our final commit pipeline will be on prod instead of main.
+We did this because we were running out of pipeline minutes.
