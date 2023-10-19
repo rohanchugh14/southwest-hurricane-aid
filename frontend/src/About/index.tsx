@@ -262,7 +262,7 @@ const About = () => {
         <b>Link to Postman API: </b>
         <br />
         <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
-        href="https://documenter.getpostman.com/view/18568319/2s9YJZ3PeF">
+        href="https://documenter.getpostman.com/view/18568319/2s9YR9YsEf">
           Postman API
         </Button>
         <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }}
