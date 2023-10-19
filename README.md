@@ -94,4 +94,7 @@ Describe two types of media for instances of each model**
 - How is the area I live in affected by hurricanes or tropical storms?
 
 **Postman API Documentation**
-https://documenter.getpostman.com/view/18568319/2s9YJZ3PeF
+https://documenter.getpostman.com/view/18568319/2s9YR9YsEf
+
+**Postman API Collection and Tests**
+https://www.postman.com/material-pilot-15383947/workspace/southwest-hurricane-aid/collection/18568319-9b3b1a6a-ba7d-439a-aed3-4ce06860e4e0?action=share&creator=18568319

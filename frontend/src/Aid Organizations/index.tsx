@@ -54,7 +54,7 @@ const AidOrganizations = () => {
                         organization locations that helped Texas during
                         hurricanes along with a few attributes of each hurricane
                         including attributes such as their name, address,
-                        county, organization, and phone number.
+                        county, organization, and phone number. <b>Number of organizations: </b>{numOrganizations}
                     </Typography>
                 </div>
                 <Grid container spacing={5} justifyContent={"center"}>

@@ -1,4 +1,4 @@
-import { Typography, Grid } from "@mui/material";
+import { Typography, Grid, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MemberCard from "./MemberCard";
 
@@ -24,20 +24,24 @@ const About = () => {
    
   }
 
-  function getIssues() {
+  const getIssues = async () => {
     var requestOptions = {
       method: "GET",
     };
-
-    fetch(
-      "https://gitlab.com/api/v4/projects/50653866/issues?per_page=9999&private_token=glpat-77ZZEz4Fy1piNyhkwMqk",
+    let page = 1
+    let res = await fetch(
+      `https://gitlab.com/api/v4/projects/50653866/issues?per_page=100&page=${page}&private_token=glpat-77ZZEz4Fy1piNyhkwMqk`,
       requestOptions
     )
-      .then((response) => response.json())
-      .then((result) => {
-        console.log({ issues: result });
-        setIssues(result);
-      });
+    let resArray = await res.json()
+    let allIssues = []
+    while(resArray.length > 0) {
+      allIssues.push(...resArray)
+      page++
+      res = await fetch(`https://gitlab.com/api/v4/projects/50653866/issues?per_page=100&page=${page}&private_token=glpat-77ZZEz4Fy1piNyhkwMqk`, requestOptions)
+      resArray = await res.json()
+    }
+    setIssues(allIssues)
   }
 
   function personIsAssignedToIssue(name: string, assignees: any[]) {
@@ -115,6 +119,7 @@ const About = () => {
                   personIsAssignedToIssue("Carolyn Stripling", issue.assignees)
                 ).length
               }
+              unittests={10}
             />
           </Grid>
 
@@ -139,6 +144,7 @@ const About = () => {
                   personIsAssignedToIssue("eshub1", issue.assignees)
                 ).length
               }
+              unittests={12}
             />
           </Grid>
 
@@ -166,6 +172,7 @@ const About = () => {
                   )
                 ).length
               }
+              unittests={10}
             />
           </Grid>
 
@@ -191,6 +198,7 @@ const About = () => {
                   personIsAssignedToIssue("Nitish Bansal", issue.assignees)
                 ).length
               }
+              unittests={10}
             />
           </Grid>
 
@@ -215,11 +223,15 @@ const About = () => {
                   personIsAssignedToIssue("rohanchugh14", issue.assignees)
                 ).length
               }
+              unittests={10}
             />
           </Grid>
         </Grid>
       </div>
 
+    {/*------------------------------------------ button changes--------------------------------------------- */ }      
+      <div style={{ margin: "10px" }}>
+      {/* ... (previous code remains unchanged) */}
       <div style={{ paddingLeft: "100px" }}>
         <Typography variant="body1">
           <b>Total number of commits: </b> {commits.length} <br />
@@ -227,44 +239,138 @@ const About = () => {
           <b>Total number of unit tests:</b> 0 <br />
           <br />
         </Typography>
-        <b> Data Sources</b>
-        <ul>
-          <li>
-            <a href="https://www.weather.gov/documentation/services-web-api">
-              https://www.weather.gov/documentation/services-web-api
-            </a>
-          </li>
-          <li>
-            <a href="https://en.wikipedia.org/api/rest_v1/">
-              https://en.wikipedia.org/api/rest_v1/
-            </a>
-          </li>
-          <li>
-            <a href="https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-shelter-system-facilities/about">
-              https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-shelter-system-facilities/about
-            </a>
-          </li>
-          <li>
-            <a href="https://public.opendatasoft.com/explore/dataset/us-county-boundaries/table/?flg=en-us&disjunctive.statefp&disjunctive.countyfp&disjunctive.name&disjunctive.namelsad&disjunctive.stusab&disjunctive.state_name">
-              https://public.opendatasoft.com/explore/dataset/us-county-boundaries/table/?flg=en-us&disjunctive.statefp&disjunctive.countyfp&disjunctive.name&disjunctive.namelsad&disjunctive.stusab&disjunctive.state_name
-            </a>
-          </li>
-        </ul>
+        
+        <Typography variant="body1">
+          <b>Explanation of the interesting result of integrating disparate data: </b>  Some interesting things we found while integrating this data was 
+          that a lot of the counties that are in Northern Texas, and therefore away from the coast, had very few, if any, aid organizations 
+          and hurricanes that affected it. Another interesting way that we were able to integrate the data was by connecting hurricanes 
+          to aid organization via the Counties tables as there was no direct connection between them otherwise. This was essentially the
+          same as doing a search for nearby aid organizations, but without having to perform that search for every single county that the hurricane was in, 
+          and instead we used the data we already had.
+        </Typography>
+    
+
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        <b>Data Sources</b>
+        <br />
+        <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
+        href="https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-shelter-system-facilities/about">
+          Aid Organizations API
+        </Button>
+        <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
+        href="https://en.wikipedia.org/api/rest_v1/">
+          Wikipedia API
+        </Button>
+        
+        <br />
+        <b>Link to GitLab repo </b>
+         <br />
+        <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
+        href="https://gitlab.com/rohanchugh14/southwest-hurricane-aid">
+          GitLab Repo
+        </Button>
+        
+        <br />
+        <b>Link to Postman API: </b>
+        <br />
+        <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
+        href="https://documenter.getpostman.com/view/18568319/2s9YR9YsEf">
+          Postman API
+        </Button>
+        <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }}
+        href="https://www.postman.com/material-pilot-15383947/workspace/southwest-hurricane-aid/collection/18568319-9b3b1a6a-ba7d-439a-aed3-4ce06860e4e0?action=share&creator=18568319"
+        >
+          Postman Collection (with tests)
+        </Button>
+      </div>
+
+
+
+
         <b>Tools used:</b>
         <ul>
-          <li>Frontend: React, MaterialUI</li>
+          Frontend
         </ul>
-        <b>Link to GitLab repo: </b>{" "}
-        <a href="https://gitlab.com/rohanchugh14/southwest-hurricane-aid">
-          https://gitlab.com/rohanchugh14/southwest-hurricane-aid
-        </a>
-        <br />
-        <br />
-        <b>Link to Postman API: </b>{" "}
-        <a href="https://documenter.getpostman.com/view/18568319/2s9YJZ3PeF">
-          https://documenter.getpostman.com/view/18568319/2s9YJZ3PeF
-        </a>
+
+        <div style={{ background: '#f0f0f0', padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/react-logo.png" alt="React Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>React</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/materialUI-logo.png" alt="MaterialUI Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>MaterialUI</p>
+            </div>
+          </div>
+        </div>
+
+        <ul>
+          Backend
+        </ul>
+
+
+        <div style={{ background: '#f0f0f0', padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/flask-logo.png" alt="Flask Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>Flask</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/sqla-logo.png" alt="SQLAlchemy Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>SQLAlchemy</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/adminer-logo.png" alt="Adminer Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>Adminer</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/postgreSQL-logo.png" alt="PostgreSQL Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>PostgreSQL</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/docker-logo.webp" alt="Docker Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>Docker</p>
+            </div>
+          </div>
+        </div>
+
+
+        <ul>
+          Testing
+        </ul>
+        
+
+        <div style={{ background: '#f0f0f0', padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/selenium-logo.png" alt="Selenium Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>Selenium</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/jest-logo.avif" alt="Jest Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>Jest</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/unittest-logo.jpg" alt="UnitTest Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>UnitTest</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <img src="img/postman-logo.png" alt="Postman Logo" style={{ width: '100px', height: 'auto' }} />
+              <p>Postman</p>
+            </div>
+          </div>
+        </div>
+
+        
+        
       </div>
+    </div>
+
+
+
+
+    {/*------------------------------------------ button changes--------------------------------------------- */ }   
     </div>
   );
 };

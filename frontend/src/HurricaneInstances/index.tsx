@@ -92,27 +92,19 @@ const HurricaneInstances = () => {
                             primary={"Counties"}
                             secondary={
                                 <Grid spacing={2}>
-                                    {hurricane?.counties.map((county) => (
-                                        <Button color="primary" href={`/Counties/CountyInstances/${county.id}`} variant="text">
+                                    {hurricane?.counties?.map((county) => (
+                                        <Link
+                                            to={`/Counties/CountyInstances/${county.id}`}
+                                        >
+                                            <Button color="primary">
                                                 {county.name}
-                                        </Button>
+                                            </Button>
+                                        </Link>
                                     ))}
                                 </Grid>
                             }
                         />
                     </ListItem>
-                    {/* <ListItem>
-            <Link
-              style={{ textDecoration: "none" }}
-              to={
-                "/Aid Organizations/AidOrganizationInstances/" +
-                ourHurricane?.Aid
-              }
-            >
-              {" "}
-              {ourHurricane?.Aid}{" "}
-            </Link>
-          </ListItem> */}
                 </List>
             </Card>
         </>

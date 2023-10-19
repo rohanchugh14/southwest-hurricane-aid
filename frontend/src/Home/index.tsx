@@ -19,7 +19,6 @@ const Home = () => {
                     <div className="each-slide-effect">
                         <div style={{ backgroundImage: `url(img/${image})` }}>
                             <span>Southwest Hurricane Aid</span>
-                            <p>Providing help to those in the Gulf Coast</p>
                         </div>
                     </div>
                 );

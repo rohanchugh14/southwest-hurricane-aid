@@ -6,6 +6,8 @@ export type County = {
   area: number;
   map: string;
   county_seat: string;
+  aid_organizations?: AidOrganization[];
+  hurricanes?: Hurricane[];
 }
 
 export type Hurricane = {
@@ -22,7 +24,7 @@ export type Hurricane = {
   lowest_pressure: string;
   name: string;
   url: string;
-  counties: County[];
+  counties?: County[];
 }
 
 export type AidOrganization = {
@@ -46,4 +48,5 @@ export type AidOrganization = {
     status: string | null;
     longitude: number;
     latitude: number;
+    hurricanes?: Hurricane[];
 }

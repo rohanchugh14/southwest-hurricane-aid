@@ -2,13 +2,13 @@ import {
     Card,
     CardActionArea,
     CardContent,
-    CardMedia,
     Tooltip,
     Typography,
 } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { AidOrganization } from "../types";
+import MapsComponent from "./MapsComponent";
 type Props = {
     aidOrganization: AidOrganization;
     imgUrl?: string;
@@ -30,7 +30,7 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
                 >
                     <CardActionArea>
                         <CardContent>
-                            <CardMedia style={{ height: 200 }} image={imgUrl} />
+                            <MapsComponent center={{ lat: aidOrganization.latitude, lng: aidOrganization.longitude }} zoom={10} />
                             <Typography gutterBottom variant="h5">
                                 {aidOrganization.shelter_name}
                             </Typography>
@@ -77,10 +77,8 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
                                         marginTop: "5px",
                                     }}
                                 >
-                                    <b>Phone: </b>{" "}
-                                    {aidOrganization.org_main_phone !== " "
-                                        ? aidOrganization.org_main_phone
-                                        : "Not listed"}
+                                    <b>Score: </b>{" "}
+                                    {aidOrganization.score ?? "Not rated"}
                                 </Typography>
                             </Typography>
                         </CardContent>

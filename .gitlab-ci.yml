@@ -12,7 +12,10 @@ install_dependencies:
   script:
     - cd frontend
     - npm install
+    - npm install -g newman
     - npm run build
+    - npm test:ci 
+    - newman run ../backend/SouthwestHurricaneAid.postman_collection.json
   artifacts:
     paths:
       - ./frontend/build/
