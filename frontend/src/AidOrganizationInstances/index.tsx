@@ -36,11 +36,6 @@ const AidOrganizationInstances = () => {
           marginBottom: "20px",
         }}
       >
-        {/* <CardMedia
-                    sx={{ height: 300, width: "100%" }}
-                    image={"img/logo192.png"}
-                    title="organization"
-                /> */}
         <MapsComponent
           center={{
             lat: (org) ? org.latitude : 29.7604,
