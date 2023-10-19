@@ -54,7 +54,7 @@ const Counties = () => {
                         <b>Southwest Hurricane Aid</b> Below is a list of all of
                         the counties in Texas along with a few attributes of
                         each county including attributes such as name,
-                        population, land area, region, and precipitation.
+                        population, land area, region, and precipitation. <b>Number of counties: </b>{numCounties}
                     </Typography>
                 </div>
                 <Grid container spacing={5} justifyContent={"center"}>

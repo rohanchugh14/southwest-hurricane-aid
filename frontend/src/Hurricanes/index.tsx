@@ -54,7 +54,7 @@ const Hurricanes = () => {
                         hurricanes that affected Texas along with a few
                         attributes of each hurricane including attributes such
                         as their name, category, date, wind speed, and
-                        fatalities.
+                        fatalities. <b>Number of hurricanes: </b>{numHurricanes}
                     </Typography>
                 </div>
 
