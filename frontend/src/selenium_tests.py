@@ -149,6 +149,9 @@ class SeleniumTests(unittest.TestCase):
         #make sure we went to the right place
         self.assertIn( f"{base_url}/Counties/CountyInstances", driver.current_url)
         
+        
+    
+        
     def test_county_back(self):
         
         driver = self.driver
@@ -158,7 +161,7 @@ class SeleniumTests(unittest.TestCase):
         
         #get the link to go to a county
         back_link = WebDriverWait(self.driver, 10)\
-            .until(expected_conditions.element_to_be_clickable((By.CSS_SELECTOR, 'a.back-button'))) 
+            .until(expected_conditions.element_to_be_clickable((By.CSS_SELECTOR, 'div.MuiCardContent-root a'))) 
         
         #click the link
         back_link.click()
@@ -168,7 +171,6 @@ class SeleniumTests(unittest.TestCase):
 
         
     
-    
     def test_aid_back(self):
         driver = self.driver
         
@@ -177,7 +179,7 @@ class SeleniumTests(unittest.TestCase):
         
         #get the link to go to a county
         back_link = WebDriverWait(self.driver, 10)\
-            .until(expected_conditions.element_to_be_clickable((By.CSS_SELECTOR, 'a.back-button'))) 
+            .until(expected_conditions.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'Back')]"))) 
         
         #click the link
         back_link.click()
@@ -185,7 +187,7 @@ class SeleniumTests(unittest.TestCase):
         #make sure we went to the right place
         self.assertIn( f"{base_url}/Aid%20Organizations/", driver.current_url)
         
-        
+    
     
     def test_org_to_county(self):
         driver = self.driver
