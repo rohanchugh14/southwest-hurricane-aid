@@ -4,9 +4,11 @@ from flask import Flask, Blueprint, jsonify, request, url_for, current_app
 from flask_sqlalchemy import SQLAlchemy
 from models import db
 from models.hurricane import Hurricane
+from dateutil import parser
 from models.aid_organization import AidOrganization
 from models.county import County
 from sqlalchemy import func
+from datetime import date, datetime
 from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app)
@@ -37,8 +39,30 @@ def get_hurricane_by_id(id):
 def get_hurricanes():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
-    paginated_hurricanes = Hurricane.query.paginate(
-        page=page, per_page=per_page, error_out=False)
+    category = int(request.args.get('category', 0))
+    order_by = request.args.get('order_by', "")
+    if(order_by.lower() == "deaths" or order_by.lower() == "fatalities"):
+        order_by = "deaths_number"
+    elif(order_by.replace(" ", "").lower() == "highestwinds"):
+        order_by = "highest_winds_mph"
+    elif(order_by.replace(" ","").lower() == "lowestpressure"):
+        order_by = "lowest_pressure_mbar"
+    elif(order_by.lower() == "damage"):
+        order_by = "damage_number"
+        
+    paginated_hurricanes = Hurricane.query
+    
+    if category != 0:
+        paginated_hurricanes = paginated_hurricanes.filter_by(category=category)
+    
+    if(order_by != ""):
+        paginated_hurricanes = paginated_hurricanes.order_by(getattr(Hurricane, order_by))
+    
+        
+    
+    paginated_hurricanes = paginated_hurricanes  \
+        .paginate( \
+            page=page, per_page=per_page, error_out=False)
     hurricanes = []
     for h in paginated_hurricanes.items:
         curr_hurricane = h.serialize()
@@ -53,7 +77,8 @@ def get_hurricanes():
         'next_page_url': paginated_hurricanes.next_num and url_for('api.get_hurricanes', page=paginated_hurricanes.next_num, _external=True) or None,
         'prev_page_url': paginated_hurricanes.prev_num and url_for('api.get_hurricanes', page=paginated_hurricanes.prev_num, _external=True) or None,
     })
-
+        # formed= datetime.strptime(data.get('formed'), r"%B %d, %Y").date(),       
+        # # dissipated=datetime.strptime(data.get('dissipated'), r"%B %d, %Y").date(),
 
 @api_bp.route('/hurricanes', methods=['POST'])
 def add_hurricane():
@@ -62,18 +87,39 @@ def add_hurricane():
         return jsonify({"error": "No input data provided"}), 400
     county_ids = data.get('county_ids', [])
     counties = County.query.filter(County.id.in_(county_ids)).all()
+    
+
+    formed_date = "01-01-0001"
+    dissipated_date = "01-01-0001"
+    
+    formed = data.get("formed").split("(")[0]
+    dissipated = data.get("dissipated").split("(")[0]
+
+    #remove all space after the year
+    try:
+        formed_date = parser.parse(formed, fuzzy=True).date()
+        dissipated_date = parser.parse(dissipated, fuzzy=True).date()
+    except ValueError:
+        pass
+
+    
+    
     new_hurricane = Hurricane(
         name=data['name'],
         url=data['url'],
-        formed=data.get('formed'),
+        formed=formed_date,
         image=data['image'],
         caption=data['caption'],
-        dissipated=data.get('dissipated'),
+        dissipated=dissipated_date,
         category=data['category'],
         highest_winds=data.get('highest_winds'),
+        highest_winds_mph=data.get('highest_winds_mph'),
         lowest_pressure=data.get('lowest_pressure'),
+        lowest_pressure_mbar=data.get('lowest_pressure_mbar'),
         deaths=data['deaths'],
+        deaths_number=data['deaths_number'],
         damage=data['damage'],
+        damage_number=data['damage_number'],
         areas_affected=data['areas_affected'],
         counties=counties
     )
