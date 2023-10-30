@@ -4,6 +4,7 @@ from typing import List
 from typing import Dict
 from scrape_wikipedia_hurricane_links import get_valid_links
 import json
+import re
 import urllib.parse
 
 
@@ -153,6 +154,29 @@ def scrape_article(url: str, all_towns_in_texas: List[str], counties_by_city: Di
         return None
 
 
+def get_dollar_amount_from_string(s):
+    damage_mil_regex = r'\$([\d,.]+) million'
+    damage_mil_search = re.search(damage_mil_regex, s)
+    
+    if(damage_mil_search is not None):
+        return float(damage_mil_search.group(1).replace(',', '')) * 1000000
+    
+    damage_bil_regex = r'\$([\d,.]+) billion'
+    damage_bil_search = re.search(damage_bil_regex, s)
+    
+    if(damage_bil_search is not None):
+        return float(damage_bil_search.group(1).replace(',', '')) * 1000000000
+    
+    damage_regex = r'\$([\d,.]+)'
+    damage_search = re.search(damage_regex, s)
+    if(damage_search is not None):
+        return float(damage_search.group(1).replace(',', ''))
+    
+    return 0.0
+    
+    
+
+
 def scrape_all(urls: List[str]):
     data = []
     all_towns_in_texas = get_all_towns_in_texas()
@@ -182,6 +206,33 @@ def scrape_all(urls: List[str]):
             else:
                 county_ids.append(county_id["county_id"])
         # print(county_ids, hurricane["counties_mentioned"])
+        first_number_regex = r'\d+'
+        
+        highest_winds_mph = 0
+        lowest_pressure_mbar = 0
+        deaths_number = 0
+        damage_number = 0.0
+        
+        if hurricane.get("Highest winds") is not None:
+            highest_winds_mph = re.search(first_number_regex, hurricane.get("Highest winds").replace(',', '')).group()
+            
+        if hurricane.get("Lowest pressure") is not None:
+            lowest_pressure_mbar = re.search(first_number_regex, hurricane.get("Lowest pressure").replace(',','')).group()
+            
+        if(hurricane.get("Fatalities") is not None):
+            deaths_search = re.search(first_number_regex, hurricane.get("Fatalities").replace(',',''))
+            if(deaths_search is not None):
+                try:
+                    deaths_number = float(deaths_search.group())
+                except:
+                    pass
+                
+        if(hurricane.get("Damage") is not None):
+            damage_number = get_dollar_amount_from_string(hurricane.get("Damage"))
+                
+            
+        
+        
 
         json_data = {
             "name": hurricane["name"],
@@ -192,9 +243,13 @@ def scrape_all(urls: List[str]):
             "dissipated": hurricane.get("Dissipated"),
             "category": hurricane["category"],
             "highest_winds": hurricane.get("Highest winds"),
+            "highest_winds_mph": highest_winds_mph,
             "lowest_pressure": hurricane.get("Lowest pressure"),
+            "lowest_pressure_mbar": lowest_pressure_mbar,
             "deaths": hurricane.get("Fatalities"),
+            "deaths_number": deaths_number,
             "damage": hurricane.get("Damage"),
+            "damage_number": damage_number,
             "areas_affected": hurricane["Areas affected"],
             "counties_mentioned": hurricane["counties_mentioned"],
             "county_ids": county_ids

@@ -16,12 +16,16 @@ export type Hurricane = {
   caption: string;
   category: number;
   damage: string;
+  damage_number: number;
   deaths: string;
+  deaths_number: number;
   dissipated: string;
   formed: string;
   highest_winds: string;
+  highest_winds_mph: number;
   image: string;
   lowest_pressure: string;
+  lowest_pressure_mbar: number;
   name: string;
   url: string;
   counties?: County[];
