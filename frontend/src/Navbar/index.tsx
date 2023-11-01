@@ -108,13 +108,11 @@ function Navbar() {
                                         key={page}
                                         onClick={handleCloseNavMenu}
                                     >
-
                                         <Typography textAlign="center">
                                             {page}
                                         </Typography>
                                     </MenuItem>
                                 </Link>
-
                             ))}
                         </Menu>
                     </Box>
@@ -164,6 +162,44 @@ function Navbar() {
                                 </Button>
                             </Link>
                         ))}
+                    </Box>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-end",
+                            flexGrow: 1,
+                        }}
+                    >
+                        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                style={{
+                                    padding: "5px",
+                                    borderRadius: "5px",
+                                    marginRight: "5px",
+                                }}
+                            />
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                            >
+                                Search
+                            </Button>
+                        </Box>
+                        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                            <IconButton
+                                size="large"
+                                aria-label="search"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                color="inherit"
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        </Box>
                     </Box>
                 </Toolbar>
             </Container>
