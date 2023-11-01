@@ -183,8 +183,10 @@ function Navbar() {
                             />
                             <Button
                                 variant="contained"
-                                color="primary"
+                                color="secondary"
                                 size="small"
+                                style={{ backgroundColor: "#f0f0f0", color: "#333" }} // Light gray background, dark gray text
+                                
                             >
                                 Search
                             </Button>
