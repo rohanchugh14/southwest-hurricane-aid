@@ -145,7 +145,29 @@ def get_organization_by_id(id):
 def get_aid_organizations():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
-    paginated_organizations = AidOrganization.query.paginate(
+    score = int(request.args.get('score', -1))
+    county = int(request.args.get('county_id', -1))
+    organization_name = request.args.get('organization_name', "")
+    reverse = bool(request.args.get('reverse', False))
+    order_by = request.args.get('order_by', "")
+    paginated_organizations = AidOrganization.query
+    if score != -1:
+        paginated_organizations = paginated_organizations.filter_by(score=score)
+    
+    if county != -1:
+        paginated_organizations = paginated_organizations.filter_by(county_id=county)
+
+    if organization_name != "":
+        paginated_organizations = paginated_organizations.filter_by(org_organization_name=organization_name)
+
+    if order_by != "":
+        # if reverse is true, reverse the order
+        if reverse:
+            paginated_organizations = paginated_organizations.order_by(getattr(AidOrganization, order_by).desc())
+        else:
+            paginated_organizations = paginated_organizations.order_by(getattr(AidOrganization, order_by))
+    
+    paginated_organizations = paginated_organizations.paginate(
         page=page, per_page=per_page, error_out=False)
 
     organizations = [a.serialize() for a in paginated_organizations.items]
