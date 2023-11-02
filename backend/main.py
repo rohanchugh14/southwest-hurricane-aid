@@ -207,6 +207,46 @@ def get_county_by_id(id):
 def get_counties():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
+    
+    category = int(request.args.get('category', 0))
+    order_by = request.args.get('order_by', "")
+    if (order_by.lower() == "name") :
+        order_by = "name"
+    elif (order_by.lower() == "county_seat") :
+        order_by = "county_seat"
+    elif (order_by.lower() == "est") :
+        order_by = "est"
+    elif (order_by.lower() == "population") :
+        order_by = "population"
+    elif (order_by.lower() == "area") :
+        order_by = "area"
+
+    paginated_counties = County.query
+    
+    if category != 0:
+        paginated_counties = paginated_counties.filter_by(category=category)
+    
+    if(order_by != ""):
+        paginated_counties = paginated_counties.order_by(getattr(County, order_by))
+    
+    paginated_counties = County.query.paginate(
+        page=page, per_page=per_page, error_out=False)
+
+    counties = [c.serialize() for c in paginated_counties.items]
+    return jsonify({
+        'counties': counties,
+        'total_pages': paginated_counties.pages,
+        'current_page': paginated_counties.page,
+        'next_page_url': paginated_counties.next_num and url_for('api.get_counties', page=paginated_counties.next_num, _external=True) or None,
+        'prev_page_url': paginated_counties.prev_num and url_for('api.get_counties', page=paginated_counties.prev_num, _external=True) or None,
+    })
+
+
+
+@api_bp.route('/counties', methods=['GET'])
+def get_counties():
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 10))
     paginated_counties = County.query.paginate(
         page=page, per_page=per_page, error_out=False)
 
