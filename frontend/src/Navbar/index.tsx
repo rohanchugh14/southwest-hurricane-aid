@@ -33,6 +33,14 @@ function Navbar() {
         setAnchorElNav(null);
     };
 
+    
+    const handleSearchButtonClick = () => {
+        // Use Link component to navigate to the Search page
+        return (
+            <Link to="/Search" style={{ textDecoration: "none" }} />
+        );
+    };
+
     return (
         <AppBar position="static" sx={{ backgroundColor: "#292929" }}>
             <Container maxWidth="xl">
@@ -181,15 +189,21 @@ function Navbar() {
                                     marginRight: "5px",
                                 }}
                             />
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                size="small"
-                                style={{ backgroundColor: "#f0f0f0", color: "#333" }} // Light gray background, dark gray text
-                                
+                            
+                            <Link
+                                to={"/Search"}
+                                style={{ textDecoration: "none" }}
                             >
-                                Search
-                            </Button>
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    size="small"
+                                    style={{ backgroundColor: "#f0f0f0", color: "#333" }}
+                                    onClick={handleCloseNavMenu}
+                                >
+                                    Search
+                                </Button>
+                            </Link>
                         </Box>
                         <Box sx={{ display: { xs: "flex", md: "none" } }}>
                             <IconButton

@@ -11,6 +11,7 @@ import AidOrganizations from "../Aid Organizations";
 import HurricaneInstances from "../HurricaneInstances";
 import CountyInstances from "../CountyInstances";
 import AidOrganizationInstances from "../AidOrganizationInstances";
+import Search from "../Search"; 
 
 function App() {
   return (      
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Aid Organizations/AidOrganizationInstances/:instance" element = {<AidOrganizationInstances />} />
         <Route path="/Hurricanes/HurricaneInstances/:instance" element = {<HurricaneInstances />} />
         <Route path="/Counties/CountyInstances/:instance" element = {<CountyInstances />} />
+        <Route path="/Search" element={<Search />} /> 
       </Routes>
     </BrowserRouter>
   );
