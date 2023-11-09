@@ -34,12 +34,12 @@ function Navbar() {
     };
 
     
-    const handleSearchButtonClick = () => {
-        // Use Link component to navigate to the Search page
-        return (
-            <Link to="/Search" style={{ textDecoration: "none" }} />
-        );
-    };
+    // const handleSearchButtonClick = () => {
+    //     // Use Link component to navigate to the Search page
+    //     return (
+    //         <Link to="/Search" style={{ textDecoration: "none" }} />
+    //     );
+    // };
 
     return (
         <AppBar position="static" sx={{ backgroundColor: "#292929" }}>
