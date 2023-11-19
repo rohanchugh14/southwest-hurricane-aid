@@ -7,7 +7,7 @@ from models.hurricane import Hurricane
 from dateutil import parser
 from models.aid_organization import AidOrganization
 from models.county import County
-from sqlalchemy import func
+from sqlalchemy import func, desc
 from datetime import date, datetime
 from flask_cors import CORS
 app = Flask(__name__)
@@ -40,7 +40,14 @@ def get_hurricanes():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
     category = int(request.args.get('category', 0))
+    search_criteria = request.args.get('search_criteria', '')
+    descending = request.args.get('desc', 'false')
     order_by = request.args.get('order_by', "")
+    filter_criteria = request.args.get('filter_by', "")
+    filter_direction = request.args.get('filter_direction', "")
+    filter_value = request.args.get('filter_value', "")
+    
+    #get the correct name for order_by that matches the model
     if(order_by.lower() == "deaths" or order_by.lower() == "fatalities"):
         order_by = "deaths_number"
     elif(order_by.replace(" ", "").lower() == "highestwinds"):
@@ -50,13 +57,46 @@ def get_hurricanes():
     elif(order_by.lower() == "damage"):
         order_by = "damage_number"
         
+        
+    #get the correct name for filter criteria that matches the model
+    if(filter_criteria.lower() == "deaths" or filter_criteria.lower() == "fatalities"):
+        filter_criteria = "deaths_number"
+    elif(filter_criteria.replace(" ", "").lower() == "highestwinds"):
+        filter_criteria = "highest_winds_mph"
+    elif(filter_criteria.replace(" ","").lower() == "lowestpressure"):
+        filter_criteria = "lowest_pressure_mbar"
+    elif(filter_criteria.lower() == "damage"):
+        filter_criteria = "damage_number"
+        
     paginated_hurricanes = Hurricane.query
     
-    if category != 0:
-        paginated_hurricanes = paginated_hurricanes.filter_by(category=category)
+    # #filter by =
+    # if category != 0:
+    #     paginated_hurricanes = paginated_hurricanes.filter_by(category=category)
+    
+    #search for a term
+    if(search_criteria != ""):
+        paginated_hurricanes = paginated_hurricanes.filter(func.replace(
+            Hurricane.name, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"))
+    
+    # filter by >, =, <
+    if(filter_criteria != "" and filter_direction != "" and filter_value != ""):
+        if(filter_direction == ">"):
+            paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) > int(filter_value))
+        elif(filter_direction == "<"):
+            paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) < int(filter_value))
+        else:
+            paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) == int(filter_value))
+
+
     
     if(order_by != ""):
-        paginated_hurricanes = paginated_hurricanes.order_by(getattr(Hurricane, order_by))
+        if(descending == 'true'):
+            paginated_hurricanes = paginated_hurricanes.order_by(desc(getattr(Hurricane, order_by)))
+        else:
+            paginated_hurricanes = paginated_hurricanes.order_by(getattr(Hurricane, order_by))
+            
+    
     
         
     
