@@ -1,19 +1,43 @@
 import React, { useState, useEffect } from "react";
 import HurricaneCard from "../HurricaneCard";
 import Grid from "@mui/material/Grid";
-import { Pagination, PaginationItem, Typography } from "@mui/material";
+import { AppBar, Button, Checkbox, Divider, FormControl, IconButton, InputBase, InputLabel, MenuItem, Pagination, PaginationItem, Paper, Select, SelectChangeEvent, Stack, Typography } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 import { Hurricane } from "../types";
 import Routes from "../Routes";
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import SearchIcon from '@mui/icons-material/Search';
+import DirectionsIcon from '@mui/icons-material/Directions';
+import SortFilterBar from "../SortFilterBar/SortFilterBar";
+
 
 const Hurricanes = () => {
     const [hurricanes, setHurricanes] = useState<Hurricane[]>([]);
+    const [searchCriteria, setSearchCriteria] = useState("")
+    const [sortCriteria, setSortCriteria] = useState("name")
+    const [descending, setDescending] = useState(false)
+    const [filterDirection, setFilterDirection] = useState(">")
+    const [filterCriteria, setFilterCriteria] = useState("category")
+    const [filterValue, setFilterValue] = useState("")
     const [pageNum, setPageNum] = useState(
         parseInt(useParams().instance?.toString() ?? "1")
     );
     const pagesize = 20;
     const numHurricanes = 91;
     const numPages = Math.ceil(numHurricanes / pagesize);
+
+
+    type units = {
+        [key: string]: string
+    }
+
+    const units = {
+        "category": "",
+        "highest winds": "mph",
+        "fatalities": "",
+        "lowest pressure": "mbar"
+    }
 
     const handlePageChange = (
         _event: React.ChangeEvent<unknown> | null,
@@ -23,16 +47,89 @@ const Hurricanes = () => {
         setPageNum(newPage);
     };
 
+    const handleSortCriteriaChange = (
+        event: SelectChangeEvent
+    ) => {
+        setSortCriteria(event.target.value as string)
+    }
+
+    const handleFilterCriteriaChange = (
+        event: SelectChangeEvent
+    ) => {
+        setFilterCriteria(event.target.value as string)
+    }
+
+    const handleFilterDirectionChange = () => {
+
+        switch(filterDirection) {
+            case "<": {
+                setFilterDirection("=");
+                break;
+            }
+            case "=": {
+                setFilterDirection(">");
+                break;
+            }
+            default: {
+                console.log("hello")
+                setFilterDirection("<");
+                break;
+            }
+                
+        }
+    }
+
+    const handleSortDirectionChange = () => {
+        console.log("Descending set to " + descending)
+        setDescending(!descending)
+
+    }
+
+    const handleFilterValueChange = (_event: any) => {
+        setFilterValue(_event.target.value)
+    }
+
+    const handleSearchCriteriaChange = (_event: any) => {
+        console.log(_event.target.value)
+        setSearchCriteria(_event.target.value)
+    }
+
+    const handleSearchClicked = () => {
+        getHurricanes()
+    }
+
+
+    const getHurricanes = async () => {
+        console.log("Get hurricanes")
+        console.log("Get hurricanes desc = ", descending, "sortCriteria", sortCriteria)
+        var sortUrl = `${Routes.hurricanes}?page=${pageNum}&per_page=20&order_by=${sortCriteria}&desc=${descending}`
+
+        if(filterCriteria != "" && filterDirection != "" && filterValue != "") {
+            sortUrl += `&filter_by=${filterCriteria}&filter_direction=${filterDirection}&filter_value=${filterValue}`
+        }
+
+        if(searchCriteria != "") {
+            sortUrl += `&search_criteria=${searchCriteria}`
+        }
+
+        console.log(sortUrl)
+        let res = await fetch(sortUrl, {
+            method: "GET",
+        });
+        let resArray = await res.json();
+        setHurricanes(resArray["hurricanes"])
+    };
+
+
     useEffect(() => {
-        const getHurricanes = async () => {
-            let res = await fetch(`${Routes.hurricanes}?page=${pageNum}&per_page=20`, {
-                method: "GET",
-            });
-            let resArray = await res.json();
-            setHurricanes(resArray["hurricanes"])
-        };
-        getHurricanes();
-    }, [pageNum]);
+        getHurricanes()
+    }, [pageNum, sortCriteria, descending, filterCriteria, filterDirection, filterValue]);
+
+    // useEffect(() => {
+    //     getHurricanes();
+    // }, [pageNum, sortCriteria, descending, filterCriteria, filterDirection, filterValue]);
+
+
 
     return (
         <div style={{ margin: "10px" }}>
@@ -48,15 +145,34 @@ const Hurricanes = () => {
             >
                 <Typography variant="h3">Hurricanes</Typography>
 
-                <div style={{ padding: "50px" }}>
-                    <Typography variant="subtitle1">
-                        <b>Southwest Hurricane Aid</b> Below is a list of
+                <div style={{ margin: "10px 30% 0px 30%" }}>
+                    <Typography variant="subtitle1" textAlign={"center"}>
+                        Below is a list of
                         hurricanes that affected Texas along with a few
                         attributes of each hurricane including attributes such
                         as their name, category, date, wind speed, and
-                        fatalities. <b>Number of hurricanes: </b>{numHurricanes}
+                        fatalities.
+                    </Typography>
+                    <Typography variant="subtitle1" textAlign={"center"}>
+                        <b>Number of hurricanes: </b>{numHurricanes}
                     </Typography>
                 </div>
+
+
+                <SortFilterBar 
+                    searchCriteria={searchCriteria}
+                    sortCriteria={sortCriteria} 
+                    descending={descending} 
+                    filterCriteria={filterCriteria} 
+                    filterDirection={filterDirection}
+                    units={units}
+                    handleSearchClicked={handleSearchClicked}
+                    handleSearchCriteriaChange={handleSearchCriteriaChange}
+                    handleSortCriteriaChange={handleSortCriteriaChange}
+                    handleFilterCriteriaChange={handleFilterCriteriaChange}
+                    handleSortDirectionChange={handleSortDirectionChange}
+                    handleFilterValueChange={handleFilterValueChange}
+                    handleFilterDirectionChange={handleFilterDirectionChange}/>
 
                 <Grid container spacing={5} justifyContent={"center"}>
                     {hurricanes.map((hurricane, index) => (

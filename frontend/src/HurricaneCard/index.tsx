@@ -66,7 +66,7 @@ export default function HurricaneCard({ hurricane }: Props) {
                                         }}
                                     >
                                         <b>Date: </b>
-                                        {hurricane.formed}
+                                        {hurricane.formed.slice(0,17)}
                                     </Typography>
                                     <Typography
                                         variant="body1"
