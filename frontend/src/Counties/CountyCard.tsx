@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import Tooltip from "@mui/material/Tooltip";
-import { Link } from "react-router-dom";
+import Link from '@mui/material/Link';
 import { County } from "../types";
 
 type Props = {
@@ -24,8 +24,8 @@ const CountyCard = ({ county}: Props) => {
         >
             <Tooltip title="Click for More Info">
                 <Link
-                    to={`/Counties/CountyInstances/${county.id}`}
-                    style={{ textDecoration: "none" }}
+                    href={`/Counties/CountyInstances/${county.id}`}
+                    sx={{ textDecoration: "none" }}
                 >
                     <CardActionArea>
                         <CardContent>

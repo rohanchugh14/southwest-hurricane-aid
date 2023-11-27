@@ -12,9 +12,14 @@ import HurricaneInstances from "../HurricaneInstances";
 import CountyInstances from "../CountyInstances";
 import AidOrganizationInstances from "../AidOrganizationInstances";
 import Search from "../Search"; 
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from "@mui/material";
+import theme from "./Themes";
 
 function App() {
-  return (      
+  return (
+      <ThemeProvider theme={theme}>
+      <CssBaseline />
       <BrowserRouter>
       <Navbar />
       <Routes>
@@ -29,6 +34,7 @@ function App() {
         <Route path="/Search" element={<Search />} /> 
       </Routes>
     </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

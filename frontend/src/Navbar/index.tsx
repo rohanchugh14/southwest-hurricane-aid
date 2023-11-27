@@ -42,7 +42,7 @@ function Navbar() {
     // };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: "#292929" }}>
+        <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* img element replacing AdbIcon */}

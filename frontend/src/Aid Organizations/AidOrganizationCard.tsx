@@ -6,7 +6,7 @@ import {
     Typography,
 } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from '@mui/material/Link';
 import { AidOrganization } from "../types";
 import MapsComponent from "./MapsComponent";
 type Props = {
@@ -25,7 +25,7 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
         >
             <Tooltip title="Click for More Info">
                 <Link
-                    to={`/Aid Organizations/AidOrganizationInstances/${aidOrganization.id}`}
+                    href={`/Aid Organizations/AidOrganizationInstances/${aidOrganization.id}`}
                     style={{ textDecoration: "none" }}
                 >
                     <CardActionArea>
