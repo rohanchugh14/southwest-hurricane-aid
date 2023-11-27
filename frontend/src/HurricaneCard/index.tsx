@@ -4,7 +4,7 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import { Link } from "react-router-dom";
+import Link from '@mui/material/Link';
 import CardMedia from "@mui/material/CardMedia";
 import { Hurricane } from "../types";
 
@@ -27,7 +27,7 @@ export default function HurricaneCard({ hurricane }: Props) {
             >
                 <Tooltip title="Click for More Info">
                     <Link
-                        to={`/Hurricanes/HurricaneInstances/${hurricane.id}`}
+                        href={`/Hurricanes/HurricaneInstances/${hurricane.id}`}
                         style={{ textDecoration: "none" }}
                     >
                         <CardActionArea>
