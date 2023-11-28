@@ -2,7 +2,7 @@ from . import db
 class AidOrganization(db.Model):
     __tablename__ = 'aid_organizations'
     id = db.Column(db.Integer, primary_key=True)
-    shelter_name = db.Column(db.String(200), nullable=True)
+    shelter_name = db.Column(db.String(200), nullable=True, info={'fulltext_indexed': True})
     address_1 = db.Column(db.String(700), nullable=True)
     city = db.Column(db.String(100), nullable=True)
     state = db.Column(db.String(500), nullable=True)

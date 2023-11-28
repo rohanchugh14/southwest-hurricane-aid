@@ -10,6 +10,8 @@ from models.county import County
 from sqlalchemy import func, desc, or_, String, cast
 from datetime import date, datetime
 from flask_cors import CORS
+from sqlalchemy import text
+
 app = Flask(__name__)
 cors = CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URI']
@@ -23,6 +25,29 @@ api_bp = Blueprint('api', __name__, url_prefix='/api')
 @app.route('/')
 def index():
     return "Hello world!"
+
+# @api_bp.route('/counties/search/<string:name>', methods=['GET'])
+# def search_county(name):
+#     search_query = text("SELECT * FROM county WHERE to_tsvector('english', name) @@ to_tsquery('english', :name)")
+#     result = db.engine.execute(search_query, name=name)
+#     county = result.first()
+#     if not county:
+#         current_app.logger.info(f"County not found: {name}")
+#         return jsonify({"error": "County not found"}), 404
+#     return jsonify({"county_id": county.id})
+
+@api_bp.route('/aid_organizations/search/<string:name>', methods=['GET'])
+def search_aid_organization(name):
+    # Using PostgreSQL Full-Text Search
+    search_query = text(
+        "SELECT * FROM aid_organizations WHERE to_tsvector('english', shelter_name) @@ to_tsquery('english', :name)"
+    )
+    result = db.engine.execute(search_query, name=name)
+
+    organizations = [dict(row) for row in result]
+    if not organizations:
+        return jsonify({"error": "No matching organizations found"}), 404
+    return jsonify(organizations)
 
 
 @api_bp.route('/hurricanes/<int:id>', methods=['GET'])
