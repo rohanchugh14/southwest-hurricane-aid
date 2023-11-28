@@ -19,7 +19,7 @@ const theme = createTheme( {
     },
   },
   typography: {
-    fontFamily: 'Lato',
+    fontFamily: 'Noto Sans',
   },
 });
 
