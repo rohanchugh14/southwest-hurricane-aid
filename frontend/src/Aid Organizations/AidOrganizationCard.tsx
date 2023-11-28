@@ -9,11 +9,13 @@ import React from "react";
 import Link from '@mui/material/Link';
 import { AidOrganization } from "../types";
 import MapsComponent from "./MapsComponent";
+import HighlightedText from "../utils/HighlightedText";
 type Props = {
+    searchTerm: string;
     aidOrganization: AidOrganization;
     imgUrl?: string;
 };
-const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
+const AidOrganizationCard = ({ searchTerm, aidOrganization, imgUrl }: Props) => {
     return (
         <Card
             sx={{
@@ -32,7 +34,7 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
                         <CardContent>
                             <MapsComponent center={{ lat: aidOrganization.latitude, lng: aidOrganization.longitude }} zoom={10} />
                             <Typography gutterBottom variant="h5">
-                                {aidOrganization.shelter_name}
+                                <HighlightedText searchTerm={searchTerm} text={aidOrganization.shelter_name} />
                             </Typography>
                             <Typography
                                 variant="body2"
@@ -47,8 +49,8 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
                                     }}
                                 >
                                     <b>Address: </b>
-                                    {aidOrganization.address_1},{" "}
-                                    {aidOrganization.city} TX
+                                    <HighlightedText searchTerm={searchTerm} text={aidOrganization.address_1} />
+                                    <HighlightedText searchTerm={searchTerm} text={aidOrganization.city} /> TX
                                 </Typography>
                                 <Typography
                                     variant="body1"
@@ -58,7 +60,7 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
                                     }}
                                 >
                                     <b>County: </b>
-                                    {aidOrganization.county.name}
+                                    <HighlightedText searchTerm={searchTerm} text={aidOrganization.county.name} />
                                 </Typography>
                                 <Typography
                                     variant="body1"
@@ -68,7 +70,7 @@ const AidOrganizationCard = ({ aidOrganization, imgUrl }: Props) => {
                                     }}
                                 >
                                     <b>Organization name: </b>{" "}
-                                    {aidOrganization.org_organization_name}
+                                    <HighlightedText searchTerm={searchTerm} text={aidOrganization.org_organization_name ?? ""} />
                                 </Typography>
                                 <Typography
                                     variant="body1"

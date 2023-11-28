@@ -196,27 +196,47 @@ def get_organization_by_id(id):
 def get_aid_organizations():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
-    score = int(request.args.get('score', -1))
-    county = int(request.args.get('county_id', -1))
-    organization_name = request.args.get('organization_name', "")
-    reverse = bool(request.args.get('reverse', False))
-    order_by = request.args.get('order_by', "")
-    paginated_organizations = AidOrganization.query
-    if score != -1:
-        paginated_organizations = paginated_organizations.filter_by(score=score)
     
-    if county != -1:
-        paginated_organizations = paginated_organizations.filter_by(county_id=county)
+    search_criteria = request.args.get('search_criteria', '')
+    descending = request.args.get('desc', 'false')
+    order_by = request.args.get('order_by', "")
+    filter_criteria = request.args.get('filter_by', "")
+    filter_direction = request.args.get('filter_direction', "")
+    filter_value = request.args.get('filter_value', "")
+    
+    paginated_organizations = AidOrganization.query
 
-    if organization_name != "":
-        paginated_organizations = paginated_organizations.filter_by(org_organization_name=organization_name)
+    if(search_criteria != ""):
+    
+        paginated_organizations = paginated_organizations.filter(
+            or_(
+                func.replace(AidOrganization.shelter_name, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.address_1, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.city, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.state, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.zipcode, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.org_organization_name, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                cast(AidOrganization.score, String).ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.status, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%")
+            )
+        )
 
-    if order_by != "":
-        # if reverse is true, reverse the order
-        if reverse:
-            paginated_organizations = paginated_organizations.order_by(getattr(AidOrganization, order_by).desc())
+    # filter by >, =, <
+    if(filter_criteria != "" and filter_direction != "" and filter_value != ""):
+        if(filter_direction == ">"):
+            paginated_organizations = paginated_organizations.filter(getattr(AidOrganization, filter_criteria) > int(filter_value))
+        elif(filter_direction == "<"):
+            paginated_organizations= paginated_organizations.filter(getattr(AidOrganization, filter_criteria) < int(filter_value))
+        else:
+            paginated_organizations = paginated_organizations.filter(getattr(AidOrganization, filter_criteria) == int(filter_value))
+
+    
+    if(order_by != ""):
+        if(descending == 'true'):
+            paginated_organizations = paginated_organizations.order_by(desc(getattr(AidOrganization, order_by)))
         else:
             paginated_organizations = paginated_organizations.order_by(getattr(AidOrganization, order_by))
+            
     
     paginated_organizations = paginated_organizations.paginate(
         page=page, per_page=per_page, error_out=False)
