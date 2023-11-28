@@ -11,6 +11,8 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
+import { InputBase, Paper } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 
 const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations"];
 const pageRoutes = [
@@ -33,7 +35,7 @@ function Navbar() {
         setAnchorElNav(null);
     };
 
-    
+
     // const handleSearchButtonClick = () => {
     //     // Use Link component to navigate to the Search page
     //     return (
@@ -179,43 +181,29 @@ function Navbar() {
                             flexGrow: 1,
                         }}
                     >
-                        <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                            <input
-                                type="text"
-                                placeholder="Search"
-                                style={{
-                                    padding: "5px",
-                                    borderRadius: "5px",
-                                    marginRight: "5px",
-                                }}
+
+                        <Paper
+                            component="form"
+                        >
+                            <InputBase
+                                sx={{ ml: 1, mb: 1, flex: 1 }}
+                                placeholder={"Search"}
                             />
-                            
                             <Link
                                 to={"/Search"}
                                 style={{ textDecoration: "none" }}
                             >
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    size="small"
-                                    style={{ backgroundColor: "#f0f0f0", color: "#333" }}
+                                <IconButton
+                                    size="large"
+                                    aria-label="search"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
                                     onClick={handleCloseNavMenu}
                                 >
-                                    Search
-                                </Button>
+                                    <SearchIcon />
+                                </IconButton>
                             </Link>
-                        </Box>
-                        <Box sx={{ display: { xs: "flex", md: "none" } }}>
-                            <IconButton
-                                size="large"
-                                aria-label="search"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                color="inherit"
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                        </Box>
+                        </Paper>
                     </Box>
                 </Toolbar>
             </Container>
