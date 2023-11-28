@@ -42,21 +42,19 @@ def search_aid_organization(name):
     search_query = text(
         "SELECT * FROM aid_organizations WHERE to_tsvector('english', shelter_name) @@ to_tsquery('english', :name)"
     )
-    # result = db.engine.execute(search_query, name=name)
-
-    # organizations = [dict(row) for row in result]
-    # if not organizations:
-    #     return jsonify({"error": "No matching organizations found"}), 404
-    # return jsonify(organizations)
-    
     with db.session.begin():
         result = db.session.execute(search_query, {'name': name})
-        organizations = [dict(row) for row in result]
-    
-    if not organizations:
-        return jsonify({"error": "No matching organizations found"}), 404
-    return jsonify(organizations)
 
+        organizations = []
+        for row in result:
+            dict_row = row._asdict()
+            organizations.append(dict_row)
+            # Manually instantiate your model
+            # model_instance = AidOrganization(**row_dict)
+            # organizations.append(model_instance.serialize())
+        if not organizations:
+            return jsonify({"error": "No matching organizations found"}), 404
+        return jsonify(organizations)
 
 @api_bp.route('/hurricanes/<int:id>', methods=['GET'])
 def get_hurricane_by_id(id):
