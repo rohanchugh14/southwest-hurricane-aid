@@ -12,7 +12,7 @@ const Counties = () => {
     const [sortCriteria, setSortCriteria] = useState("name")
     const [descending, setDescending] = useState(false)
     const [filterDirection, setFilterDirection] = useState(">")
-    const [filterCriteria, setFilterCriteria] = useState("category")
+    const [filterCriteria, setFilterCriteria] = useState("name")
     const [filterValue, setFilterValue] = useState("")
     const [pageNum, setPageNum] = useState(
         parseInt(useParams().instance?.toString() ?? "1")
