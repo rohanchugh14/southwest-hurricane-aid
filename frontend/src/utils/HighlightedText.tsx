@@ -23,7 +23,7 @@ const HighlightedText = (props: Props) => {
         <Typography>
             {parts.map((part, index) => (
                 regex.test(part) && props.searchTerm !== "" ? (
-                    <span key={index} style={{ backgroundColor: 'yellow' }}>
+                    <span key={index} style={{ backgroundColor: '#000000' }}>
                         {part}
                     </span>
                 ) : (
