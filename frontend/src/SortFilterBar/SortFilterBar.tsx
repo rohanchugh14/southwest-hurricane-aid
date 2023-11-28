@@ -4,12 +4,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import { FormControl, IconButton, InputAdornment, InputBase, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Stack, TextField } from "@mui/material";
 
 type Props = {
+    searchFieldText: string,
     searchCriteria: string,
     sortCriteria: string,
     descending: boolean,
     filterDirection: string,
     filterCriteria: string,
     units: {[key: string]: string;},
+    sortNames: string[],
+    sortValues: string[],
+    filterNames: string[],
+    filterValues: string[],
     handleSearchClicked: () => void;
     handleSearchCriteriaChange: (_event: any) => void,
     handleSortCriteriaChange: (event: SelectChangeEvent) => void,
@@ -34,7 +39,7 @@ function SortFilterBar(props : Props) {
     >
         <InputBase
             sx={{ ml: 1, flex: 1 }}
-            placeholder="Search Hurricanes"
+            placeholder={props.searchFieldText}
             onChange={props.handleSearchCriteriaChange}
         />
         <IconButton type="button" sx={{ p: '10px' }} onClick={props.handleSearchClicked}>
@@ -56,11 +61,7 @@ function SortFilterBar(props : Props) {
                 label="Sort By"
                 onChange={props.handleSortCriteriaChange}
             >
-                <MenuItem value={"name"}>Name</MenuItem>
-                <MenuItem value={"category"}>Category</MenuItem>
-                <MenuItem value={"highest winds"}>Wind Speed</MenuItem>
-                <MenuItem value={"lowest pressure"}>Air Pressure</MenuItem>
-                <MenuItem value={"deaths"}>Fatalities</MenuItem>
+                {props.sortNames.map((item, index) => <MenuItem value={props.sortValues[index]}>{item}</MenuItem>)}
             </Select>
         </FormControl>
         
@@ -84,10 +85,7 @@ function SortFilterBar(props : Props) {
                 label="Filter By"
                 onChange={props.handleFilterCriteriaChange}
             >
-                <MenuItem value={"category"}>Category</MenuItem>
-                <MenuItem value={"highest winds"}>Wind Speed</MenuItem>
-                <MenuItem value={"lowest pressure"}>Air Pressure</MenuItem>
-                <MenuItem value={"deaths"}>Fatalities</MenuItem>
+                {props.filterNames.map((item, index) => <MenuItem value={props.filterValues[index]}>{item}</MenuItem>)}
             </Select>
         </FormControl>
         

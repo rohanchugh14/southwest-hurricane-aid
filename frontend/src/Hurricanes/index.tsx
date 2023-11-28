@@ -24,8 +24,9 @@ const Hurricanes = () => {
         parseInt(useParams().instance?.toString() ?? "1")
     );
     const pagesize = 20;
-    const numHurricanes = 91;
-    const numPages = Math.ceil(numHurricanes / pagesize);
+
+    const [numHurricanes, setNumHurricanes] = useState(91)
+    const [numPages, setNumPages] = useState(Math.ceil(numHurricanes / pagesize))
 
 
     type units = {
@@ -118,12 +119,14 @@ const Hurricanes = () => {
         });
         let resArray = await res.json();
         setHurricanes(resArray["hurricanes"])
+        setNumPages(resArray["total_pages"])
+        setNumHurricanes(resArray["total_pages"] * pagesize)
     };
 
 
     useEffect(() => {
         getHurricanes()
-    }, [pageNum, sortCriteria, descending, filterCriteria, filterDirection, filterValue]);
+    }, [pageNum, sortCriteria, descending, filterCriteria, filterDirection, filterValue, searchCriteria]);
 
     // useEffect(() => {
     //     getHurricanes();
@@ -160,11 +163,16 @@ const Hurricanes = () => {
 
 
                 <SortFilterBar 
+                    searchFieldText="Search Hurricanes"
                     searchCriteria={searchCriteria}
                     sortCriteria={sortCriteria} 
                     descending={descending} 
                     filterCriteria={filterCriteria} 
                     filterDirection={filterDirection}
+                    sortNames={["Name", "Category", "Highest Winds", "Lowest Pressure", "Deaths"]}
+                    sortValues={["name", "category", "highest_winds_mph", "lowest_pressure_mbar", "deaths"]}
+                    filterNames={["Name", "Category", "Highest Winds", "Lowest Pressure", "Deaths"]}
+                    filterValues={["name", "category", "highest_winds_mph", "lowest_pressure_mbar", "deaths"]}
                     units={units}
                     handleSearchClicked={handleSearchClicked}
                     handleSearchCriteriaChange={handleSearchCriteriaChange}
@@ -179,6 +187,7 @@ const Hurricanes = () => {
                         <Grid item>
                             <HurricaneCard
                                 // index={(pageNum - 1) * pagesize + index + 1}
+                                searchTerm={searchCriteria}
                                 hurricane={hurricane}
                             />
                         </Grid>

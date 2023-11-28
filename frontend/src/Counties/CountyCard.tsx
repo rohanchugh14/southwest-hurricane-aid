@@ -9,11 +9,14 @@ import React from "react";
 import Tooltip from "@mui/material/Tooltip";
 import Link from '@mui/material/Link';
 import { County } from "../types";
+import HighlightedText from "../utils/HighlightedText";
 
 type Props = {
+    searchTerm: string;
     county: County;
 };
-const CountyCard = ({ county}: Props) => {
+
+const CountyCard = ({ searchTerm, county}: Props) => {
     return (
         <Card
             sx={{
@@ -43,7 +46,7 @@ const CountyCard = ({ county}: Props) => {
                                     marginTop: "5px",
                                 }}
                             >
-                                {county.name}
+                                <HighlightedText searchTerm={searchTerm} text={county.name} />
                             </Typography>
 
                             <Typography
@@ -53,7 +56,7 @@ const CountyCard = ({ county}: Props) => {
                                     marginTop: "5px",
                                 }}
                             >
-                                <b>Population: </b> {county.population}
+                                <b>Population: </b> <HighlightedText searchTerm={searchTerm} text={county.population.toString()} />
                             </Typography>
 
                             <Typography
@@ -63,7 +66,7 @@ const CountyCard = ({ county}: Props) => {
                                     marginTop: "5px",
                                 }}
                             >
-                                <b>Land Area: </b> {county.area}
+                                <b>Land Area: </b> <HighlightedText searchTerm={searchTerm} text={county.area.toString()} />
                             </Typography>
 
                             <Typography
@@ -73,7 +76,7 @@ const CountyCard = ({ county}: Props) => {
                                     marginTop: "5px",
                                 }}
                             >
-                                <b>Est: </b> {county.est}
+                                <b>Est: </b> <HighlightedText searchTerm={searchTerm} text={county.est.toString()} />
                             </Typography>
                             <Typography
                                 variant="body1"
@@ -82,7 +85,7 @@ const CountyCard = ({ county}: Props) => {
                                     marginTop: "5px",
                                 }}
                             >
-                                <b>County Seat: </b> {county.county_seat}
+                                <b>County Seat: </b> <HighlightedText searchTerm={searchTerm} text={county.name} />
                             </Typography>
                         </CardContent>
                     </CardActionArea>

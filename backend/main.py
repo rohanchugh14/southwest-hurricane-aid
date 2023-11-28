@@ -7,7 +7,7 @@ from models.hurricane import Hurricane
 from dateutil import parser
 from models.aid_organization import AidOrganization
 from models.county import County
-from sqlalchemy import func, desc
+from sqlalchemy import func, desc, or_, String, cast
 from datetime import date, datetime
 from flask_cors import CORS
 app = Flask(__name__)
@@ -76,8 +76,19 @@ def get_hurricanes():
     
     #search for a term
     if(search_criteria != ""):
-        paginated_hurricanes = paginated_hurricanes.filter(func.replace(
-            Hurricane.name, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"))
+        
+        paginated_hurricanes = paginated_hurricanes.filter(
+            or_(
+                func.replace(Hurricane.name, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.caption, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.highest_winds, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.lowest_pressure, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.highest_winds, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.deaths, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.damage, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.areas_affected, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+            )
+        )
     
     # filter by >, =, <
     if(filter_criteria != "" and filter_direction != "" and filter_value != ""):
@@ -269,7 +280,55 @@ def get_county_by_id(id):
 def get_counties():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
-    paginated_counties = County.query.paginate(
+
+    search_criteria = request.args.get('search_criteria', '')
+    descending = request.args.get('desc', 'false')
+    order_by = request.args.get('order_by', "")
+    filter_criteria = request.args.get('filter_by', "")
+    filter_direction = request.args.get('filter_direction', "")
+    filter_value = request.args.get('filter_value', "")
+    
+        
+    paginated_counties = County.query
+    
+    # #filter by =
+    # if category != 0:
+    #     paginated_hurricanes = paginated_hurricanes.filter_by(category=category)
+    
+    #search for a term
+    if(search_criteria != ""):
+        
+        paginated_counties = paginated_counties.filter(
+            or_(
+                func.replace(County.name, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(County.county_seat, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                cast(County.area, String).ilike(f"%{search_criteria.replace(' ', '')}%"),
+                cast(County.population, String).ilike(f"%{search_criteria.replace(' ', '')}%"),
+                cast(County.est, String).ilike(f"%{search_criteria.replace(' ', '')}%")
+            )
+        )
+
+    # filter by >, =, <
+    if(filter_criteria != "" and filter_direction != "" and filter_value != ""):
+        if(filter_direction == ">"):
+            paginated_counties = paginated_counties.filter(getattr(County, filter_criteria) > int(filter_value))
+        elif(filter_direction == "<"):
+            paginated_counties= paginated_counties.filter(getattr(County, filter_criteria) < int(filter_value))
+        else:
+            paginated_counties = paginated_counties.filter(getattr(County, filter_criteria) == int(filter_value))
+
+
+    
+    if(order_by != ""):
+        if(descending == 'true'):
+            paginated_counties = paginated_counties.order_by(desc(getattr(County, order_by)))
+        else:
+            paginated_counties = paginated_counties.order_by(getattr(County, order_by))
+            
+    
+    
+    
+    paginated_counties = paginated_counties.paginate(
         page=page, per_page=per_page, error_out=False)
 
     counties = [c.serialize() for c in paginated_counties.items]
