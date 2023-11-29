@@ -1,6 +1,7 @@
 import { Typography, Grid, Button, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MemberCard from "./MemberCard";
+import LinePlot from "../Graph2";
 
 const About = () => {
   const [commits, setCommits] = useState<any[]>([]);
@@ -60,6 +61,10 @@ const About = () => {
 
   return (
     <div style={{ margin: "10px" }}>
+
+      
+      <LinePlot/>
+
       <div
         style={{
           display: "flex",
