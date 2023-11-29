@@ -148,16 +148,13 @@ const Hurricanes = () => {
             >
                 <Typography variant="h3">Hurricanes</Typography>
 
-                <div style={{ margin: "10px 30% 0px 30%" }}>
-                    <Typography variant="subtitle1" textAlign={"center"}>
+                <div style={{ padding: "50px"}}>
+                    <Typography variant="subtitle1">
                         Below is a list of
                         hurricanes that affected Texas along with a few
                         attributes of each hurricane including attributes such
                         as their name, category, date, wind speed, and
-                        fatalities.
-                    </Typography>
-                    <Typography variant="subtitle1" textAlign={"center"}>
-                        <b>Number of hurricanes: </b>{numHurricanes}
+                        fatalities. <b>Number of hurricanes: </b>{numHurricanes}
                     </Typography>
                 </div>
 

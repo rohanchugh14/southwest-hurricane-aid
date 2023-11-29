@@ -49,7 +49,7 @@ function Navbar() {
                 <Toolbar disableGutters>
                     {/* img element replacing AdbIcon */}
                     <img
-                        src={"img/hurricane.png"}
+                        src={"/img/hurricane.png"}
                         alt="Hurricane Icon"
                         style={{
                             width: "30px", // Set the width as needed
