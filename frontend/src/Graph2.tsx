@@ -1,20 +1,12 @@
-import * as d3 from "d3";
 import Routes from "./Routes";
 import { AidOrganization, County, Hurricane } from "./types";
-import { useState, useEffect } from "react";
-
-export default function LinePlot({
-  width = 640,
-  height = 400,
-  marginTop = 20,
-  marginRight = 20,
-  marginBottom = 20,
-  marginLeft = 20
-}) {
+import { useState, useEffect, PureComponent } from "react";
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 
-  const [x, setX] = useState([])
-  const [y, setY] = useState([])
+const LinePlot = () => {
+
+  const [data, setData] = useState([])
 
   useEffect(() => {
 
@@ -26,13 +18,15 @@ export default function LinePlot({
       });
       let resArray = await res.json();
 
-      const data = resArray["aid_organizations"].map((org: AidOrganization) => ({
-        "x": org.latitude,
-        "y": org.longitude
+      var data = resArray["aid_organizations"].map((org: AidOrganization) => ({
+        "x": org.longitude,
+        "y": org.latitude
       }))
 
+      data = data.filter((point: any) => point["y"] > 24.0);
 
       console.log(data)
+      setData(data);
     }
 
     getHurricanes();
@@ -40,16 +34,25 @@ export default function LinePlot({
 
   }, [])
 
-
   return (
-    <svg style={{ backgroundColor: "yellow" }} width={width} height={height}>
-      <g fill="white" stroke="currentColor" stroke-width="1.5">
-        {x.map((xi, i) => (<circle key={i} cx={x[i]} cy={y[i]} r="2.5" />))}
-      </g>
-    </svg>
+    <ResponsiveContainer width="100%" height={1200}>
+      <ScatterChart
+        margin={{
+          top: 20,
+          right: 20,
+          bottom: 20,
+          left: 20,
+        }}
+      >
+        <CartesianGrid />
+        <XAxis type="number" dataKey="x" name="longitude" unit="deg" domain={[-100.0, -92.0]} />
+        <YAxis type="number" dataKey="y" name="latitude" unit="deg" domain={[24.0, 32.0]} />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+        <Scatter name="A school" data={data} fill="#8884d8" />
+      </ScatterChart>
+    </ResponsiveContainer>
   );
+  
+};
 
-
-}
-
-
+export default LinePlot;
