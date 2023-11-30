@@ -14,12 +14,13 @@ import { Link } from "react-router-dom";
 import { InputBase, Paper } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
-const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations"];
+const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations", "Provider Visualizations"];
 const pageRoutes = [
     "About",
     "Hurricanes/1",
     "Counties/1",
     "Aid Organizations/1",
+    "Provider Visualizations/1",
 ];
 
 function Navbar() {

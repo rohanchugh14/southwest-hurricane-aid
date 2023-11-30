@@ -11,6 +11,7 @@ import AidOrganizations from "../Aid Organizations";
 import HurricaneInstances from "../HurricaneInstances";
 import CountyInstances from "../CountyInstances";
 import AidOrganizationInstances from "../AidOrganizationInstances";
+import ProviderVisualizations from "../Provider Visualizations/ProviderVisualizations";
 import Search from "../Search"; 
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from "@mui/material";
@@ -31,6 +32,7 @@ function App() {
         <Route path="/Aid Organizations/AidOrganizationInstances/:instance" element = {<AidOrganizationInstances />} />
         <Route path="/Hurricanes/HurricaneInstances/:instance" element = {<HurricaneInstances />} />
         <Route path="/Counties/CountyInstances/:instance" element = {<CountyInstances />} />
+        <Route path="/Provider Visualizations/:instance" element = {<ProviderVisualizations />} />
         <Route path="/Search" element={<Search />} /> 
       </Routes>
     </BrowserRouter>
