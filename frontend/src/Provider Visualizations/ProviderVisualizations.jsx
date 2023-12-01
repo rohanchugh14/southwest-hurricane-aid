@@ -33,7 +33,7 @@ const ProviderVisualizations = () => {
                 setViz1(Array.from(bars,
                     (([borough, count]) => ({ "y": count, "x": borough }))));
             })
-    });
+    }, []);
 
     useEffect(() => {
         axios
@@ -64,7 +64,7 @@ const ProviderVisualizations = () => {
                 setViz3(Array.from(bars,
                     (([county, count]) => ({ "y": count, "x": county }))));
             })
-    });
+    }, []);
 
 
     return (
