@@ -194,8 +194,8 @@ function Navbar() {
                             <InputBase
                                 sx={{ ml: 1, mb: 1, flex: 1 }}
                                 placeholder={"Search"}
-                                value={searchTerm}
                                 onChange={handleInputChange}
+                                value={searchTerm}
                             />
                             <Link
                                 href={`/Search/${searchTerm}`}
