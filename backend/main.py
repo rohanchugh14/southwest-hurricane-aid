@@ -80,18 +80,24 @@ def search_hurricane():
 
     return jsonify([hurricane.serialize() for hurricane in hurricanes])
 
-
-@api_bp.route('/counties/search', methods=['GET'])
-def search_county():
-    name = request.args.get('name', '')
-    query = County.query.filter(County.name.ilike(f'%{name}%'))
-    counties = query.all()
-
-    if not counties:
-        return jsonify({"error": "No matching counties found"}), 404
-
-    return jsonify([county.serialize() for county in counties])
-
+@api_bp.route('/search', methods=['GET'])
+def global_search():
+    query = request.args.get('query', '')
+    aid_organizations = AidOrganization.query.filter(
+        AidOrganization.shelter_name.ilike(f'%{query}%')
+    ).all()
+    hurricanes = Hurricane.query.filter(
+        Hurricane.name.ilike(f'%{query}%')
+    ).all()
+    counties = County.query.filter(
+        County.name.ilike(f'%{query}%')
+    ).all()
+    results = {
+        'aid_organizations': [org.serialize() for org in aid_organizations],
+        'hurricanes': [hurricane.serialize() for hurricane in hurricanes],
+        'counties': [county.serialize() for county in counties]
+    }
+    return jsonify(results)
 
 
 
