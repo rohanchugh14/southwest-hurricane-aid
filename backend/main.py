@@ -36,25 +36,64 @@ def index():
 #         return jsonify({"error": "County not found"}), 404
 #     return jsonify({"county_id": county.id})
 
-@api_bp.route('/aid_organizations/search/<string:name>', methods=['GET'])
-def search_aid_organization(name):
-    # Using PostgreSQL Full-Text Search
-    search_query = text(
-        "SELECT * FROM aid_organizations WHERE to_tsvector('english', shelter_name) @@ to_tsquery('english', :name)"
-    )
-    with db.session.begin():
-        result = db.session.execute(search_query, {'name': name})
 
-        organizations = []
-        for row in result:
-            dict_row = row._asdict()
-            organizations.append(dict_row)
-            # Manually instantiate your model
-            # model_instance = AidOrganization(**row_dict)
-            # organizations.append(model_instance.serialize())
-        if not organizations:
-            return jsonify({"error": "No matching organizations found"}), 404
-        return jsonify(organizations)
+## THIS ONE WORKS
+# @api_bp.route('/aid_organizations/search/<string:name>', methods=['GET'])
+# def search_aid_organization(name):
+#     # Using PostgreSQL Full-Text Search
+#     search_query = text(
+#         "SELECT * FROM aid_organizations WHERE to_tsvector('english', shelter_name) @@ to_tsquery('english', :name)"
+#     )
+#     with db.session.begin():
+#         result = db.session.execute(search_query, {'name': name})
+
+#         organizations = []
+#         for row in result:
+#             dict_row = row._asdict()
+#             organizations.append(dict_row)
+#             # Manually instantiate your model
+#             # model_instance = AidOrganization(**row_dict)
+#             # organizations.append(model_instance.serialize())
+#         if not organizations:
+#             return jsonify({"error": "No matching organizations found"}), 404
+#         return jsonify(organizations)
+
+@api_bp.route('/aid_organizations/search', methods=['GET'])
+def search_aid_organization():
+    name = request.args.get('name', '')
+    query = AidOrganization.query.filter(AidOrganization.shelter_name.ilike(f'%{name}%'))
+    organizations = query.all()
+
+    if not organizations:
+        return jsonify({"error": "No matching organizations found"}), 404
+
+    return jsonify([org.serialize() for org in organizations])
+
+@api_bp.route('/hurricanes/search', methods=['GET'])
+def search_hurricane():
+    name = request.args.get('name', '')
+    query = Hurricane.query.filter(Hurricane.name.ilike(f'%{name}%'))
+    hurricanes = query.all()
+
+    if not hurricanes:
+        return jsonify({"error": "No matching hurricanes found"}), 404
+
+    return jsonify([hurricane.serialize() for hurricane in hurricanes])
+
+
+@api_bp.route('/counties/search', methods=['GET'])
+def search_county():
+    name = request.args.get('name', '')
+    query = County.query.filter(County.name.ilike(f'%{name}%'))
+    counties = query.all()
+
+    if not counties:
+        return jsonify({"error": "No matching counties found"}), 404
+
+    return jsonify([county.serialize() for county in counties])
+
+
+
 
 @api_bp.route('/hurricanes/<int:id>', methods=['GET'])
 def get_hurricane_by_id(id):
