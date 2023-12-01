@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Link } from "react-router-dom";
+import Link from "@mui/material/Link";
 import { InputBase, Paper } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -112,7 +112,7 @@ function Navbar() {
                         >
                             {pageNames.map((page, index) => (
                                 <Link
-                                    to={`/${pageRoutes[index]}`}
+                                    href={`/${pageRoutes[index]}`}
                                     style={{ textDecoration: "none" }}
                                 >
                                     <MenuItem
@@ -156,7 +156,7 @@ function Navbar() {
                     >
                         {pageNames.map((pageName, index) => (
                             <Link
-                                to={`/${pageRoutes[index]}`}
+                                href={`/${pageRoutes[index]}`}
                                 style={{ textDecoration: "none" }}
                             >
                                 <Button
@@ -191,7 +191,7 @@ function Navbar() {
                                 placeholder={"Search"}
                             />
                             <Link
-                                to={"/Search"}
+                                href={"/Search"}
                                 style={{ textDecoration: "none" }}
                             >
                                 <IconButton
