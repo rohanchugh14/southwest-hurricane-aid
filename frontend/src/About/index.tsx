@@ -5,6 +5,7 @@ import LinePlot from "../Graph2";
 import ScatterPlot from "../Visualizations/county_visual";
 import VisPieChart from "../Visualizations/pie";
 
+
 const About = () => {
   const [commits, setCommits] = useState<any[]>([]);
   const [issues, setIssues] = useState<any[]>([]);
