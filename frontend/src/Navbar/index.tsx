@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "@mui/material/Link";
+import {useNavigate} from "react-router-dom";
 import { InputBase, Paper } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -24,6 +25,8 @@ const pageRoutes = [
 ];
 
 function Navbar() {
+    const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = React.useState("");
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     );
@@ -36,13 +39,14 @@ function Navbar() {
         setAnchorElNav(null);
     };
 
+    const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        navigate(`/Search/${searchTerm}`)
+    }
 
-    // const handleSearchButtonClick = () => {
-    //     // Use Link component to navigate to the Search page
-    //     return (
-    //         <Link to="/Search" style={{ textDecoration: "none" }} />
-    //     );
-    // };
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    }
 
     return (
         <AppBar position="static">
@@ -185,13 +189,16 @@ function Navbar() {
 
                         <Paper
                             component="form"
+                            onSubmit={handleSearchSubmit}
                         >
                             <InputBase
                                 sx={{ ml: 1, mb: 1, flex: 1 }}
                                 placeholder={"Search"}
+                                onChange={handleInputChange}
+                                value={searchTerm}
                             />
                             <Link
-                                href={"/Search"}
+                                href={`/Search/${searchTerm}`}
                                 style={{ textDecoration: "none" }}
                             >
                                 <IconButton

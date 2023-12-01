@@ -22,7 +22,7 @@ html, body {
 }
 
 .search-box {
-    background-color: #555555;
+    background-color: #555555 !important;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -45,7 +45,6 @@ html, body {
     flex-wrap: wrap;
     justify-content: space-between;
     width: 75%;
-    height: 100vh;
     margin-top: 5%;
 }
 
