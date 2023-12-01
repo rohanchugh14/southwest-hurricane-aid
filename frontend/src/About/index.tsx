@@ -2,6 +2,8 @@ import { Typography, Grid, Button, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MemberCard from "./MemberCard";
 import LinePlot from "../Graph2";
+import ScatterPlot from "../Visualizations/county_visual";
+
 
 const About = () => {
   const [commits, setCommits] = useState<any[]>([]);
@@ -62,7 +64,7 @@ const About = () => {
   return (
     <div style={{ margin: "10px" }}>
 
-      
+      <ScatterPlot/>
       <LinePlot/>
 
       <div

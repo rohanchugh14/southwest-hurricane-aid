@@ -45,6 +45,7 @@ const ProviderVisualizations = () => {
                         dataPoints.push({ x: program.total_beds, y: program.total_units }); // Adjust y as needed
                     }
                 });
+                console.log(dataPoints);
                 setViz2(dataPoints);
             })
     }, []);
