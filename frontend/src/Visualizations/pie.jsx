@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RadialChart } from 'react-vis';
 import { Heading } from "@chakra-ui/react";
+import Routes from "../Routes";
 
 const VisPieChart = () => {
     const [myData, setData] = useState([]);
@@ -10,8 +11,7 @@ const VisPieChart = () => {
     };
     useEffect(() => {
         const getHurricaneData = async () => {
-            // const link = `${Routes.HOST}/api/hurricanes?per_page=9999`;
-            const link = `https://api.southwesthurricaneaid.me/api/hurricanes?per_page=9999`;
+            const link = `${Routes.HOST}/api/hurricanes?per_page=9999`;
 
             let res = await fetch(link, {
                 method: "GET",
