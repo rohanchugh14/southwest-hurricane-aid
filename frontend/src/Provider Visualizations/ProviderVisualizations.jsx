@@ -7,9 +7,7 @@ import {
     YAxis,
     VerticalGridLines,
     HorizontalGridLines,
-    HorizontalBarSeries,
     VerticalBarSeries,
-    RadialChart
 } from 'react-vis';
 import axios from "axios";
 
