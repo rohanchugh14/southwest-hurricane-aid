@@ -300,7 +300,8 @@ def get_county_by_id(id):
 def get_counties():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
-
+    include_hurricanes = True if request.args.get('include_hurricanes') != None else False
+    include_orgs= True if request.args.get('include_orgs') != None else False
     search_criteria = request.args.get('search_criteria', '')
     descending = request.args.get('desc', 'false')
     order_by = request.args.get('order_by', "")
@@ -350,8 +351,14 @@ def get_counties():
     
     paginated_counties = paginated_counties.paginate(
         page=page, per_page=per_page, error_out=False)
-
-    counties = [c.serialize() for c in paginated_counties.items]
+    counties = []
+    for c in paginated_counties.items :
+        county = c.serialize()
+        if include_hurricanes :
+            county['hurricanes'] = [{'name': h.name, 'id': h.id} for h in c.hurricanes]
+        if include_orgs :
+            county['aid_organizations'] = [{'shelter_name': a.shelter_name, 'id': a.id} for a in c.aid_organizations]
+        counties.append(county)
     return jsonify({
         'counties': counties,
         'total_pages': paginated_counties.pages,
