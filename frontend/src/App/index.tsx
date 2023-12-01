@@ -33,7 +33,7 @@ function App() {
         <Route path="/Hurricanes/HurricaneInstances/:instance" element = {<HurricaneInstances />} />
         <Route path="/Counties/CountyInstances/:instance" element = {<CountyInstances />} />
         <Route path="/Provider Visualizations/:instance" element = {<ProviderVisualizations />} />
-        <Route path="/Search" element={<Search />} /> 
+        <Route path="/Search/:searchTerm" element={<Search />} /> 
       </Routes>
     </BrowserRouter>
     </ThemeProvider>

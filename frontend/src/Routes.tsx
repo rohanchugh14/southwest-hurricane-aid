@@ -5,5 +5,6 @@ const Routes = {
   hurricanes: `${HOST}/api/hurricanes`,
   counties: `${HOST}/api/counties`,
   aidOrganizations: `${HOST}/api/aid_organizations`,
+  search: `${HOST}/api/search`,
 }
 export default Routes;
