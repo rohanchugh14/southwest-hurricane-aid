@@ -1,3 +1,4 @@
+import React from "react";
 import Routes from "./Routes";
 import { AidOrganization, County, Hurricane } from "./types";
 import { useState, useEffect, PureComponent } from "react";

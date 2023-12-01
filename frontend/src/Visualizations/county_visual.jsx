@@ -1,3 +1,4 @@
+import React from "react";
 import Routes from "../Routes";
 import { useState, useEffect } from "react";
 import { VStack, Box, Heading, Text } from "@chakra-ui/react";

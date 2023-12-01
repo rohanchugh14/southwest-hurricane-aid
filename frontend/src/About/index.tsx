@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import MemberCard from "./MemberCard";
 import LinePlot from "../Graph2";
 import ScatterPlot from "../Visualizations/county_visual";
+import VisPieChart from "../Visualizations/pie";
 
 
 const About = () => {
@@ -66,6 +67,7 @@ const About = () => {
 
       <ScatterPlot/>
       <LinePlot/>
+      <VisPieChart/>
 
       <div
         style={{
