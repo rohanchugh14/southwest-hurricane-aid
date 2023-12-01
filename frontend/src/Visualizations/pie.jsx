@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RadialChart } from 'react-vis';
+import { Heading } from "@chakra-ui/react";
 
 const VisPieChart = () => {
     const [myData, setData] = useState([]);
@@ -37,6 +38,7 @@ const VisPieChart = () => {
 
     return (
         <>
+        <Heading size="md" color="black">Pie Chart of Hurricanes by Category</Heading>
         <RadialChart
             data={myData}
             width={700}
@@ -49,7 +51,6 @@ const VisPieChart = () => {
             }}
             margin={{ top: 50, bottom: 50, left: 50, right: 50 }}
             colorType="literal"
-            padAngle={0.05}
         />
         </>
     );
