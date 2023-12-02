@@ -1,5 +1,5 @@
 import AidOrganizationCard from "./AidOrganizationCard";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Pagination, PaginationItem, Typography, Grid, SelectChangeEvent } from "@mui/material";
 import Routes from "../Routes";
@@ -20,10 +20,6 @@ const AidOrganizations = () => {
     const [numOrganizations, setNumOrganizations] = useState(746)
     const [numPages, setNumPages] = useState(Math.ceil(numOrganizations / pagesize))
 
-
-    type units = {
-        [key: string]: string
-    }
 
     const units = {
         "category": "",
@@ -91,16 +87,16 @@ const AidOrganizations = () => {
         getOrganizations()
     }
 
-    const getOrganizations = async () => {
+    const getOrganizations = useCallback(
 
-
+    async () => {
         var sortUrl = `${Routes.aidOrganizations}?page=${pageNum}&per_page=20&order_by=${sortCriteria}&desc=${descending}`
 
-        if(filterCriteria != "" && filterDirection != "" && filterValue != "") {
+        if(filterCriteria !== "" && filterDirection !== "" && filterValue !== "") {
             sortUrl += `&filter_by=${filterCriteria}&filter_direction=${filterDirection}&filter_value=${filterValue}`
         }
 
-        if(searchCriteria != "") {
+        if(searchCriteria !== "") {
             sortUrl += `&search_criteria=${searchCriteria}`
         }
 
@@ -114,12 +110,12 @@ const AidOrganizations = () => {
         setNumPages(resArray["total_pages"])
         setNumOrganizations(resArray["total_pages"] * pagesize)
         
-    };
+    }, [pageNum, sortCriteria, descending, filterCriteria, filterDirection, filterValue, searchCriteria]);
 
 
     useEffect(() => {
         getOrganizations();
-    }, [pageNum, sortCriteria, descending, filterCriteria, filterDirection, filterValue, searchCriteria]);
+    }, [getOrganizations]);
 
     return (
         <div style={{ margin: "10px" }}>

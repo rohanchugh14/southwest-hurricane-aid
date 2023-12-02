@@ -1,5 +1,5 @@
-const HOST = 'http://localhost:4000';
-//const HOST = 'https://api.southwesthurricaneaid.me'
+// const HOST = 'http://localhost:4000';
+const HOST = 'https://api.southwesthurricaneaid.me'
 const Routes = {
   HOST,
   hurricanes: `${HOST}/api/hurricanes`,

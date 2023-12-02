@@ -1,5 +1,5 @@
 import { Grid, Pagination, PaginationItem, SelectChangeEvent, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import CountyCard from "./CountyCard";
 import { Link, useParams } from "react-router-dom";
 import Routes from "../Routes";
@@ -29,10 +29,6 @@ const Counties = () => {
     //     setPageNum(newPage);
     //     // getCounties()
     // };
-
-    type units = {
-        [key: string]: string
-    }
 
     const units = {
         "name": "",
@@ -101,15 +97,15 @@ const Counties = () => {
         getCounties()
     }
 
-    const getCounties = async () => {
+    const getCounties = useCallback(async () => {
 
         var sortUrl = `${Routes.counties}?page=${pageNum}&per_page=20&order_by=${sortCriteria}&desc=${descending}`
 
-        if(filterCriteria != "" && filterDirection != "" && filterValue != "") {
+        if(filterCriteria !== "" && filterDirection !== "" && filterValue !== "") {
             sortUrl += `&filter_by=${filterCriteria}&filter_direction=${filterDirection}&filter_value=${filterValue}`
         }
 
-        if(searchCriteria != "") {
+        if(searchCriteria !== "") {
             sortUrl += `&search_criteria=${searchCriteria}`
         }
 
@@ -124,11 +120,11 @@ const Counties = () => {
         setCounties(resArray["counties"])
         setNumPages(resArray["total_pages"])
         setNumCounties(resArray["total_pages"] * pagesize)
-    };
+    }, [pageNum, sortCriteria, descending, filterCriteria, filterDirection, filterValue, searchCriteria]);
 
     useEffect(() => {
         getCounties()
-    }, [pageNum, sortCriteria, descending, filterCriteria, filterDirection, filterValue, searchCriteria]);
+    }, [getCounties]);
 
     return (
         <div style={{ margin: "10px" }}>
