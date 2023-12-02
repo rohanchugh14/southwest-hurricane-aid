@@ -16,6 +16,7 @@ import Search from "../Search";
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from "@mui/material";
 import theme from "./Themes";
+import OurVisualizations from "../Our Visualizations";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/Aid Organizations/AidOrganizationInstances/:instance" element = {<AidOrganizationInstances />} />
         <Route path="/Hurricanes/HurricaneInstances/:instance" element = {<HurricaneInstances />} />
         <Route path="/Counties/CountyInstances/:instance" element = {<CountyInstances />} />
+        <Route path="/Our Visualizations/:instance" element = {<OurVisualizations />} />
         <Route path="/Provider Visualizations/:instance" element = {<ProviderVisualizations />} />
         <Route path="/Search/:searchTerm" element={<Search />} /> 
       </Routes>

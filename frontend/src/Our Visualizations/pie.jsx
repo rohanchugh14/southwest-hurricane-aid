@@ -38,7 +38,7 @@ const VisPieChart = () => {
 
     return (
         <>
-        <Heading size="md" color="black">Pie Chart of Hurricanes by Category</Heading>
+        <Heading size="md" color="white">Pie Chart of Hurricanes by Category</Heading>
         <RadialChart
             data={myData}
             width={700}

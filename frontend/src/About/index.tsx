@@ -1,9 +1,9 @@
 import { Typography, Grid, Button, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MemberCard from "./MemberCard";
-import LinePlot from "../Graph2";
-import ScatterPlot from "../Visualizations/county_visual";
-import VisPieChart from "../Visualizations/pie";
+import LinePlot from "../Our Visualizations/Graph2";
+import ScatterPlot from "../Our Visualizations/county_visual";
+import VisPieChart from "../Our Visualizations/pie";
 
 
 const About = () => {
@@ -64,11 +64,6 @@ const About = () => {
 
   return (
     <div style={{ margin: "10px" }}>
-
-      <ScatterPlot/>
-      <LinePlot/>
-      <VisPieChart/>
-
       <div
         style={{
           display: "flex",

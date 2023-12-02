@@ -15,12 +15,13 @@ import {useNavigate} from "react-router-dom";
 import { InputBase, Paper } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
-const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations", "Provider Visualizations"];
+const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations", "Our Visualizations", "Provider Visualizations"];
 const pageRoutes = [
     "About",
     "Hurricanes/1",
     "Counties/1",
     "Aid Organizations/1",
+    "Our Visualizations/1",
     "Provider Visualizations/1",
 ];
 
