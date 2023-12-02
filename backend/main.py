@@ -4,6 +4,7 @@ from flask import Flask, Blueprint, jsonify, request, url_for, current_app
 from flask_sqlalchemy import SQLAlchemy
 from models import db
 from models.hurricane import Hurricane
+from models.associations import hurricane_county_associations
 from dateutil import parser
 from models.aid_organization import AidOrganization
 from models.county import County
@@ -212,6 +213,19 @@ def add_hurricane():
 
     return jsonify(new_hurricane.serialize()), 201
 
+@api_bp.route('/hurricanes/<int:id>', methods=['DELETE'])
+def delete_hurricane(id):
+    hurricane = Hurricane.query.get(id)
+    if not hurricane:
+        return jsonify({"error": "Hurricane not found"}), 404
+    
+    db.session.execute(
+        hurricane_county_associations.delete().where(hurricane_county_associations.c.hurricane_id == id)
+    )
+    db.session.delete(hurricane)
+    db.session.commit()
+
+    return jsonify({"message": "Hurricane deleted successfully"}), 200
 
 @api_bp.route('/aid_organizations/<int:id>', methods=['GET'])
 def get_organization_by_id(id):
@@ -316,6 +330,16 @@ def add_organization():
 
     return jsonify(new_org.serialize()), 201
 
+@api_bp.route('/aid_organizations/<int:id>', methods=['DELETE'])
+def delete_aid_organization(id):
+    aid_organization = AidOrganization.query.get(id)
+    if not aid_organization:
+        return jsonify({"error": "Aid Organization not found"}), 404
+    
+    db.session.delete(aid_organization)
+    db.session.commit()
+
+    return jsonify({"message": "Aid Organization deleted successfully"}), 200
 
 @api_bp.route('/counties/<int:id>', methods=['GET'])
 def get_county_by_id(id):
@@ -421,6 +445,19 @@ def add_county():
 
     return jsonify(new_county.serialize()), 201
 
+@api_bp.route('/counties/<int:id>', methods=['DELETE'])
+def delete_county(id):
+    county = County.query.get(id)
+    if not county:
+        return jsonify({"error": "County not found"}), 404
+    
+    db.session.execute(
+        hurricane_county_associations.delete().where(hurricane_county_associations.c.county_id == id)
+    )
+    db.session.delete(county)
+    db.session.commit()
+
+    return jsonify({"message": "County deleted successfully"}), 200
 
 @api_bp.route('/counties/search/<string:name>', methods=['GET'])
 def search_county(name):
