@@ -1,6 +1,10 @@
-import { Typography, Grid, Button } from "@mui/material";
+import { Typography, Grid, Button, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MemberCard from "./MemberCard";
+import LinePlot from "../Our Visualizations/Graph2";
+import ScatterPlot from "../Our Visualizations/county_visual";
+import VisPieChart from "../Our Visualizations/pie";
+
 
 const About = () => {
   const [commits, setCommits] = useState<any[]>([]);
@@ -253,11 +257,11 @@ const About = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <b>Data Sources</b>
         <br />
-        <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
+        <Button variant="contained" style={{ width: '70%', marginBottom: '20px' }} 
         href="https://hifld-geoplatform.opendata.arcgis.com/datasets/geoplatform::national-shelter-system-facilities/about">
           Aid Organizations API
         </Button>
-        <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
+        <Button variant="contained" style={{  width: '70%', marginBottom: '20px' }} 
         href="https://en.wikipedia.org/api/rest_v1/">
           Wikipedia API
         </Button>
@@ -265,7 +269,7 @@ const About = () => {
         <br />
         <b>Link to GitLab repo </b>
          <br />
-        <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
+        <Button variant="contained" style={{ width: '70%', marginBottom: '20px' }} 
         href="https://gitlab.com/rohanchugh14/southwest-hurricane-aid">
           GitLab Repo
         </Button>
@@ -273,11 +277,11 @@ const About = () => {
         <br />
         <b>Link to Postman API: </b>
         <br />
-        <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }} 
+        <Button variant="contained" style={{ width: '70%', marginBottom: '20px' }} 
         href="https://documenter.getpostman.com/view/18568319/2s9YR9YsEf">
           Postman API
         </Button>
-        <Button variant="contained" style={{ backgroundColor: '#B6B7B9', color: '#ffffff', width: '70%', marginBottom: '20px' }}
+        <Button variant="contained" style={{  width: '70%', marginBottom: '20px' }}
         href="https://www.postman.com/material-pilot-15383947/workspace/southwest-hurricane-aid/collection/18568319-9b3b1a6a-ba7d-439a-aed3-4ce06860e4e0?action=share&creator=18568319"
         >
           Postman Collection (with tests)
@@ -292,7 +296,7 @@ const About = () => {
           Frontend
         </ul>
 
-        <div style={{ background: '#f0f0f0', padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
+        <Paper style={{  padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
             <div style={{ textAlign: 'center' }}>
               <img src="img/react-logo.png" alt="React Logo" style={{ width: '100px', height: 'auto' }} />
@@ -303,14 +307,14 @@ const About = () => {
               <p>MaterialUI</p>
             </div>
           </div>
-        </div>
+        </Paper>
 
         <ul>
           Backend
         </ul>
 
 
-        <div style={{ background: '#f0f0f0', padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
+        <Paper style={{ padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
             <div style={{ textAlign: 'center' }}>
               <img src="img/flask-logo.png" alt="Flask Logo" style={{ width: '100px', height: 'auto' }} />
@@ -333,7 +337,7 @@ const About = () => {
               <p>Docker</p>
             </div>
           </div>
-        </div>
+        </Paper>
 
 
         <ul>
@@ -341,7 +345,7 @@ const About = () => {
         </ul>
         
 
-        <div style={{ background: '#f0f0f0', padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
+        <Paper style={{  padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
             <div style={{ textAlign: 'center' }}>
               <img src="img/selenium-logo.png" alt="Selenium Logo" style={{ width: '100px', height: 'auto' }} />
@@ -360,7 +364,7 @@ const About = () => {
               <p>Postman</p>
             </div>
           </div>
-        </div>
+        </Paper>
 
         
         

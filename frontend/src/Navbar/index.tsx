@@ -10,17 +10,24 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Link } from "react-router-dom";
+import Link from "@mui/material/Link";
+import {useNavigate} from "react-router-dom";
+import { InputBase, Paper } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 
-const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations"];
+const pageNames = ["About", "Hurricanes", "Counties", "Aid Organizations", "Our Visualizations", "Provider Visualizations"];
 const pageRoutes = [
     "About",
     "Hurricanes/1",
     "Counties/1",
     "Aid Organizations/1",
+    "Our Visualizations/1",
+    "Provider Visualizations/1",
 ];
 
 function Navbar() {
+    const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = React.useState("");
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     );
@@ -33,21 +40,22 @@ function Navbar() {
         setAnchorElNav(null);
     };
 
-    
-    // const handleSearchButtonClick = () => {
-    //     // Use Link component to navigate to the Search page
-    //     return (
-    //         <Link to="/Search" style={{ textDecoration: "none" }} />
-    //     );
-    // };
+    const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        navigate(`/Search/${searchTerm}`)
+    }
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    }
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: "#292929" }}>
+        <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* img element replacing AdbIcon */}
                     <img
-                        src={"img/hurricane.png"}
+                        src={"/img/hurricane.png"}
                         alt="Hurricane Icon"
                         style={{
                             width: "30px", // Set the width as needed
@@ -109,7 +117,7 @@ function Navbar() {
                         >
                             {pageNames.map((page, index) => (
                                 <Link
-                                    to={`/${pageRoutes[index]}`}
+                                    href={`/${pageRoutes[index]}`}
                                     style={{ textDecoration: "none" }}
                                 >
                                     <MenuItem
@@ -153,7 +161,7 @@ function Navbar() {
                     >
                         {pageNames.map((pageName, index) => (
                             <Link
-                                to={`/${pageRoutes[index]}`}
+                                href={`/${pageRoutes[index]}`}
                                 style={{ textDecoration: "none" }}
                             >
                                 <Button
@@ -179,43 +187,32 @@ function Navbar() {
                             flexGrow: 1,
                         }}
                     >
-                        <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                            <input
-                                type="text"
-                                placeholder="Search"
-                                style={{
-                                    padding: "5px",
-                                    borderRadius: "5px",
-                                    marginRight: "5px",
-                                }}
+
+                        <Paper
+                            component="form"
+                            onSubmit={handleSearchSubmit}
+                        >
+                            <InputBase
+                                sx={{ ml: 1, mb: 1, flex: 1 }}
+                                placeholder={"Search"}
+                                onChange={handleInputChange}
+                                value={searchTerm}
                             />
-                            
                             <Link
-                                to={"/Search"}
+                                href={`/Search/${searchTerm}`}
                                 style={{ textDecoration: "none" }}
                             >
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    size="small"
-                                    style={{ backgroundColor: "#f0f0f0", color: "#333" }}
+                                <IconButton
+                                    size="large"
+                                    aria-label="search"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
                                     onClick={handleCloseNavMenu}
                                 >
-                                    Search
-                                </Button>
+                                    <SearchIcon />
+                                </IconButton>
                             </Link>
-                        </Box>
-                        <Box sx={{ display: { xs: "flex", md: "none" } }}>
-                            <IconButton
-                                size="large"
-                                aria-label="search"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                color="inherit"
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                        </Box>
+                        </Paper>
                     </Box>
                 </Toolbar>
             </Container>

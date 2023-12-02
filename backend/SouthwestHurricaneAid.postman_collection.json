@@ -28,7 +28,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"test\",\r\n    \"url\":\"https://www.google.com/hurricaneTest\",\r\n    \"image\":\"https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg\",\r\n    \"caption\": \"This is a caption\",\r\n    \"category\": 3,\r\n    \"highest_winds\": \"10mph\",\r\n    \"deaths\": 3,\r\n    \"damage\": \"10 billion dollars\",\r\n    \"areas_affected\": \"texas\",\r\n    \"county_ids\": [1]\r\n}",
+					"raw": "{\r\n    \"id\": 9999,\r\n    \"name\": \"test\",\r\n    \"url\":\"https://www.google.com/hurricaneTest\",\r\n    \"formed\": \"Decmber 1, 2023\",\r\n    \"dissipated\": \"December 2, 2023\",\r\n    \"image\":\"https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg\",\r\n    \"caption\": \"This is a caption\",\r\n    \"category\": 3,\r\n    \"highest_winds\": \"10mph\",\r\n    \"highest_winds_mph\": 10,\r\n    \"lowest_pressure\": \"1005 mbar (hPa); 29.68 inHg\",\r\n    \"lowest_pressure_mbar\": 1005,\r\n    \"deaths\": 3,\r\n    \"deaths_number\": 3,\r\n    \"damage\": \"10 billion dollars\",\r\n    \"damage_number\": 10000000000,\r\n    \"areas_affected\": \"texas\",\r\n    \"county_ids\": [1]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -57,7 +57,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"test\",\r\n    \"url\":\"https://www.google.com/\",\r\n    \"image\":\"https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg\",\r\n    \"caption\": \"This is a caption\",\r\n    \"category\": 3,\r\n    \"highest_winds\": \"10mph\",\r\n    \"deaths\": 3,\r\n    \"damage\": \"10 billion dollars\",\r\n    \"areas_affected\": \"texas\",\r\n    \"county_ids\": [1]\r\n}",
+							"raw": "{\r\n    \"id\": 9999,\r\n    \"name\": \"test\",\r\n    \"url\":\"https://www.google.com/hurricaneTest\",\r\n    \"formed\": \"Decmber 1, 2023\",\r\n    \"dissipated\": \"December 2, 2023\",\r\n    \"image\":\"https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg\",\r\n    \"caption\": \"This is a caption\",\r\n    \"category\": 3,\r\n    \"highest_winds\": \"10mph\",\r\n    \"highest_winds_mph\": 10,\r\n    \"lowest_pressure\": \"1005 mbar (hPa); 29.68 inHg\",\r\n    \"lowest_pressure_mbar\": 1005,\r\n    \"deaths\": 3,\r\n    \"deaths_number\": 3,\r\n    \"damage\": \"10 billion dollars\",\r\n    \"damage_number\": 10000000000,\r\n    \"areas_affected\": \"texas\",\r\n    \"county_ids\": [1]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -88,7 +88,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Thu, 19 Oct 2023 01:50:13 GMT"
+							"value": "Sat, 02 Dec 2023 04:09:04 GMT"
 						},
 						{
 							"key": "Connection",
@@ -100,7 +100,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "366"
+							"value": "559"
 						},
 						{
 							"key": "Access-Control-Allow-Origin",
@@ -108,7 +108,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"areas_affected\": \"texas\",\n    \"caption\": \"This is a caption\",\n    \"category\": 3,\n    \"damage\": \"10 billion dollars\",\n    \"deaths\": \"3\",\n    \"dissipated\": null,\n    \"formed\": null,\n    \"highest_winds\": \"10mph\",\n    \"id\": 92,\n    \"image\": \"https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg\",\n    \"lowest_pressure\": null,\n    \"name\": \"test\",\n    \"url\": \"https://www.google.com/\"\n}"
+					"body": "{\n    \"areas_affected\": \"texas\",\n    \"caption\": \"This is a caption\",\n    \"category\": 3,\n    \"damage\": \"10 billion dollars\",\n    \"damage_number\": 10000000000,\n    \"deaths\": \"3\",\n    \"deaths_number\": 3,\n    \"dissipated\": \"Sat, 02 Dec 2023 00:00:00 GMT\",\n    \"formed\": \"Mon, 02 Jan 2023 00:00:00 GMT\",\n    \"highest_winds\": \"10mph\",\n    \"highest_winds_mph\": 10,\n    \"id\": 9999,\n    \"image\": \"https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg\",\n    \"lowest_pressure\": \"1005 mbar (hPa); 29.68 inHg\",\n    \"lowest_pressure_mbar\": 1005,\n    \"name\": \"test\",\n    \"url\": \"https://www.google.com/hurricaneTest\"\n}"
 				}
 			]
 		},
@@ -363,6 +363,120 @@
 			]
 		},
 		{
+			"name": "Delete Hurricane",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response has the required field - message\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Message is a non-empty string\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify that hurricane with ID 9999 has been deleted from the database\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"    pm.expect(pm.response.json().message).to.equal(\"Hurricane deleted successfully\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.southwesthurricaneaid.me/api/hurricanes/9999",
+					"protocol": "https",
+					"host": [
+						"api",
+						"southwesthurricaneaid",
+						"me"
+					],
+					"path": [
+						"api",
+						"hurricanes",
+						"9999"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Hurricane",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://api.southwesthurricaneaid.me/api/hurricanes/9999",
+							"protocol": "https",
+							"host": [
+								"api",
+								"southwesthurricaneaid",
+								"me"
+							],
+							"path": [
+								"api",
+								"hurricanes",
+								"9999"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 02 Dec 2023 04:09:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "45"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Hurricane deleted successfully\"\n}"
+				}
+			]
+		},
+		{
 			"name": "Create Aid Organization",
 			"event": [
 				{
@@ -410,7 +524,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"shelter_name\":\"shelter_name\",\r\n    \"address_1\":\"address\",\r\n    \"city\":\"city\",\r\n    \"state\":\"state\",\r\n    \"zip\":\"zip\",\r\n    \"ada_compliant\":\"ada_compliant\",\r\n    \"wheelchair_accessible\":\"wheelchair accessible\",\r\n    \"generator_onsite\":\"gen onsite\",\r\n    \"self_sufficient_electricity\":\" self suf electricity\",\r\n    \"in_surge_slosh_area\":\"surge slosh area\",\r\n    \"org_organization_name\":\"org name\",\r\n    \"org_main_phone\":\"phone\",\r\n    \"org_email\":\"email\",\r\n    \"score\":95,\r\n    \"in_100_yr_floodplain\":\"floodplain\",\r\n    \"status\":\"status\",\r\n    \"longitude\":1.1,\r\n    \"latitude\":2.2,\r\n    \"county_id\": 1\r\n}",
+					"raw": "{\r\n    \"id\": 9999,\r\n    \"shelter_name\":\"shelter_name\",\r\n    \"address_1\":\"address\",\r\n    \"city\":\"city\",\r\n    \"state\":\"state\",\r\n    \"zip\":\"zip\",\r\n    \"ada_compliant\":\"ada_compliant\",\r\n    \"wheelchair_accessible\":\"wheelchair accessible\",\r\n    \"generator_onsite\":\"gen onsite\",\r\n    \"self_sufficient_electricity\":\" self suf electricity\",\r\n    \"in_surge_slosh_area\":\"surge slosh area\",\r\n    \"org_organization_name\":\"org name\",\r\n    \"org_main_phone\":\"phone\",\r\n    \"org_email\":\"email\",\r\n    \"score\":95,\r\n    \"in_100_yr_floodplain\":\"floodplain\",\r\n    \"status\":\"status\",\r\n    \"longitude\":1.1,\r\n    \"latitude\":2.2,\r\n    \"county_id\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -439,7 +553,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"shelter_name\":\"shelter_name\",\r\n    \"address_1\":\"address\",\r\n    \"city\":\"city\",\r\n    \"state\":\"state\",\r\n    \"zip\":\"zip\",\r\n    \"ada_compliant\":\"ada_compliant\",\r\n    \"wheelchair_accessible\":\"wheelchair accessible\",\r\n    \"generator_onsite\":\"gen onsite\",\r\n    \"self_sufficient_electricity\":\" self suf electricity\",\r\n    \"in_surge_slosh_area\":\"surge slosh area\",\r\n    \"org_organization_name\":\"org name\",\r\n    \"org_main_phone\":\"phone\",\r\n    \"org_email\":\"email\",\r\n    \"score\":95,\r\n    \"in_100_yr_floodplain\":\"floodplain\",\r\n    \"status\":\"status\",\r\n    \"longitude\":1.1,\r\n    \"latitude\":2.2,\r\n    \"county_id\": 1\r\n}",
+							"raw": "{\r\n    \"id\": 9999,\r\n    \"shelter_name\":\"shelter_name\",\r\n    \"address_1\":\"address\",\r\n    \"city\":\"city\",\r\n    \"state\":\"state\",\r\n    \"zip\":\"zip\",\r\n    \"ada_compliant\":\"ada_compliant\",\r\n    \"wheelchair_accessible\":\"wheelchair accessible\",\r\n    \"generator_onsite\":\"gen onsite\",\r\n    \"self_sufficient_electricity\":\" self suf electricity\",\r\n    \"in_surge_slosh_area\":\"surge slosh area\",\r\n    \"org_organization_name\":\"org name\",\r\n    \"org_main_phone\":\"phone\",\r\n    \"org_email\":\"email\",\r\n    \"score\":95,\r\n    \"in_100_yr_floodplain\":\"floodplain\",\r\n    \"status\":\"status\",\r\n    \"longitude\":1.1,\r\n    \"latitude\":2.2,\r\n    \"county_id\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -470,7 +584,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Thu, 19 Oct 2023 01:59:37 GMT"
+							"value": "Sat, 02 Dec 2023 04:11:10 GMT"
 						},
 						{
 							"key": "Connection",
@@ -482,7 +596,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "767"
+							"value": "768"
 						},
 						{
 							"key": "Access-Control-Allow-Origin",
@@ -490,7 +604,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"ada_compliant\": \"ada_compliant\",\n    \"address_1\": \"address\",\n    \"city\": \"city\",\n    \"county\": {\n        \"area\": 1071,\n        \"county_seat\": \"Palestine\",\n        \"est\": 1846,\n        \"id\": 1,\n        \"map\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Map_of_Texas_highlighting_Anderson_County.svg/100px-Map_of_Texas_highlighting_Anderson_County.svg.png\",\n        \"name\": \"Anderson County\",\n        \"population\": 58064\n    },\n    \"generator_onsite\": \"gen onsite\",\n    \"id\": 747,\n    \"in_100_yr_floodplain\": \"floodplain\",\n    \"in_surge_slosh_area\": \"surge slosh area\",\n    \"latitude\": 2.2,\n    \"longitude\": 1.1,\n    \"org_email\": \"email\",\n    \"org_main_phone\": \"phone\",\n    \"org_organization_name\": \"org name\",\n    \"score\": 95,\n    \"self_sufficient_electricity\": \" self suf electricity\",\n    \"shelter_name\": \"shelter_name\",\n    \"state\": \"state\",\n    \"status\": \"status\",\n    \"wheelchair_accessible\": \"wheelchair accessible\",\n    \"zip\": \"zip\"\n}"
+					"body": "{\n    \"ada_compliant\": \"ada_compliant\",\n    \"address_1\": \"address\",\n    \"city\": \"city\",\n    \"county\": {\n        \"area\": 1071,\n        \"county_seat\": \"Palestine\",\n        \"est\": 1846,\n        \"id\": 1,\n        \"map\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Map_of_Texas_highlighting_Anderson_County.svg/100px-Map_of_Texas_highlighting_Anderson_County.svg.png\",\n        \"name\": \"Anderson County\",\n        \"population\": 58064\n    },\n    \"generator_onsite\": \"gen onsite\",\n    \"id\": 9999,\n    \"in_100_yr_floodplain\": \"floodplain\",\n    \"in_surge_slosh_area\": \"surge slosh area\",\n    \"latitude\": 2.2,\n    \"longitude\": 1.1,\n    \"org_email\": \"email\",\n    \"org_main_phone\": \"phone\",\n    \"org_organization_name\": \"org name\",\n    \"score\": 95,\n    \"self_sufficient_electricity\": \" self suf electricity\",\n    \"shelter_name\": \"shelter_name\",\n    \"state\": \"state\",\n    \"status\": \"status\",\n    \"wheelchair_accessible\": \"wheelchair accessible\",\n    \"zip\": \"zip\"\n}"
 				}
 			]
 		},
@@ -706,6 +820,120 @@
 			]
 		},
 		{
+			"name": "Delete Aid Organization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response has the required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.message).to.exist;",
+							"});",
+							"",
+							"",
+							"pm.test(\"Message is a non-empty string\", function () {",
+							"    const responseData = pm.response.json();",
+							"",
+							"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify that the aid organization with ID 9999 is deleted from the database\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"    pm.expect(pm.response.json().message).to.equal(\"Aid Organization deleted successfully\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is within acceptable range\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.southwesthurricaneaid.me/api/aid_organizations/9999",
+					"protocol": "https",
+					"host": [
+						"api",
+						"southwesthurricaneaid",
+						"me"
+					],
+					"path": [
+						"api",
+						"aid_organizations",
+						"9999"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Aid Organization",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://api.southwesthurricaneaid.me/api/aid_organizations/9999",
+							"protocol": "https",
+							"host": [
+								"api",
+								"southwesthurricaneaid",
+								"me"
+							],
+							"path": [
+								"api",
+								"aid_organizations",
+								"9999"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 02 Dec 2023 04:11:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Aid Organization deleted successfully\"\n}"
+				}
+			]
+		},
+		{
 			"name": "Create County",
 			"event": [
 				{
@@ -750,7 +978,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Name\",\r\n    \"county_seat\": \"County Seat\",\r\n    \"est\": 1900,\r\n    \"population\": 5000,\r\n    \"area\": 543,\r\n    \"map\":\"https://www.images.google.com/\"\r\n}",
+					"raw": "{\r\n    \"id\": 9999,\r\n    \"name\": \"Name\",\r\n    \"county_seat\": \"County Seat\",\r\n    \"est\": 1900,\r\n    \"population\": 5000,\r\n    \"area\": 543,\r\n    \"map\":\"https://www.images.google.com/\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -779,7 +1007,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Name\",\r\n    \"county_seat\": \"County Seat\",\r\n    \"est\": 1900,\r\n    \"population\": 5000,\r\n    \"area\": 543,\r\n    \"map\":\"https://www.images.google.com/\"\r\n}",
+							"raw": "{\r\n    \"id\": 9999,\r\n    \"name\": \"Name\",\r\n    \"county_seat\": \"County Seat\",\r\n    \"est\": 1900,\r\n    \"population\": 5000,\r\n    \"area\": 543,\r\n    \"map\":\"https://www.images.google.com/\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -810,7 +1038,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Thu, 19 Oct 2023 02:01:51 GMT"
+							"value": "Sat, 02 Dec 2023 04:11:55 GMT"
 						},
 						{
 							"key": "Connection",
@@ -822,7 +1050,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "132"
+							"value": "133"
 						},
 						{
 							"key": "Access-Control-Allow-Origin",
@@ -830,7 +1058,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"area\": 543,\n    \"county_seat\": \"County Seat\",\n    \"est\": 1900,\n    \"id\": 255,\n    \"map\": \"https://www.images.google.com/\",\n    \"name\": \"Name\",\n    \"population\": 5000\n}"
+					"body": "{\n    \"area\": 543,\n    \"county_seat\": \"County Seat\",\n    \"est\": 1900,\n    \"id\": 9999,\n    \"map\": \"https://www.images.google.com/\",\n    \"name\": \"Name\",\n    \"population\": 5000\n}"
 				}
 			]
 		},
@@ -1176,6 +1404,172 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"county_id\": 227\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete County",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate that the 'message' field is empty\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData).to.be.an('object');",
+							"  pm.expect(responseData.message).to.equal(\"County deleted successfully\");",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.southwesthurricaneaid.me/api/counties/9999",
+					"protocol": "https",
+					"host": [
+						"api",
+						"southwesthurricaneaid",
+						"me"
+					],
+					"path": [
+						"api",
+						"counties",
+						"9999"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete County",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://api.southwesthurricaneaid.me/api/counties/9999",
+							"protocol": "https",
+							"host": [
+								"api",
+								"southwesthurricaneaid",
+								"me"
+							],
+							"path": [
+								"api",
+								"counties",
+								"9999"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 02 Dec 2023 04:12:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"County deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Global Search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate the 'aid_organizations' array is present and contains at least one element\", function () {",
+							"    const responseData = pm.response.json();",
+							"",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.aid_organizations).to.exist.and.to.be.an('array').with.lengthOf.at.least(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.southwesthurricaneaid.me/api/search/Houston",
+					"protocol": "https",
+					"host": [
+						"api",
+						"southwesthurricaneaid",
+						"me"
+					],
+					"path": [
+						"api",
+						"search",
+						"Houston"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Global Search",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.southwesthurricaneaid.me/api/search/Houston",
+							"protocol": "https",
+							"host": [
+								"api",
+								"southwesthurricaneaid",
+								"me"
+							],
+							"path": [
+								"api",
+								"search",
+								"Houston"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
 				}
 			]
 		}

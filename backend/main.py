@@ -4,12 +4,14 @@ from flask import Flask, Blueprint, jsonify, request, url_for, current_app
 from flask_sqlalchemy import SQLAlchemy
 from models import db
 from models.hurricane import Hurricane
+from models.associations import hurricane_county_associations
 from dateutil import parser
 from models.aid_organization import AidOrganization
 from models.county import County
-from sqlalchemy import func
+from sqlalchemy import func, desc, or_, String, cast
 from datetime import date, datetime
 from flask_cors import CORS
+from sqlalchemy import func, or_, text
 app = Flask(__name__)
 cors = CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URI']
@@ -24,6 +26,37 @@ api_bp = Blueprint('api', __name__, url_prefix='/api')
 def index():
     return "Hello world!"
 
+@api_bp.route('/search/<string:query>', methods=['GET'])
+def global_search(query):
+    aid_org_query = text("""
+        SELECT * FROM aid_organizations 
+        WHERE to_tsvector('english', shelter_name || ' ' || address_1 || ' ' || city || ' ' || state || ' ' || zipcode || ' ' || org_organization_name) 
+        @@ to_tsquery('english', :query)
+    """)
+    hurricane_query = text("""
+        SELECT * FROM hurricanes 
+        WHERE to_tsvector('english', name || ' ' || caption || ' ' || highest_winds || ' ' || lowest_pressure || ' ' || deaths || ' ' || damage || ' ' || areas_affected) 
+        @@ to_tsquery('english', :query)
+    """)
+    county_query = text("""
+        SELECT * FROM counties 
+        WHERE to_tsvector('english', name || ' ' || county_seat) 
+        @@ to_tsquery('english', :query)
+    """)
+
+    results = {}
+    with db.session.begin():
+        aid_org_results = db.session.execute(aid_org_query, {'query': query})
+        results['aid_organizations'] = [row._asdict() for row in aid_org_results]
+        hurricane_results = db.session.execute(hurricane_query, {'query': query})
+        results['hurricanes'] = [row._asdict() for row in hurricane_results]
+        county_results = db.session.execute(county_query, {'query': query})
+        results['counties'] = [row._asdict() for row in county_results]
+
+    if all(not results[key] for key in results):
+        return jsonify({"error": "No matching records found"}), 404
+
+    return jsonify(results)
 
 @api_bp.route('/hurricanes/<int:id>', methods=['GET'])
 def get_hurricane_by_id(id):
@@ -40,7 +73,14 @@ def get_hurricanes():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
     category = int(request.args.get('category', 0))
+    search_criteria = request.args.get('search_criteria', '')
+    descending = request.args.get('desc', 'false')
     order_by = request.args.get('order_by', "")
+    filter_criteria = request.args.get('filter_by', "")
+    filter_direction = request.args.get('filter_direction', "")
+    filter_value = request.args.get('filter_value', "")
+    
+    #get the correct name for order_by that matches the model
     if(order_by.lower() == "deaths" or order_by.lower() == "fatalities"):
         order_by = "deaths_number"
     elif(order_by.replace(" ", "").lower() == "highestwinds"):
@@ -50,13 +90,57 @@ def get_hurricanes():
     elif(order_by.lower() == "damage"):
         order_by = "damage_number"
         
+        
+    #get the correct name for filter criteria that matches the model
+    if(filter_criteria.lower() == "deaths" or filter_criteria.lower() == "fatalities"):
+        filter_criteria = "deaths_number"
+    elif(filter_criteria.replace(" ", "").lower() == "highestwinds"):
+        filter_criteria = "highest_winds_mph"
+    elif(filter_criteria.replace(" ","").lower() == "lowestpressure"):
+        filter_criteria = "lowest_pressure_mbar"
+    elif(filter_criteria.lower() == "damage"):
+        filter_criteria = "damage_number"
+        
     paginated_hurricanes = Hurricane.query
     
-    if category != 0:
-        paginated_hurricanes = paginated_hurricanes.filter_by(category=category)
+    # #filter by =
+    # if category != 0:
+    #     paginated_hurricanes = paginated_hurricanes.filter_by(category=category)
+    
+    #search for a term
+    if(search_criteria != ""):
+        
+        paginated_hurricanes = paginated_hurricanes.filter(
+            or_(
+                func.replace(Hurricane.name, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.caption, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.highest_winds, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.lowest_pressure, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.highest_winds, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.deaths, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.damage, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(Hurricane.areas_affected, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+            )
+        )
+    
+    # filter by >, =, <
+    if(filter_criteria != "" and filter_direction != "" and filter_value != ""):
+        if(filter_direction == ">"):
+            paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) > int(filter_value))
+        elif(filter_direction == "<"):
+            paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) < int(filter_value))
+        else:
+            paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) == int(filter_value))
+
+
     
     if(order_by != ""):
-        paginated_hurricanes = paginated_hurricanes.order_by(getattr(Hurricane, order_by))
+        if(descending == 'true'):
+            paginated_hurricanes = paginated_hurricanes.order_by(desc(getattr(Hurricane, order_by)))
+        else:
+            paginated_hurricanes = paginated_hurricanes.order_by(getattr(Hurricane, order_by))
+            
+    
     
         
     
@@ -103,8 +187,9 @@ def add_hurricane():
         pass
 
     
-    
-    new_hurricane = Hurricane(
+    if 'id' in data and data['id'] is not None:
+        new_hurricane = Hurricane(
+        id=data['id'],
         name=data['name'],
         url=data['url'],
         formed=formed_date,
@@ -123,12 +208,45 @@ def add_hurricane():
         areas_affected=data['areas_affected'],
         counties=counties
     )
+    else:
+        new_hurricane = Hurricane(
+            name=data['name'],
+            url=data['url'],
+            formed=formed_date,
+            image=data['image'],
+            caption=data['caption'],
+            dissipated=dissipated_date,
+            category=data['category'],
+            highest_winds=data.get('highest_winds'),
+            highest_winds_mph=data.get('highest_winds_mph'),
+            lowest_pressure=data.get('lowest_pressure'),
+            lowest_pressure_mbar=data.get('lowest_pressure_mbar'),
+            deaths=data['deaths'],
+            deaths_number=data['deaths_number'],
+            damage=data['damage'],
+            damage_number=data['damage_number'],
+            areas_affected=data['areas_affected'],
+            counties=counties
+        )
 
     db.session.add(new_hurricane)
     db.session.commit()
 
     return jsonify(new_hurricane.serialize()), 201
 
+@api_bp.route('/hurricanes/<int:id>', methods=['DELETE'])
+def delete_hurricane(id):
+    hurricane = Hurricane.query.get(id)
+    if not hurricane:
+        return jsonify({"error": "Hurricane not found"}), 404
+    
+    db.session.execute(
+        hurricane_county_associations.delete().where(hurricane_county_associations.c.hurricane_id == id)
+    )
+    db.session.delete(hurricane)
+    db.session.commit()
+
+    return jsonify({"message": "Hurricane deleted successfully"}), 200
 
 @api_bp.route('/aid_organizations/<int:id>', methods=['GET'])
 def get_organization_by_id(id):
@@ -145,27 +263,47 @@ def get_organization_by_id(id):
 def get_aid_organizations():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
-    score = int(request.args.get('score', -1))
-    county = int(request.args.get('county_id', -1))
-    organization_name = request.args.get('organization_name', "")
-    reverse = bool(request.args.get('reverse', False))
-    order_by = request.args.get('order_by', "")
-    paginated_organizations = AidOrganization.query
-    if score != -1:
-        paginated_organizations = paginated_organizations.filter_by(score=score)
     
-    if county != -1:
-        paginated_organizations = paginated_organizations.filter_by(county_id=county)
+    search_criteria = request.args.get('search_criteria', '')
+    descending = request.args.get('desc', 'false')
+    order_by = request.args.get('order_by', "")
+    filter_criteria = request.args.get('filter_by', "")
+    filter_direction = request.args.get('filter_direction', "")
+    filter_value = request.args.get('filter_value', "")
+    
+    paginated_organizations = AidOrganization.query
 
-    if organization_name != "":
-        paginated_organizations = paginated_organizations.filter_by(org_organization_name=organization_name)
+    if(search_criteria != ""):
+    
+        paginated_organizations = paginated_organizations.filter(
+            or_(
+                func.replace(AidOrganization.shelter_name, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.address_1, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.city, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.state, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.zipcode, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.org_organization_name, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                cast(AidOrganization.score, String).ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(AidOrganization.status, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%")
+            )
+        )
 
-    if order_by != "":
-        # if reverse is true, reverse the order
-        if reverse:
-            paginated_organizations = paginated_organizations.order_by(getattr(AidOrganization, order_by).desc())
+    # filter by >, =, <
+    if(filter_criteria != "" and filter_direction != "" and filter_value != ""):
+        if(filter_direction == ">"):
+            paginated_organizations = paginated_organizations.filter(getattr(AidOrganization, filter_criteria) > int(filter_value))
+        elif(filter_direction == "<"):
+            paginated_organizations= paginated_organizations.filter(getattr(AidOrganization, filter_criteria) < int(filter_value))
+        else:
+            paginated_organizations = paginated_organizations.filter(getattr(AidOrganization, filter_criteria) == int(filter_value))
+
+    
+    if(order_by != ""):
+        if(descending == 'true'):
+            paginated_organizations = paginated_organizations.order_by(desc(getattr(AidOrganization, order_by)))
         else:
             paginated_organizations = paginated_organizations.order_by(getattr(AidOrganization, order_by))
+            
     
     paginated_organizations = paginated_organizations.paginate(
         page=page, per_page=per_page, error_out=False)
@@ -185,8 +323,9 @@ def add_organization():
     data = request.get_json()
     if not data:
         return jsonify({"error": "No input data provided"}), 400
-
-    new_org = AidOrganization(
+    if 'id' in data and data['id'] is not None:
+        new_org = AidOrganization(
+        id=data['id'],
         shelter_name=data['shelter_name'],
         address_1=data['address_1'],
         city=data['city'],
@@ -207,12 +346,44 @@ def add_organization():
         latitude=data['latitude'],
         county_id=data['county_id']
     )
+    else:
+        new_org = AidOrganization(
+            shelter_name=data['shelter_name'],
+            address_1=data['address_1'],
+            city=data['city'],
+            state=data['state'],
+            zipcode=data['zip'],
+            ada_compliant=data['ada_compliant'],
+            wheelchair_accessible=data['wheelchair_accessible'],
+            generator_onsite=data['generator_onsite'],
+            self_sufficient_electricity=data['self_sufficient_electricity'],
+            in_surge_slosh_area=data['in_surge_slosh_area'],
+            org_organization_name=data['org_organization_name'],
+            org_main_phone=data['org_main_phone'],
+            org_email=data['org_email'],
+            score=data['score'],
+            in_100_yr_floodplain=data['in_100_yr_floodplain'],
+            status=data['status'],
+            longitude=data['longitude'],
+            latitude=data['latitude'],
+            county_id=data['county_id']
+        )
 
     db.session.add(new_org)
     db.session.commit()
 
     return jsonify(new_org.serialize()), 201
 
+@api_bp.route('/aid_organizations/<int:id>', methods=['DELETE'])
+def delete_aid_organization(id):
+    aid_organization = AidOrganization.query.get(id)
+    if not aid_organization:
+        return jsonify({"error": "Aid Organization not found"}), 404
+    
+    db.session.delete(aid_organization)
+    db.session.commit()
+
+    return jsonify({"message": "Aid Organization deleted successfully"}), 200
 
 @api_bp.route('/counties/<int:id>', methods=['GET'])
 def get_county_by_id(id):
@@ -229,10 +400,65 @@ def get_county_by_id(id):
 def get_counties():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
-    paginated_counties = County.query.paginate(
-        page=page, per_page=per_page, error_out=False)
+    include_hurricanes = True if request.args.get('include_hurricanes') != None else False
+    include_orgs= True if request.args.get('include_orgs') != None else False
+    search_criteria = request.args.get('search_criteria', '')
+    descending = request.args.get('desc', 'false')
+    order_by = request.args.get('order_by', "")
+    filter_criteria = request.args.get('filter_by', "")
+    filter_direction = request.args.get('filter_direction', "")
+    filter_value = request.args.get('filter_value', "")
+    
+        
+    paginated_counties = County.query
+    
+    # #filter by =
+    # if category != 0:
+    #     paginated_hurricanes = paginated_hurricanes.filter_by(category=category)
+    
+    #search for a term
+    if(search_criteria != ""):
+        
+        paginated_counties = paginated_counties.filter(
+            or_(
+                func.replace(County.name, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                func.replace(County.county_seat, ' ', '').ilike(f"%{search_criteria.replace(' ', '')}%"),
+                cast(County.area, String).ilike(f"%{search_criteria.replace(' ', '')}%"),
+                cast(County.population, String).ilike(f"%{search_criteria.replace(' ', '')}%"),
+                cast(County.est, String).ilike(f"%{search_criteria.replace(' ', '')}%")
+            )
+        )
 
-    counties = [c.serialize() for c in paginated_counties.items]
+    # filter by >, =, <
+    if(filter_criteria != "" and filter_direction != "" and filter_value != ""):
+        if(filter_direction == ">"):
+            paginated_counties = paginated_counties.filter(getattr(County, filter_criteria) > int(filter_value))
+        elif(filter_direction == "<"):
+            paginated_counties= paginated_counties.filter(getattr(County, filter_criteria) < int(filter_value))
+        else:
+            paginated_counties = paginated_counties.filter(getattr(County, filter_criteria) == int(filter_value))
+
+
+    
+    if(order_by != ""):
+        if(descending == 'true'):
+            paginated_counties = paginated_counties.order_by(desc(getattr(County, order_by)))
+        else:
+            paginated_counties = paginated_counties.order_by(getattr(County, order_by))
+            
+    
+    
+    
+    paginated_counties = paginated_counties.paginate(
+        page=page, per_page=per_page, error_out=False)
+    counties = []
+    for c in paginated_counties.items :
+        county = c.serialize()
+        if include_hurricanes :
+            county['hurricanes'] = [{'name': h.name, 'id': h.id} for h in c.hurricanes]
+        if include_orgs :
+            county['aid_organizations'] = [{'shelter_name': a.shelter_name, 'id': a.id} for a in c.aid_organizations]
+        counties.append(county)
     return jsonify({
         'counties': counties,
         'total_pages': paginated_counties.pages,
@@ -249,20 +475,44 @@ def add_county():
         return jsonify({"error": "No input data provided"}), 400
     # Validate data here (e.g., check if all required fields are present)
     print(data)
-    new_county = County(
-        name=data['name'],
-        county_seat=data['county_seat'],
-        est=data['est'],
-        population=data['population'],
-        area=data['area'],
-        map=data['map'],
-    )
+    if 'id' in data and data['id'] is not None:
+        new_county = County(
+            id=data['id'],
+            name=data['name'],
+            county_seat=data['county_seat'],
+            est=data['est'],
+            population=data['population'],
+            area=data['area'],
+            map=data['map'],
+        )
+    else:
+        new_county = County(
+            name=data['name'],
+            county_seat=data['county_seat'],
+            est=data['est'],
+            population=data['population'],
+            area=data['area'],
+            map=data['map'],
+        )
 
     db.session.add(new_county)
     db.session.commit()
 
     return jsonify(new_county.serialize()), 201
 
+@api_bp.route('/counties/<int:id>', methods=['DELETE'])
+def delete_county(id):
+    county = County.query.get(id)
+    if not county:
+        return jsonify({"error": "County not found"}), 404
+    
+    db.session.execute(
+        hurricane_county_associations.delete().where(hurricane_county_associations.c.county_id == id)
+    )
+    db.session.delete(county)
+    db.session.commit()
+
+    return jsonify({"message": "County deleted successfully"}), 200
 
 @api_bp.route('/counties/search/<string:name>', methods=['GET'])
 def search_county(name):

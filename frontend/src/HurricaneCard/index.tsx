@@ -4,16 +4,17 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import { Link } from "react-router-dom";
+import Link from '@mui/material/Link';
 import CardMedia from "@mui/material/CardMedia";
 import { Hurricane } from "../types";
+import HighlightedText from "../utils/HighlightedText";
 
 type Props = {
+    searchTerm: string;
     hurricane: Hurricane;
-    // index: number;
 };
 
-export default function HurricaneCard({ hurricane }: Props) {
+export default function HurricaneCard({ searchTerm, hurricane }: Props) {
     return (
         <div style={{ width: "350px", height: "100%" }}>
             <Card
@@ -27,7 +28,7 @@ export default function HurricaneCard({ hurricane }: Props) {
             >
                 <Tooltip title="Click for More Info">
                     <Link
-                        to={`/Hurricanes/HurricaneInstances/${hurricane.id}`}
+                        href={`/Hurricanes/HurricaneInstances/${hurricane.id}`}
                         style={{ textDecoration: "none" }}
                     >
                         <CardActionArea>
@@ -37,7 +38,7 @@ export default function HurricaneCard({ hurricane }: Props) {
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5">
-                                    {hurricane.name}
+                                    <HighlightedText searchTerm={searchTerm} text={hurricane.name} />
                                 </Typography>
                                 <Typography
                                     variant="body2"
@@ -66,7 +67,7 @@ export default function HurricaneCard({ hurricane }: Props) {
                                         }}
                                     >
                                         <b>Date: </b>
-                                        {hurricane.formed}
+                                        {hurricane.formed.slice(0,17)}
                                     </Typography>
                                     <Typography
                                         variant="body1"
@@ -76,7 +77,7 @@ export default function HurricaneCard({ hurricane }: Props) {
                                         }}
                                     >
                                         <b>Wind Speed: </b>
-                                        {hurricane.highest_winds}
+                                        <HighlightedText searchTerm={searchTerm} text={hurricane.highest_winds} />
                                     </Typography>
                                     <Typography
                                         variant="body1"
@@ -86,7 +87,7 @@ export default function HurricaneCard({ hurricane }: Props) {
                                         }}
                                     >
                                         <b>Fatalities: </b>
-                                        {hurricane.deaths}
+                                        <HighlightedText searchTerm={searchTerm} text={hurricane.deaths} />
                                     </Typography>
                                 </Typography>
                             </CardContent>

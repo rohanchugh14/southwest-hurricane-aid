@@ -11,10 +11,17 @@ import AidOrganizations from "../Aid Organizations";
 import HurricaneInstances from "../HurricaneInstances";
 import CountyInstances from "../CountyInstances";
 import AidOrganizationInstances from "../AidOrganizationInstances";
+import ProviderVisualizations from "../Provider Visualizations/ProviderVisualizations";
 import Search from "../Search"; 
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from "@mui/material";
+import theme from "./Themes";
+import OurVisualizations from "../Our Visualizations";
 
 function App() {
-  return (      
+  return (
+      <ThemeProvider theme={theme}>
+      <CssBaseline />
       <BrowserRouter>
       <Navbar />
       <Routes>
@@ -26,9 +33,12 @@ function App() {
         <Route path="/Aid Organizations/AidOrganizationInstances/:instance" element = {<AidOrganizationInstances />} />
         <Route path="/Hurricanes/HurricaneInstances/:instance" element = {<HurricaneInstances />} />
         <Route path="/Counties/CountyInstances/:instance" element = {<CountyInstances />} />
-        <Route path="/Search" element={<Search />} /> 
+        <Route path="/Our Visualizations/:instance" element = {<OurVisualizations />} />
+        <Route path="/Provider Visualizations/:instance" element = {<ProviderVisualizations />} />
+        <Route path="/Search/:searchTerm" element={<Search />} /> 
       </Routes>
     </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
