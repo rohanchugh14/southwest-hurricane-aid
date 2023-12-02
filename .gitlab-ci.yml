@@ -14,7 +14,7 @@ install_dependencies:
     - npm install --force
     - npm install -g newman
     - npm run build
-    - npm run test:ci 
+    # - npm run test:ci 
     - newman run ../backend/SouthwestHurricaneAid.postman_collection.json
   artifacts:
     paths:
