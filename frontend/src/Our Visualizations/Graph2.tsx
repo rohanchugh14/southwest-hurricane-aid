@@ -1,9 +1,8 @@
 import React from "react";
 import Routes from "../Routes";
-import { AidOrganization, County, Hurricane } from "../types";
-import { useState, useEffect, PureComponent } from "react";
+import { AidOrganization } from "../types";
+import { useState, useEffect } from "react";
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Box, Paper, Typography } from "@mui/material";
 
 
 const LinePlot = () => {

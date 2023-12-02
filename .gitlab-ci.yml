@@ -11,7 +11,7 @@ install_dependencies:
   stage: build
   script:
     - cd frontend
-    - npm install
+    - npm install --force
     - npm install -g newman
     - npm run build
     - npm run test:ci 
