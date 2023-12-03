@@ -47,7 +47,13 @@ def global_search(query):
     results = {}
     with db.session.begin():
         aid_org_results = db.session.execute(aid_org_query, {'query': query})
-        results['aid_organizations'] = [row._asdict() for row in aid_org_results]
+        aid_orgs = []
+        for row in aid_org_results:
+            org = row._asdict()
+            county = County.query.get(org['county_id'])
+            org['county'] = county.serialize()
+            aid_orgs.append(org)
+        results['aid_organizations'] = aid_orgs
         hurricane_results = db.session.execute(hurricane_query, {'query': query})
         results['hurricanes'] = [row._asdict() for row in hurricane_results]
         county_results = db.session.execute(county_query, {'query': query})
