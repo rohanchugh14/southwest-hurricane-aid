@@ -60,7 +60,7 @@ const AidOrganizationCard = ({ searchTerm, aidOrganization, imgUrl }: Props) => 
                                     }}
                                 >
                                     <b>County: </b>
-                                    <HighlightedText searchTerm={searchTerm} text={aidOrganization.county.name} />
+                                    <HighlightedText searchTerm={searchTerm} text={aidOrganization.county?.name} />
                                 </Typography>
                                 <Typography
                                     variant="body1"
@@ -92,7 +92,7 @@ const AidOrganizationCard = ({ searchTerm, aidOrganization, imgUrl }: Props) => 
 };
 
 AidOrganizationCard.defaultProps = {
-    name: "Name goes here",
+    shelter_name: "Name goes here",
     imgurl: "img/logo192.png",
     city: "City goes here",
     address: "Address goes here",
