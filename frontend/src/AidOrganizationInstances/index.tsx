@@ -36,13 +36,15 @@ const AidOrganizationInstances = () => {
           marginBottom: "20px",
         }}
       >
-        <MapsComponent
+        {/* <MapsComponent
           center={{
             lat: (org) ? org.latitude : 29.7604,
             lng: (org) ? org.longitude : -95.3698,
           }}
           zoom={10}
-        />
+        /> */}
+
+         {/*TODO: UNCOMMENT ABOVE WHEN TURNING IN  */}
 
         <CardContent>
           <Typography variant="h2">{org?.shelter_name}</Typography>
