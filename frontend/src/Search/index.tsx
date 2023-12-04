@@ -35,7 +35,7 @@ const Search = () => {
       });
     } else if (model === 'aid_organization') {
       resultsComponent = searchResults?.aid_organizations?.map((result) => {
-        return <Grid item><AidOrganizationCard searchTerm="test" aidOrganization={result} imgurl=""/> </Grid>
+        return <Grid item><AidOrganizationCard searchTerm={searchTerm} aidOrganization={result} imgurl=""/> </Grid>
       });
       // resultsComponent = searchResults?.aid_organizations.map((result) =>  {
       //   return <div className="result-box"><Link href={`/Aid Organizations/AidOrganizationInstances/${result.id}`}>{result.shelter_name}</Link></div>
