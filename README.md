@@ -62,7 +62,7 @@ Estimated time: 1 hour \
 Actual time: 1 hour
 
 **Git SHA**
-73ec05eeca524af203d133434c65d1d421b65215
+d69c5e227f6291ace7f74b359fa7123772347acc
 
 **URLs of at least three data sources that you will programmatically scrape using a RESTful API (be very sure about this)**
 - https://www.weather.gov/documentation/services-web-api 
@@ -139,7 +139,7 @@ https://documenter.getpostman.com/view/18568319/2s9YR9YsEf
 **Postman API Collection and Tests**
 https://www.postman.com/material-pilot-15383947/workspace/southwest-hurricane-aid/collection/18568319-9b3b1a6a-ba7d-439a-aed3-4ce06860e4e0?action=share&creator=18568319
 
-**DB Diagram**
+**DB Diagram (open actual image for better quality than shown here)**
 ![DB Diagram](./Southwest_Hurricane_Aid%20DB%20Diagram%20Online%20Tool.png)
 
 **Comments**
