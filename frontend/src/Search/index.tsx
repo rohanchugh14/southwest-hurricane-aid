@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Routes from "../Routes";
 // import "./Search.css";
-import { Box, Button, ButtonGroup, Grid, IconButton, InputBase, Link, Paper, Stack } from "@mui/material";
+import { Box, Button, Grid, IconButton, InputBase, Paper, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { AidOrganization, County, Hurricane } from "../types";
-import { Spacer } from "@chakra-ui/react";
 import AidOrganizationCard from "../Aid Organizations/AidOrganizationCard";
 import HurricaneCard from "../HurricaneCard";
-import { Props } from "recharts/types/container/Surface";
 import CountyCard from "../Counties/CountyCard";
 
 type SearchResult = {
