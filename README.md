@@ -62,7 +62,7 @@ Estimated time: 1 hour \
 Actual time: 1 hour
 
 **Git SHA**
-d69c5e227f6291ace7f74b359fa7123772347acc
+8023de6b6e2bfc7cf9d8bedfb24862eeea62caa5
 
 **URLs of at least three data sources that you will programmatically scrape using a RESTful API (be very sure about this)**
 - https://www.weather.gov/documentation/services-web-api 
