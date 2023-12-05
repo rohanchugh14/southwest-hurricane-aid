@@ -27,7 +27,8 @@ https://api.southwesthurricaneaid.me/api
 
 Phase 1: Rohan Chugh \
 Phase 2: Carolyn Stripling
-
+Phase 3: James Aidan Stewart
+Phase 4: Eshitha Bangray
 Phase leader responsibilities: Setting up and leading meetings
 
 **Estimated vs Actual Time**
@@ -41,6 +42,22 @@ Estimated time: 15 hours \
 Actual time: 20 hours
 
 User Stories for Phase 2 \
+Estimated time: 1 hour \
+Actual time: 1 hour
+
+Phase 3: \
+Estimated time: 15 hours \
+Actual time: 20 hours
+
+User Stories for Phase 3 \
+Estimated time: 1 hour \
+Actual time: 1 hour
+
+Phase 4: \
+Estimated time: 10 hours \
+Actual time: 10 hours
+
+User Stories for Phase 4 \
 Estimated time: 1 hour \
 Actual time: 1 hour
 
