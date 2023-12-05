@@ -122,8 +122,10 @@ https://documenter.getpostman.com/view/18568319/2s9YR9YsEf
 **Postman API Collection and Tests**
 https://www.postman.com/material-pilot-15383947/workspace/southwest-hurricane-aid/collection/18568319-9b3b1a6a-ba7d-439a-aed3-4ce06860e4e0?action=share&creator=18568319
 
+**DB Diagram**
+![DB Diagram](./Southwest_Hurricane_Aid%20DB%20Diagram%20Online%20Tool.png)
 
 **Comments**
 
-Our final commit pipeline will be on prod instead of main.
+Our final commit pipeline will be on the prod branch instead of main.
 We did this because we were running out of pipeline minutes.
