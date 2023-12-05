@@ -26,9 +26,9 @@ https://api.southwesthurricaneaid.me/api
 **Phase Leaders**
 
 Phase 1: Rohan Chugh \
-Phase 2: Carolyn Stripling
-Phase 3: James Aidan Stewart
-Phase 4: Eshitha Bangray
+Phase 2: Carolyn Stripling \
+Phase 3: James Aidan Stewart \
+Phase 4: Eshitha Bangray \
 Phase leader responsibilities: Setting up and leading meetings
 
 **Estimated vs Actual Time**
