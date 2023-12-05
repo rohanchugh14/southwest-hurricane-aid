@@ -32,8 +32,7 @@ const AidOrganizationCard = ({ searchTerm, aidOrganization, imgUrl }: Props) => 
                 >
                     <CardActionArea>
                         <CardContent>
-                            {/* <MapsComponent center={{ lat: aidOrganization.latitude, lng: aidOrganization.longitude }} zoom={10} /> */}
-                            {/* TODO: UNCOMMENT ABOVE WHEN TURNING IN */}
+                            <MapsComponent center={{ lat: aidOrganization.latitude, lng: aidOrganization.longitude }} zoom={10} />
                             <Typography gutterBottom variant="h5">
                                 <HighlightedText searchTerm={searchTerm} text={aidOrganization.shelter_name} />
                             </Typography>
