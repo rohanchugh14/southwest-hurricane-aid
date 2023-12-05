@@ -44,6 +44,7 @@ const AidOrganizationInstances = () => {
           zoom={10}
         />
 
+
         <CardContent>
           <Typography variant="h2">{org?.shelter_name}</Typography>
           <Typography variant="body1">

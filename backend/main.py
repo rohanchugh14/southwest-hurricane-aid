@@ -47,7 +47,13 @@ def global_search(query):
     results = {}
     with db.session.begin():
         aid_org_results = db.session.execute(aid_org_query, {'query': query})
-        results['aid_organizations'] = [row._asdict() for row in aid_org_results]
+        aid_orgs = []
+        for row in aid_org_results:
+            org = row._asdict()
+            county = County.query.get(org['county_id'])
+            org['county'] = county.serialize()
+            aid_orgs.append(org)
+        results['aid_organizations'] = aid_orgs
         hurricane_results = db.session.execute(hurricane_query, {'query': query})
         results['hurricanes'] = [row._asdict() for row in hurricane_results]
         county_results = db.session.execute(county_query, {'query': query})
@@ -125,12 +131,22 @@ def get_hurricanes():
     
     # filter by >, =, <
     if(filter_criteria != "" and filter_direction != "" and filter_value != ""):
-        if(filter_direction == ">"):
-            paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) > int(filter_value))
-        elif(filter_direction == "<"):
-            paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) < int(filter_value))
-        else:
-            paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) == int(filter_value))
+        
+        try:
+            if(filter_direction == ">"):
+                paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) > int(filter_value))
+            elif(filter_direction == "<"):
+                paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) < int(filter_value))
+            else:
+                paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) == int(filter_value))
+        except:
+            
+            if(filter_direction == ">"):
+                paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) > filter_value)
+            elif(filter_direction == "<"):
+                paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria) < filter_value)
+            else:
+                paginated_hurricanes = paginated_hurricanes.filter(getattr(Hurricane, filter_criteria).ilike(filter_value))
 
 
     
@@ -290,12 +306,21 @@ def get_aid_organizations():
 
     # filter by >, =, <
     if(filter_criteria != "" and filter_direction != "" and filter_value != ""):
-        if(filter_direction == ">"):
-            paginated_organizations = paginated_organizations.filter(getattr(AidOrganization, filter_criteria) > int(filter_value))
-        elif(filter_direction == "<"):
-            paginated_organizations= paginated_organizations.filter(getattr(AidOrganization, filter_criteria) < int(filter_value))
-        else:
-            paginated_organizations = paginated_organizations.filter(getattr(AidOrganization, filter_criteria) == int(filter_value))
+        try:
+            if(filter_direction == ">"):
+                paginated_organizations = paginated_organizations.filter(getattr(AidOrganization, filter_criteria) > int(filter_value))
+            elif(filter_direction == "<"):
+                paginated_organizations= paginated_organizations.filter(getattr(AidOrganization, filter_criteria) < int(filter_value))
+            else:
+                paginated_organizations = paginated_organizations.filter(getattr(AidOrganization, filter_criteria) == int(filter_value))
+        except:
+            if(filter_direction == ">"):
+                paginated_organizations = paginated_organizations.filter(getattr(AidOrganization, filter_criteria) > filter_value)
+            elif(filter_direction == "<"):
+                paginated_organizations= paginated_organizations.filter(getattr(AidOrganization, filter_criteria) < filter_value)
+            else:
+                paginated_organizations = paginated_organizations.filter(getattr(AidOrganization, filter_criteria).ilike(filter_value))
+            
 
     
     if(order_by != ""):
@@ -431,12 +456,20 @@ def get_counties():
 
     # filter by >, =, <
     if(filter_criteria != "" and filter_direction != "" and filter_value != ""):
-        if(filter_direction == ">"):
-            paginated_counties = paginated_counties.filter(getattr(County, filter_criteria) > int(filter_value))
-        elif(filter_direction == "<"):
-            paginated_counties= paginated_counties.filter(getattr(County, filter_criteria) < int(filter_value))
-        else:
-            paginated_counties = paginated_counties.filter(getattr(County, filter_criteria) == int(filter_value))
+        try:
+            if(filter_direction == ">"):
+                paginated_counties = paginated_counties.filter(getattr(County, filter_criteria) > int(filter_value))
+            elif(filter_direction == "<"):
+                paginated_counties= paginated_counties.filter(getattr(County, filter_criteria) < int(filter_value))
+            else:
+                paginated_counties = paginated_counties.filter(getattr(County, filter_criteria) == int(filter_value))
+        except:
+            if(filter_direction == ">"):
+                paginated_counties = paginated_counties.filter(getattr(County, filter_criteria) > filter_value)
+            elif(filter_direction == "<"):
+                paginated_counties= paginated_counties.filter(getattr(County, filter_criteria) < filter_value)
+            else:
+                paginated_counties = paginated_counties.filter(getattr(County, filter_criteria).ilike(filter_value))
 
 
     

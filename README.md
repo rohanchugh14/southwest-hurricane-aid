@@ -26,8 +26,9 @@ https://api.southwesthurricaneaid.me/api
 **Phase Leaders**
 
 Phase 1: Rohan Chugh \
-Phase 2: Carolyn Stripling
-
+Phase 2: Carolyn Stripling \
+Phase 3: James Aidan Stewart \
+Phase 4: Eshitha Bangray \
 Phase leader responsibilities: Setting up and leading meetings
 
 **Estimated vs Actual Time**
@@ -44,8 +45,24 @@ User Stories for Phase 2 \
 Estimated time: 1 hour \
 Actual time: 1 hour
 
+Phase 3: \
+Estimated time: 15 hours \
+Actual time: 20 hours
+
+User Stories for Phase 3 \
+Estimated time: 1 hour \
+Actual time: 1 hour
+
+Phase 4: \
+Estimated time: 10 hours \
+Actual time: 10 hours
+
+User Stories for Phase 4 \
+Estimated time: 1 hour \
+Actual time: 1 hour
+
 **Git SHA**
-73ec05eeca524af203d133434c65d1d421b65215
+174bb19d86394def266337c709a49080c7e48d7b
 
 **URLs of at least three data sources that you will programmatically scrape using a RESTful API (be very sure about this)**
 - https://www.weather.gov/documentation/services-web-api 
@@ -122,8 +139,10 @@ https://documenter.getpostman.com/view/18568319/2s9YR9YsEf
 **Postman API Collection and Tests**
 https://www.postman.com/material-pilot-15383947/workspace/southwest-hurricane-aid/collection/18568319-9b3b1a6a-ba7d-439a-aed3-4ce06860e4e0?action=share&creator=18568319
 
+**DB Diagram (open actual image for better quality than shown here)**
+![DB Diagram](./Southwest_Hurricane_Aid%20DB%20Diagram%20Online%20Tool.png)
 
 **Comments**
 
-Our final commit pipeline will be on prod instead of main.
+Our final commit pipeline will be on the prod branch instead of main.
 We did this because we were running out of pipeline minutes.
